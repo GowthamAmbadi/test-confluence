@@ -154,9 +154,16 @@
       width: 100%;
       border-collapse: collapse;
       border: 0.5px solid var(--border);
-      margin-top: 3rem;
       font-size: 0.9rem;
     }
+    /* Scroll wrapper for tables on mobile */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 3rem;
+    }
+    .table-scroll .glance-table { margin-top: 0; }
     .glance-table thead tr {
       background: var(--ink);
     }
@@ -677,31 +684,141 @@
     .reveal-child.visible { opacity: 1; transform: none; }
 
     /* ─── RESPONSIVE ─── */
+
+    /* ── Tablet (≤ 900px) ── */
     @media (max-width: 900px) {
+      /* Nav */
       nav { padding: 1rem 1.5rem; }
       nav.scrolled { padding: 0.7rem 1.5rem; }
       .nav-links { display: none; }
       .mobile-toggle { display: flex; }
+      .nav-logo img { height: 28px; }
+      .nav-logo-mark { font-size: 0.95rem; }
+
+      /* Hero */
       .page-hero { padding: 7rem 1.5rem 3.5rem; }
+
+      /* Sections */
       #glance, #passes, #compare, #policy, .cta-band { padding: 4rem 1.5rem; }
-      .passes-header { grid-template-columns: 1fr; gap: 1rem; }
-      .pass-card-head { padding: 2rem 1.5rem; grid-template-columns: 1fr; }
+
+      /* Glance table — horizontal scroll */
+      #glance { overflow-x: hidden; }
+      .glance-table { font-size: 0.78rem; min-width: 480px; }
+      .glance-table td, .glance-table thead th { padding: 0.8rem 0.9rem; }
+      /* Wrap table in scrollable div (already has overflow-x:auto on compare; add for glance) */
+
+      /* Passes header */
+      .passes-header { grid-template-columns: 1fr; gap: 0.75rem; }
+      .passes-header-right { font-size: 0.82rem; }
+
+      /* Pass card */
+      .pass-card-head {
+        padding: 1.75rem 1.25rem;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
       .pass-price-block { text-align: left; }
-      .pass-card-body { padding: 1.75rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; }
-      .pass-card-foot { padding: 1.25rem 1.5rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
-      .glance-table { font-size: 0.8rem; }
-      .glance-table td, .glance-table thead th { padding: 0.9rem 1rem; }
-      .compare-table { font-size: 0.75rem; }
-      .compare-table td, .compare-table thead th { padding: 0.75rem 0.85rem; }
+      .pass-price { font-size: clamp(30px, 7vw, 44px); }
+      .pass-num { font-size: 4rem; right: 1.25rem; }
+      .pass-card-body {
+        padding: 1.5rem 1.25rem;
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+      .pass-card-foot {
+        padding: 1.25rem 1.25rem;
+        flex-direction: column;
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+      .pass-card-foot .btn-register,
+      .pass-card-foot .btn-register-gold {
+        width: 100%;
+        text-align: center;
+        padding: 0.9rem 1rem;
+      }
+
+      /* Compare table */
+      .compare-table { font-size: 0.72rem; min-width: 540px; }
+      .compare-table td, .compare-table thead th { padding: 0.7rem 0.75rem; }
+      .compare-table thead th:not(:first-child) { min-width: 110px; font-size: 0.88rem; }
+
+      /* Policy */
       .policy-grid { grid-template-columns: 1fr; }
+
+      /* CTA band */
+      .cta-band { padding: 4rem 1.5rem; }
+      .cta-btns { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+      .cta-btns .btn-register,
+      .cta-btns .btn-register-gold { text-align: center; padding: 0.9rem 1rem; }
+      .cta-btns .btn-ghost-light { text-align: center; }
+
+      /* Footer */
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem 1.5rem; }
       .footer-bottom { padding: 1.25rem 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
-      .cta-band { padding: 4rem 1.5rem; }
     }
+
+    /* ── Mobile (≤ 600px) ── */
     @media (max-width: 600px) {
-      .footer-top { grid-template-columns: 1fr; }
-      .passes-header-right { display: none; }
+      /* Nav logo */
+      .nav-logo img { height: 24px; }
+      .nav-logo-mark { font-size: 0.85rem; }
+      .nav-sub { font-size: 0.58rem; }
+
+      /* Hero */
+      .page-hero { padding: 6.5rem 1.25rem 3rem; }
+
+      /* Sections padding */
+      #glance, #passes, #compare, #policy, .cta-band { padding: 3rem 1.25rem; }
+
+      /* Glance table scroll */
+      #glance { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .glance-table { font-size: 0.72rem; min-width: 400px; }
+      .glance-table td, .glance-table thead th { padding: 0.7rem 0.75rem; }
+      .pass-badge { display: block; margin: 0.3rem 0 0; margin-left: 0; }
+
+      /* Pass cards tighter */
+      .pass-card-head { padding: 1.5rem 1rem; }
+      .pass-card-body { padding: 1.25rem 1rem; }
+      .pass-card-foot { padding: 1rem; }
+      .pass-name { font-size: clamp(24px, 6vw, 34px); }
+      .pass-desc { font-size: 0.82rem; }
+      .inclusions-list li { font-size: 0.82rem; }
+      .notes-list li { font-size: 0.78rem; }
+
+      /* Compare table full scroll */
+      #compare { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 3rem 0; }
+      #compare .section-eyebrow,
+      #compare h2 { padding: 0 1.25rem; }
+      #compare > div[style] { margin: 0; }
+      .compare-table { font-size: 0.68rem; min-width: 500px; }
+      .compare-table td, .compare-table thead th { padding: 0.6rem 0.65rem; }
+      .compare-table thead th:not(:first-child) { min-width: 90px; font-size: 0.8rem; }
+      .merit { font-size: 0.65rem; }
+
+      /* All access profiles */
       .all-access-profiles { gap: 0.4rem; }
+      .profile-tag { font-size: 0.72rem; padding: 0.35rem 0.75rem; }
+
+      /* Policy grid */
+      .policy-card { padding: 2rem 1.5rem; }
+
+      /* CTA band */
+      .cta-band-title { font-size: clamp(28px, 8vw, 48px); }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; padding: 2.5rem 1.25rem; gap: 2rem; }
+      .footer-bottom { padding: 1rem 1.25rem; }
+      .passes-header-right { display: none; }
+    }
+
+    /* ── Very small (≤ 380px) ── */
+    @media (max-width: 380px) {
+      .nav-logo-mark { display: none; }
+      .nav-logo img { height: 22px; }
+      .pass-card-head { padding: 1.25rem 0.85rem; }
+      .pass-card-body { padding: 1rem 0.85rem; }
+      .pass-card-foot { padding: 0.85rem; }
     }
 
     section { position: relative; }
@@ -767,42 +884,44 @@
     </div>
     <h2 class="section-title reveal" style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;letter-spacing:-0.01em;margin-bottom:0;">At a <em style="font-style:italic;color:var(--orange);">Glance</em></h2>
 
-    <table class="glance-table reveal">
-      <thead>
-        <tr>
-          <th>Pass</th>
-          <th>Price</th>
-          <th>Who It's For</th>
-          <th>Duration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Learning Lab <span class="pass-badge badge-orange">Workshop</span></td>
-          <td><span class="price-val">₹4,500</span></td>
-          <td>Individual participants</td>
-          <td>3 Days</td>
-        </tr>
-        <tr>
-          <td>Concept Cocoon <span class="pass-badge badge-orange">Shark Tank</span></td>
-          <td><span class="price-val">₹2,000</span></td>
-          <td>Per startup / team</td>
-          <td>Competition Day</td>
-        </tr>
-        <tr>
-          <td>Networking Gala <span class="pass-badge badge-orange">Gala</span></td>
-          <td><span class="price-val">₹250</span></td>
-          <td>Individual attendees</td>
-          <td>Evening Event</td>
-        </tr>
-        <tr>
-          <td>All Access Pass <span class="pass-badge badge-gold">Best Value</span></td>
-          <td><span class="price-val">₹6,000</span></td>
-          <td>Per individual</td>
-          <td>5 Days · All Events</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-scroll reveal">
+      <table class="glance-table">
+        <thead>
+          <tr>
+            <th>Pass</th>
+            <th>Price</th>
+            <th>Who It's For</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Learning Lab <span class="pass-badge badge-orange">Workshop</span></td>
+            <td><span class="price-val">₹4,500</span></td>
+            <td>Individual participants</td>
+            <td>3 Days</td>
+          </tr>
+          <tr>
+            <td>Concept Cocoon <span class="pass-badge badge-orange">Shark Tank</span></td>
+            <td><span class="price-val">₹2,000</span></td>
+            <td>Per startup / team</td>
+            <td>Competition Day</td>
+          </tr>
+          <tr>
+            <td>Networking Gala <span class="pass-badge badge-orange">Gala</span></td>
+            <td><span class="price-val">₹250</span></td>
+            <td>Individual attendees</td>
+            <td>Evening Event</td>
+          </tr>
+          <tr>
+            <td>All Access Pass <span class="pass-badge badge-gold">Best Value</span></td>
+            <td><span class="price-val">₹6,000</span></td>
+            <td>Per individual</td>
+            <td>5 Days · All Events</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- PASSES DETAIL -->
