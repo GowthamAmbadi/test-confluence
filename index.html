@@ -1,0 +1,3607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confluence 2026 Where Connections Become Opportunities</title>
+  <meta name="description"
+    content="YANC's Confluence 2026 A 5-day curated experience for ambitious individuals. July 6–10, Hyderabad. Real mentors, real access, real growth.">
+  <meta property="og:title" content="Confluence 2026 Where Connections Become Opportunities">
+  <meta property="og:description" content="5 Days. 10 Dignitaries. 1000+ Mentors. Hyderabad, July 6–10.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D9;
+      --ink: #1A1510;
+      --ink-mid: #3D3428;
+      --ink-light: #7A6E5F;
+      --orange: #D4552A;
+      --orange-light: #E8784A;
+      --gold: #C9A84C;
+      --gold-light: #E2C577;
+      --navy: #1C2B4A;
+      --navy-mid: #2E4270;
+      --white: #FDFAF5;
+      --border: rgba(26, 21, 16, 0.08);
+      --border-gold: rgba(201, 168, 76, 0.2);
+      --glass: rgba(245, 240, 232, 0.85);
+      --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 0.5px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 0.8rem 4rem;
+      background: rgba(245, 240, 232, 0.95);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo-mark {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.15em;
+    }
+
+    .nav-logo-mark span {
+      color: var(--orange);
+    }
+
+    .nav-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-mid);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--orange);
+    }
+
+    .nav-cta {
+      background: var(--ink) !important;
+      color: var(--cream) !important;
+      padding: 0.55rem 1.4rem !important;
+      border-radius: 2px !important;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--orange) !important;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 5rem;
+      position: relative;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 18vw, 280px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26, 21, 16, 0.06);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 25vh;
+      background: linear-gradient(to top, var(--cream), transparent);
+      pointer-events: none;
+      z-index: 2;
+    } */
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: flex-end;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .hero-eyebrow-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(60px, 8vw, 110px);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero-title .year {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: clamp(48px, 6vw, 85px);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-tagline {
+      margin-top: 2rem;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      max-width: 420px;
+    }
+
+    .hero-cta-row {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--orange);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--ink-mid);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.5rem;
+    }
+
+    .hero-meta-card {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem 2rem;
+      min-width: 260px;
+    }
+
+    .hero-meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .hero-meta-value.orange {
+      color: var(--orange);
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .hero-stat {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .hero-stat-lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 4px;
+    }
+
+    .countdown-bar {
+      width: 100%;
+      background: var(--ink);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .countdown-units {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .countdown-unit {
+      text-align: center;
+    }
+
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+
+    .countdown-unit-lbl {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .countdown-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.2);
+      margin-bottom: 10px;
+      align-self: flex-end;
+    }
+
+    .countdown-cta {
+      margin-left: 0;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 7rem 4rem;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-eyebrow-line {
+      width: 30px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .section-eyebrow-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .section-sub {
+      line-height: 1.7;
+      max-width: 560px;
+      margin-top: 1.5rem;
+    }
+
+    .divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    /* ─── MANIFESTO ─── */
+    #manifesto {
+      background: var(--ink);
+      padding: 7rem 4rem;
+    }
+
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .manifesto-left .section-eyebrow-text {
+      color: var(--gold);
+    }
+
+    .manifesto-left .section-eyebrow-line {
+      background: var(--gold);
+    }
+
+    .manifesto-left .section-title {
+      color: var(--white);
+    }
+
+    .manifesto-statements {
+      list-style: none;
+    }
+
+    .manifesto-statements li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.3;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s var(--ease-apple);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      cursor: default;
+    }
+
+    .manifesto-statements li:hover {
+      color: var(--white);
+    }
+
+    .manifesto-statements li .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--orange);
+      margin-top: 6px;
+      min-width: 28px;
+    }
+
+    .manifesto-statements li em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .manifesto-quote {
+      border-left: 2px solid var(--gold);
+      padding-left: 2rem;
+    }
+
+    .manifesto-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .manifesto-quote cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      font-family: 'DM Mono', monospace;
+      font-style: normal;
+    }
+
+    /* ─── ABOUT / WHY ─── */
+    #why {
+      background: var(--cream-dark);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .why-pillars {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+    }
+
+    .why-pillar {
+      background: var(--cream-dark);
+      padding: 2rem 1.5rem;
+      transition: background 0.25s;
+    }
+
+    .why-pillar:hover {
+      background: var(--white);
+    }
+
+    .why-pillar-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .why-pillar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .why-pillar p {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .why-stat-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .why-stat {
+      padding: 2rem 1.5rem;
+      border: 0.5px solid var(--border);
+      border-radius: 2px;
+      background: var(--white);
+    }
+
+    .why-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .why-stat-lbl {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 0.5rem;
+    }
+
+    .why-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── DAYS ─── */
+    #agenda {
+      background: var(--white);
+    }
+
+    .agenda-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 0.5px solid var(--border);
+    }
+
+    .day-card {
+      padding: 2.5rem 1.75rem;
+      border-right: 0.5px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: default;
+      background: var(--white);
+    }
+
+    .day-card:last-child {
+      border-right: none;
+    }
+
+    .day-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+
+    .day-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .day-card:hover {
+      background: var(--cream);
+    }
+
+    .day-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(26, 21, 16, 0.08);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .day-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .day-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .day-desc {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .day-venue {
+      margin-top: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .day-venue::before {
+      content: '📍';
+      font-size: 0.7rem;
+      font-family: initial;
+      letter-spacing: 0;
+    }
+
+    .day-card.highlight {
+      background: var(--ink);
+    }
+
+    .day-card.highlight .day-num {
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .day-card.highlight .day-tag {
+      color: var(--gold);
+    }
+
+    .day-card.highlight .day-title {
+      color: var(--white);
+    }
+
+    .day-card.highlight .day-desc {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .day-card.highlight .day-venue {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .day-card.highlight:hover {
+      background: var(--navy);
+    }
+
+    /* ─── DIGNITARIES ─── */
+    #speakers {
+      background: var(--cream);
+    }
+
+    .speakers-intro {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+
+    .chief-guest-card {
+      background: var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chief-guest-img {
+      height: 280px;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .chief-guest-img .initials {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .chief-guest-badge {
+      background: var(--orange);
+      padding: 0.4rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      display: inline-block;
+      align-self: flex-start;
+      margin: 1.5rem 1.5rem 0;
+    }
+
+    .chief-guest-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--white);
+      padding: 0.75rem 1.5rem 0;
+    }
+
+    .chief-guest-role {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+      padding: 0.3rem 1.5rem 1.5rem;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+    }
+
+    .speaker-card {
+      background: var(--cream);
+      padding: 1.5rem;
+      transition: background 0.25s;
+    }
+
+    .speaker-card:hover {
+      background: var(--white);
+    }
+
+    .speaker-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      margin-bottom: 1rem;
+      border: 0.5px solid var(--border);
+      overflow: hidden;
+    }
+
+    .speaker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .speaker-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-role {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      line-height: 1.4;
+    }
+
+    .speaker-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-top: 0.4rem;
+    }
+
+    .all-dignitaries {
+      margin-top: 1rem;
+    }
+
+    /* ─── MENTORS ─── */
+    #mentors {
+      background: var(--ink);
+      padding: 7rem 4rem;
+    }
+
+    #mentors .section-eyebrow-text {
+      color: var(--gold);
+    }
+
+    #mentors .section-eyebrow-line {
+      background: var(--gold);
+    }
+
+    #mentors .section-title {
+      color: var(--white);
+    }
+
+    #mentors .section-sub {
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 480px;
+    }
+
+    .mentors-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      margin-top: 4rem;
+      align-items: start;
+    }
+
+    .mentors-featured {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mentor-featured-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      transition: all 0.25s;
+      border-radius: 2px;
+    }
+
+    .mentor-featured-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(201, 168, 76, 0.3);
+    }
+
+    .mentor-avi {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.3);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .mentor-avi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mentor-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .mentor-role-text {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 3px;
+    }
+
+    .mentor-role-text span {
+      color: var(--gold);
+    }
+
+    .network-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .network-headline span {
+      color: var(--gold);
+    }
+
+    .network-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .network-domains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .domain-tag {
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+
+    .domain-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .advisory-row {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .advisory-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 2rem;
+    }
+
+    .advisory-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+    }
+
+    .advisory-card {
+      text-align: center;
+    }
+
+    .advisory-avi {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      margin: 0 auto 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .advisory-avi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .advisory-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.3;
+    }
+
+    .advisory-role {
+      font-size: 0.62rem;
+      color: rgba(255, 255, 255, 0.25);
+      margin-top: 2px;
+    }
+
+    /* ─── VENUES ─── */
+    #venues {
+      background: var(--cream-dark);
+    }
+
+    .venues-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    .venue-card {
+      background: var(--cream-dark);
+      padding: 3rem 2.5rem;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .venue-card:hover {
+      background: var(--white);
+    }
+
+    .venue-days-badge {
+      background: var(--orange);
+      color: var(--white);
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .venue-location {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+    }
+
+    .venue-desc {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .venue-bg-num {
+      position: absolute;
+      bottom: -20px;
+      right: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(26, 21, 16, 0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .venue-card.primary {
+      background: var(--white);
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    #who {
+      background: var(--white);
+      padding: 7rem 4rem;
+    }
+
+    .who-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .who-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-top: 1rem;
+    }
+
+    .who-headline em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .who-checks {
+      margin-top: 3rem;
+    }
+
+    .who-check {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .who-check:last-child {
+      border-bottom: none;
+    }
+
+    .who-check-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .who-check p {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .who-right {
+      background: var(--ink);
+      padding: 3rem;
+      border-radius: 4px;
+    }
+
+    .who-right-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .who-profiles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .who-profile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .who-profile:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .who-profile-icon {
+      font-size: 1.4rem;
+      width: 40px;
+      text-align: center;
+    }
+
+    .who-profile-label {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .who-profile-sub {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 2px;
+    }
+
+    /* ─── WHAT YOU GAIN ─── */
+    #gains {
+      background: var(--cream);
+      padding: 7rem 4rem;
+    }
+
+    .gains-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+
+    .gains-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .gain-item {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 2rem 0;
+      border-bottom: 0.5px solid var(--border);
+      transition: all 0.25s;
+    }
+
+    .gain-item:hover .gain-number {
+      color: var(--orange);
+    }
+
+    .gain-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(26, 21, 16, 0.15);
+      line-height: 1;
+      min-width: 50px;
+      transition: color 0.3s;
+    }
+
+    .gain-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .gain-desc {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .gains-visual {
+      background: var(--ink);
+      padding: 3rem;
+      border-radius: 4px;
+      position: sticky;
+      top: 6rem;
+    }
+
+    .gains-visual-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 2rem;
+    }
+
+    .gains-visual-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .gains-visual-big span {
+      color: var(--gold);
+    }
+
+    .gains-visual-sub {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .gains-divider {
+      height: 0.5px;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 1.5rem 0;
+    }
+
+    /* ─── REGISTER ─── */
+    #register {
+      background: var(--orange-light);
+      padding: 7rem 4rem;
+    }
+
+    .register-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .register-left .section-title {
+      color: var(--white);
+    }
+
+    .register-left .section-title em {
+      color: var(--cream);
+    }
+
+    .register-left .section-eyebrow-text {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .register-left .section-eyebrow-line {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .register-sub {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 400px;
+    }
+
+    .register-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 2.5rem;
+    }
+
+    .register-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .register-card-sub {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .register-includes {
+      margin-bottom: 2rem;
+    }
+
+    .register-include-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 0.5px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+    }
+
+    .register-include-item:last-child {
+      border-bottom: none;
+    }
+
+    .register-include-check {
+      color: var(--orange);
+      font-size: 1rem;
+    }
+
+    .btn-register {
+      display: block;
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      text-align: center;
+      text-decoration: none;
+      padding: 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-register:hover {
+      background: var(--ink);
+    }
+
+    .register-note {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .early-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── VOLUNTEERS ─── */
+    #volunteers {
+      background: var(--cream-dark);
+      padding: 7rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #volunteers::before {
+      content: 'VOLUNTEER';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 14vw, 200px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26, 21, 16, 0.045);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .volunteers-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .volunteers-perks {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+    }
+
+    .vol-perk {
+      background: var(--cream-dark);
+      padding: 1.5rem;
+      transition: background 0.25s;
+    }
+
+    .vol-perk:hover {
+      background: var(--white);
+    }
+
+    .vol-perk-icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .vol-perk h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .vol-perk p {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    .volunteers-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .vol-cta-card {
+      background: var(--ink);
+      border-radius: 4px;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .vol-cta-card .section-eyebrow-text {
+      color: var(--gold);
+    }
+
+    .vol-cta-card .section-eyebrow-line {
+      background: var(--gold);
+    }
+
+    .vol-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .vol-card-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .vol-card-body {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.75;
+    }
+
+    .vol-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .vol-role-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 0.5px solid rgba(201, 168, 76, 0.35);
+      color: var(--gold-light);
+      border-radius: 2px;
+      background: rgba(201, 168, 76, 0.06);
+    }
+
+    .btn-volunteer {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 1rem 2.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+
+    .btn-volunteer:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+    }
+
+    .vol-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+    }
+
+    /* ─── CONFLUENCE TEAM ─── */
+    #confluence-team {
+      background: var(--white);
+      padding: 7rem 4rem;
+    }
+
+    .confluence-team-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .confluence-team-card {
+      background: var(--cream);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .confluence-team-card:hover {
+      background: var(--white);
+      box-shadow: 0 8px 32px rgba(26, 21, 16, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .confluence-team-img {
+      width: 100%;
+      height: 220px;
+      background: var(--cream-dark);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: rgba(26, 21, 16, 0.1);
+    }
+
+    .confluence-team-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+
+    .confluence-team-info {
+      padding: 1.75rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .confluence-team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .confluence-team-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .confluence-team-desc {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    /* ─── ABOUT YANC ─── */
+    #about-yanc {
+      background: rgb(26, 21, 16);
+      padding: 7rem 4rem;
+    }
+
+    #about-yanc .section-title {
+      color: var(--white);
+    }
+
+    .yanc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .yanc-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 1.5rem 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .team-member {
+      background: var(--cream-dark);
+      padding: 1.5rem;
+      transition: background 0.25s;
+    }
+
+    .team-member:hover {
+      background: var(--white);
+    }
+
+    .team-avi {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 0.5px solid var(--border);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--ink-mid);
+      overflow: hidden;
+    }
+
+    .team-avi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .team-role {
+      font-size: 0.7rem;
+      color: var(--ink-light);
+      margin-top: 3px;
+    }
+
+    .yanc-right {
+      background: rgb(237, 231, 217);
+      padding: 4rem;
+      border-radius: 4px;
+    }
+
+    .yanc-mission {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .yanc-mission em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .yanc-pillars-mini {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .yanc-pillar-mini {
+      border-top: 2px solid rgba(26, 21, 16, 0.1);
+      padding-top: 1rem;
+    }
+
+    .yanc-pillar-mini h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .yanc-pillar-mini p {
+      font-size: 0.7rem;
+      color: rgba(26, 21, 16, 0.45);
+      line-height: 1.5;
+    }
+
+    .yanc-contact {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(26, 21, 16, 0.45);
+    }
+
+    .contact-item a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── FAQ ─── */
+    #faq {
+      background: var(--white);
+      padding: 7rem 4rem;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 0;
+    }
+
+    .faq-intro {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .faq-list {
+      margin-top: 0;
+    }
+
+    .faq-item {
+      border-bottom: 0.5px solid var(--border);
+      padding: 1.5rem 0;
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+    }
+
+    .faq-q h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      border: 0.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--ink-light);
+      transition: all 0.25s;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 4rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+
+    .footer-brand-name span {
+      color: var(--orange);
+    }
+
+    .footer-brand-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin: 0.5rem 0 1rem;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.7;
+    }
+
+    .footer-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-legal {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.2);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: all 0.25s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s var(--ease-apple), transform 1s var(--ease-apple);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── UNIVERSAL OVERFLOW FIX ─── */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    img, video, iframe, canvas, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─── MOBILE TOGGLE ─── */
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: all 0.4s var(--ease-apple);
+      border-radius: 2px;
+    }
+
+    .mobile-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
+    .mobile-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100dvh;
+      background: var(--cream);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1.75rem;
+      transform: translateY(-100%);
+      transition: transform 0.6s var(--ease-apple), opacity 0.4s ease;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .mobile-nav-links li {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.45s var(--ease-apple);
+    }
+
+    .mobile-menu.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+    .mobile-menu.active li:nth-child(1) { transition-delay: 0.15s; }
+    .mobile-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-menu.active li:nth-child(3) { transition-delay: 0.25s; }
+    .mobile-menu.active li:nth-child(4) { transition-delay: 0.3s; }
+    .mobile-menu.active li:nth-child(5) { transition-delay: 0.35s; }
+    .mobile-menu.active li:nth-child(6) { transition-delay: 0.4s; }
+    .mobile-menu.active li:nth-child(7) { transition-delay: 0.45s; }
+
+    .mobile-nav-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      display: block;
+      padding: 0.15rem 0;
+    }
+
+    .mobile-nav-links a.active { color: var(--orange); }
+
+    .mobile-nav-links .nav-cta {
+      display: inline-block;
+      margin-top: 1.25rem;
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      padding: 0.85rem 2rem !important;
+      border-radius: 4px !important;
+      font-size: 0.78rem !important;
+      font-family: 'Outfit', sans-serif !important;
+      font-weight: 500 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ─── BREAKPOINT: TABLET (≤1024px) ─── */
+    @media (max-width: 1024px) {
+      html, body { overflow-x: hidden; }
+
+      nav { padding: 0.9rem 1.25rem; }
+      nav.scrolled { padding: 0.7rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-sub { display: none; }
+      .mobile-toggle { display: flex; }
+
+      section { padding: 5rem 1.25rem; }
+
+      #hero {
+        padding: 6.5rem 1.25rem 3.5rem;
+        min-height: auto;
+      }
+
+      .hero-bg-text {
+        font-size: clamp(90px, 28vw, 160px);
+        opacity: 0.05;
+        top: 38%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100vw;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      .hero-title {
+        font-size: clamp(48px, 13vw, 80px);
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+      }
+
+      .hero-tagline {
+        font-size: 0.95rem;
+        margin-top: 1.25rem;
+        max-width: 100%;
+        line-height: 1.65;
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+        margin-top: 1.75rem;
+      }
+
+      .btn-primary, .btn-ghost {
+        text-align: center;
+        display: block;
+        padding: 0.9rem 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .countdown-bar {
+        padding: 2.5rem 1.25rem;
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
+        align-items: center;
+      }
+
+      .countdown-units {
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .countdown-num { font-size: 2.75rem; }
+      .countdown-cta { display: none; }
+
+      .manifesto-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .days-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        border: none;
+      }
+
+      .day-card {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.75rem 1.25rem;
+        box-shadow: none;
+      }
+
+      .day-card::before { display: none; }
+      .day-num { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+      .speakers-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .speakers-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; border: none; }
+      .speaker-card { border: 1px solid var(--border); border-radius: 10px; }
+
+      .mentors-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .advisory-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .venues-grid { grid-template-columns: 1fr; gap: 0.75rem; border: none; }
+      .venue-card { border: 1px solid var(--border); border-radius: 10px; padding: 2rem 1.25rem; }
+
+      .who-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .gains-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gains-visual { position: static; margin-top: 0; }
+
+      .register-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .yanc-layout { grid-template-columns: 1fr; gap: 3rem; }
+
+      .team-grid { grid-template-columns: 1fr 1fr; }
+
+      .faq-layout { grid-template-columns: 1fr; gap: 0; }
+      .faq-intro { position: static; margin-bottom: 2rem; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+      #mentors, #register, #about-yanc { padding: 5rem 1.25rem; }
+
+      .yanc-pillars-mini { grid-template-columns: 1fr; gap: 1rem; }
+
+      .volunteers-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .volunteers-perks { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+      .confluence-team-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+      .manifesto-statements li { padding: 1.25rem 0; font-size: clamp(16px, 4vw, 22px); }
+      .manifesto-quote p { font-size: clamp(20px, 5.5vw, 30px); }
+    }
+
+    /* ─── BREAKPOINT: MOBILE (≤640px) ─── */
+    @media (max-width: 640px) {
+      html, body { overflow-x: hidden; }
+
+      section { padding: 4rem 1.25rem; }
+      #manifesto { padding: 4rem 1.25rem; }
+      #mentors, #register, #about-yanc { padding: 4rem 1.25rem; }
+
+      .section-title {
+        font-size: clamp(28px, 9vw, 40px);
+        letter-spacing: -0.025em;
+        line-height: 1.05;
+      }
+
+      .section-sub { font-size: 0.88rem; line-height: 1.7; margin-top: 0.85rem; }
+
+      .hero-title {
+        font-size: clamp(44px, 13vw, 64px);
+      }
+
+      .hero-bg-text { display: none; }
+
+      /* ── Speakers: compact 2-col ── */
+      .speakers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+      .speaker-card { padding: 0.9rem 0.75rem; min-width: 0; overflow: hidden; border-radius: 8px; }
+      .speaker-avatar { width: 40px; height: 40px; min-width: 40px; margin-bottom: 0.5rem; }
+      .speaker-name { font-size: 0.82rem; line-height: 1.2; }
+      .speaker-role { font-size: 0.62rem; }
+      .speaker-org { font-size: 0.58rem; margin-top: 0.2rem; }
+
+      /* ── Who section: prevent overflow ── */
+      .who-right { overflow: hidden; width: 100%; box-sizing: border-box; padding: 1.75rem 1.25rem; }
+      .who-right-title { white-space: normal; font-size: clamp(1rem, 4vw, 1.4rem); line-height: 1.35; margin-bottom: 1.25rem; word-break: break-word; }
+      .who-headline { font-size: clamp(24px, 8vw, 34px); word-break: break-word; }
+      .who-checks { margin-top: 1.5rem; }
+      .who-check { padding: 0.85rem 0; gap: 0.75rem; }
+      .who-check p { font-size: 0.82rem; }
+      .who-profile { padding: 0.7rem 0.9rem; gap: 0.65rem; }
+      .who-profile-icon { font-size: 1.1rem; width: 26px; }
+      .who-profile-label { font-size: 0.78rem; }
+      .who-profile-sub { font-size: 0.68rem; }
+
+      .advisory-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .why-pillars { border: none; background: transparent; display: flex; flex-direction: column; gap: 0.6rem; }
+      .why-pillar { border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1rem; }
+      .why-stat-block { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .why-stat { padding: 1.25rem 1rem; }
+      .why-stat-num { font-size: 2.25rem; }
+
+      .day-card { padding: 1.5rem 1.25rem; }
+
+      .venue-card { padding: 1.75rem 1.25rem; }
+      .venue-name { font-size: 1.5rem; }
+
+      .gain-item { padding: 1rem 0; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .team-grid { grid-template-columns: 1fr; border: none; gap: 0.6rem; }
+      .team-member { border: 1px solid var(--border); border-radius: 8px; }
+
+      .volunteers-perks { grid-template-columns: 1fr; gap: 0.6rem; }
+      .vol-perk { border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1rem; }
+
+      .confluence-team-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+
+      .yanc-right { padding: 2rem 1.25rem; }
+      .vol-cta-card { padding: 2rem 1.25rem; }
+      .register-card { padding: 2rem 1.25rem; }
+      .who-right { padding: 2rem 1.25rem; }
+
+      .faq-q h3 { font-size: 0.9rem; }
+      .faq-a { font-size: 0.85rem; }
+
+      .agenda-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-bottom: 2rem; }
+
+      .manifesto-quote { padding-left: 1.25rem; border-left-width: 2px; }
+      .manifesto-quote p { font-size: clamp(18px, 5.5vw, 26px); }
+
+      .hero-eyebrow { margin-bottom: 1rem; }
+      .hero-cta-row { margin-top: 1.5rem; }
+
+      .domain-tag, .vol-role-tag {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.6rem;
+        white-space: nowrap;
+      }
+
+      .network-domains, .vol-roles { flex-wrap: wrap; gap: 0.4rem; }
+
+      .footer-legal { font-size: 0.7rem; }
+
+      .countdown-bar { padding: 2rem 1.25rem; }
+      .countdown-num { font-size: 2.5rem; }
+      .countdown-units { gap: 1.25rem; }
+      .countdown-unit-lbl { font-size: 0.55rem; }
+
+      .gains-visual { padding: 1.5rem 1.25rem; }
+    }
+
+    /* ─── BREAKPOINT: SMALL MOBILE (≤390px) ─── */
+    @media (max-width: 390px) {
+      section { padding: 3.5rem 1rem; }
+      #manifesto, #mentors, #register, #about-yanc { padding: 3.5rem 1rem; }
+
+      nav { padding: 0.8rem 1rem; }
+
+      #hero { padding: 6rem 1rem 3rem; }
+
+      .hero-title { font-size: clamp(38px, 12vw, 52px); }
+
+      .section-title { font-size: clamp(26px, 8.5vw, 36px); }
+
+      .btn-primary, .btn-ghost { font-size: 0.72rem; padding: 0.85rem 1.25rem; }
+
+      .day-card { padding: 1.25rem 1rem; }
+      .venue-card { padding: 1.5rem 1rem; }
+      .yanc-right, .vol-cta-card, .register-card, .who-right { padding: 1.75rem 1rem; }
+
+      .countdown-num { font-size: 2.25rem; }
+      .countdown-units { gap: 0.85rem; }
+
+      .why-stat-block { grid-template-columns: 1fr; }
+
+      /* Team photo: even less crop on very small screens */
+      .confluence-team-img {
+        height: 180px;
+      }
+      .confluence-team-img img {
+        object-position: center 10%;
+      }
+    }
+
+    /* ─── TEAM IMAGE: mobile portrait framing ─── */
+    @media (max-width: 1024px) {
+      .confluence-team-img {
+        height: 200px;
+      }
+      .confluence-team-img img {
+        object-fit: cover;
+        object-position: center top;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <img src="YANC Logo.png" alt="YANC Logo"
+        style="height: 25px; width: auto; display: block;">
+      <div class="nav-sub" style="margin-top: 0;">Young Minds · Networking · Life Skills</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#agenda" class="nav-link">Agenda</a></li>
+      <li><a href="#speakers" class="nav-link">Speakers</a></li>
+      <li><a href="#mentors" class="nav-link">Mentors</a></li>
+      <li><a href="#venues" class="nav-link">Venues</a></li>
+      <li><a href="#about-yanc" class="nav-link">About</a></li>
+      <li><a href="#volunteers" class="nav-link">Volunteers</a></li>
+      <li><a href="#register" class="nav-cta">Register</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="#agenda" class="mobile-nav-link">Agenda</a></li>
+      <li><a href="#speakers" class="mobile-nav-link">Speakers</a></li>
+      <li><a href="#mentors" class="mobile-nav-link">Mentors</a></li>
+      <li><a href="#venues" class="mobile-nav-link">Venues</a></li>
+      <li><a href="#about-yanc" class="mobile-nav-link">About</a></li>
+      <li><a href="#volunteers" class="mobile-nav-link">Volunteers</a></li>
+      <li><a href="#register" class="nav-cta">Register</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text">CONFLUENCE</div>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <div class="hero-eyebrow-text">YANC Presents</div>
+        </div>
+        <h1 class="hero-title">
+          Confluence<br>
+          <span class="year">2026</span>
+        </h1>
+        <p class="hero-tagline">
+          <strong style="color: var(--ink);">Where Connections Become Opportunities</strong><br>
+          A 5-day curated experience for those ready to grow beyond the ordinary.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#register" class="btn-primary">Secure Your Spot</a>
+          <a href="Yanc's Confluence26' Official Brochure Invite.pdf" download="YANC_Confluence26_Brochure.pdf" class="btn-ghost">Event Brochure</a>
+          <a href="#volunteers" class="btn-ghost" style="color:var(--orange);border-color:rgba(212,85,42,0.4);">Join the
+            Crew →</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-meta-card">
+          <div class="hero-meta-label">Date</div>
+          <div class="hero-meta-value orange">July 6-10, 2026</div>
+          <div style="margin-top:1rem;">
+            <div class="hero-meta-label">City</div>
+            <div class="hero-meta-value" style="font-size:1.2rem;">Hyderabad, India</div>
+          </div>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">5</div>
+            <div class="hero-stat-lbl">Immersive<br>Days</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">50+</div>
+            <div class="hero-stat-lbl">Invited<br>Dignitaries</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">1000+</div>
+            <div class="hero-stat-lbl">Mentor<br>Network</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">3</div>
+            <div class="hero-stat-lbl">Premium<br>Venues</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN BAR -->
+  <div class="countdown-bar">
+    <div class="countdown-label">Confluence begins in</div>
+    <div class="countdown-units">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-days">21</span>
+        <div class="countdown-unit-lbl">Days</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-hours">00</span>
+        <div class="countdown-unit-lbl">Hours</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-mins">00</span>
+        <div class="countdown-unit-lbl">Minutes</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-secs">00</span>
+        <div class="countdown-unit-lbl">Seconds</div>
+      </div>
+    </div>
+    <div class="countdown-cta">
+      <a href="#register" class="btn-primary">Register Now →</a>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section id="manifesto">
+    <div class="manifesto-grid">
+      <div class="manifesto-left reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">The Truth</div>
+        </div>
+        <h2 class="section-title" style="color:var(--white);">Why most people <em style="color:var(--gold);">stay
+            stuck</em></h2>
+        <ul class="manifesto-statements reveal-parent" style="margin-top:2rem;">
+          <li class="reveal-child"><span class="num">01</span><span>They consume information but <em><br/>lack exposure</em></span></li>
+          <li class="reveal-child"><span class="num">02</span><span>They meet people but <em><br/>not the right ones</em></span></li>
+          <li class="reveal-child"><span class="num">03</span><span>They aim high but <em><br/>lack clarity and direction</em></span></li>
+          <li class="reveal-child"><span class="num">04</span><span>They wait for opportunity instead of <em>building access</em></span></li>
+        </ul>
+      </div>
+      <div class="manifesto-quote reveal reveal-delay-2">
+        <p>"Growth does not come only from learning. It comes from exposure, experience and meaningful access to the
+          right people and the right rooms."</p>
+        <cite>YANC Confluence 2026 Manifesto</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THIS EXPERIENCE -->
+  <section id="why">
+    <div class="why-grid">
+      <div class="why-left reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">Why Confluence</div>
+        </div>
+        <h2 class="section-title">An experience <em>built different</em></h2>
+        <p class="section-sub">Confluence 2026 places you inside environments that demand clear thinking, confident
+          communication, leadership, adaptability and intentional action.</p>
+        <div class="why-pillars" style="margin-top:2.5rem;">
+          <div class="why-pillar">
+            <span class="why-pillar-icon">🧠</span>
+            <h3>Real Simulations</h3>
+            <p>Live scenarios that mirror the actual challenges of entrepreneurship and professional life.</p>
+          </div>
+          <div class="why-pillar">
+            <span class="why-pillar-icon">🤝</span>
+            <h3>Meaningful Networks</h3>
+            <p>Curated connections with people who are building, leading and creating not just attending.</p>
+          </div>
+          <div class="why-pillar">
+            <span class="why-pillar-icon">🎙️</span>
+            <h3>Direct Mentorship</h3>
+            <p>Not panels from a distance. Real conversations with founders and industry leaders.</p>
+          </div>
+          <div class="why-pillar">
+            <span class="why-pillar-icon">🚀</span>
+            <h3>Access to Opportunity</h3>
+            <p>Rooms, tables and networks that most people spend years trying to reach.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-right reveal reveal-delay-2">
+        <div class="why-stat-block reveal-parent">
+          <div class="why-stat reveal-child">
+            <div class="why-stat-num">5</div>
+            <div class="why-stat-lbl">Immersive Days</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">1000+</div>
+            <div class="why-stat-lbl">Mentor Network</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">50+</div>
+            <div class="why-stat-lbl">Dignitaries</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">3</div>
+            <div class="why-stat-lbl">Premium Venues</div>
+          </div>
+        </div>
+        <p class="why-body">YANC is not a conventional student community or training platform. It is a curated ecosystem
+          built to connect ambitious individuals with meaningful opportunities, mentorship, industry access and
+          growth-driven environments.</p>
+        <p class="why-body">In today's world, access often defines outcomes. Confluence exists to bridge the gap between
+          potential and opportunity creating spaces where the right people meet, collaborate and grow together.</p>
+        <a href="#register" class="btn-primary" style="margin-top:1rem;">Join Confluence 2026</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-DAY AGENDA -->
+  <section id="agenda">
+    <div class="agenda-header reveal">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">The Journey</div>
+        </div>
+        <h2 class="section-title">5 Days. <em>5 Transformations.</em></h2>
+      </div>
+      <p class="section-sub" style="max-width:300px;">Each day is engineered to push you further than the last.</p>
+    </div>
+    <div class="days-grid reveal-parent">
+      <div class="day-card reveal-child">
+        <div class="day-num">06</div>
+        <div class="day-tag">July 6 · Monday</div>
+        <h3 class="day-title">Build Your Identity</h3>
+        <p class="day-desc">Define your personal brand, understand your value proposition and make your first
+          high-value connections. Who are you and how do you want the world to know you?</p>
+        <div class="day-venue">Phoenix Arena, Gachibowli</div>
+      </div>
+      <div class="day-card">
+        <div class="day-num">07</div>
+        <div class="day-tag">July 7 · Tuesday</div>
+        <h3 class="day-title">Build Your Voice</h3>
+        <p class="day-desc">Master communication in high-pressure environments. Mock interviews, public speaking
+          challenges and real feedback from professionals who hire.</p>
+        <div class="day-venue">Phoenix Arena, Gachibowli</div>
+      </div>
+      <div class="day-card">
+        <div class="day-num">08</div>
+        <div class="day-tag">July 8 · Wednesday</div>
+        <h3 class="day-title">Build Your Way</h3>
+        <p class="day-desc">Financial awareness, strategic problem-solving and entrepreneurial thinking. Navigate
+          real-world business scenarios with mentors guiding every step.</p>
+        <div class="day-venue">Phoenix Arena, Gachibowli</div>
+      </div>
+      <div class="day-card" style="background-color: rgb(237, 231, 217);">
+        <div class="day-num">09</div>
+        <div class="day-tag">July 9 · Thursday</div>
+        <h3 class="day-title">Concept Cocoon</h3>
+        <p class="day-desc">The Concept Cocoon experience. Present your idea to a panel of real investors and founders.
+          Defend it. Iterate it. Make it real. The most intense day of your journey.</p>
+        <div class="day-venue">WeWork Hitech City</div>
+      </div>
+      <div class="day-card highlight" style="background-color: rgb(26, 21, 16);">
+        <div class="day-num">10</div>
+        <div class="day-tag">July 10 · Friday</div>
+        <h3 class="day-title">The Gala</h3>
+        <p class="day-desc">The Corporate Gala. Panel discussions with 50+ invited dignitaries, awards and the network
+          you've built across the week solidified in one unforgettable evening.</p>
+        <div class="day-venue">Shilpakala Vedika</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIGNITARIES -->
+  <section id="speakers">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Personalities at the Event</div>
+    </div>
+    <h2 class="section-title reveal">10 <em>Invited Dignitaries</em></h2>
+    <p class="section-sub reveal">Leaders, founders and decision-makers not just speakers. People actively shaping
+      Hyderabad's entrepreneurial future.</p>
+
+    <div class="speakers-intro" style="margin-top:4rem;">
+      <div class="reveal">
+        <div class="chief-guest-card">
+          <div class="chief-guest-img">
+            <img src="Invited Dignitaries/KTR.png" alt="Shri K. T. Rama Rao Garu" style="width: 100%; height: 100%; object-fit:cover; object-position: 50% 20%;">
+          </div>
+          <span class="chief-guest-badge">⭐ Chief Guest</span>
+          <div class="chief-guest-name">Shri K. T. Rama Rao Garu</div>
+          <div class="chief-guest-role">Former Minister of Industries, IT &amp; Commerce</div>
+          <div style="padding:0 1.5rem 2rem;">
+            <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.6;margin-top:0.75rem;">The architect
+              of Hyderabad's tech boom, KTR has been instrumental in positioning the city as India's startup capital.
+              His presence at Confluence signals the seriousness of this event.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="speakers-grid all-dignitaries reveal-parent reveal-delay-2">
+        <div class="speaker-card reveal-child">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Kavikrut.jpg" alt="Kavikrut"></div>
+          <div class="speaker-name">Kavikrut</div>
+          <div class="speaker-role">Chief Executive Officer</div>
+          <div class="speaker-org">T-Hub</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Joginder Tanikella.jpg" alt="Joginder Tanikella"></div>
+          <div class="speaker-name">Joginder Tanikella</div>
+          <div class="speaker-role">Chief Executive Officer</div>
+          <div class="speaker-org">T-Works</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Kalyaan Koppulaa.jpg" alt="Kalyaan Koppulaa"></div>
+          <div class="speaker-name">Kalyaan Koppulaa</div>
+          <div class="speaker-role">Senior Director</div>
+          <div class="speaker-org">JLL</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Sita Pallacholla.jpg" alt="Sita Pallacholla"></div>
+          <div class="speaker-name">Sita Pallacholla</div>
+          <div class="speaker-role">Chief Executive Officer</div>
+          <div class="speaker-org">We-Hub</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Meraj Faheem.jpg" alt="Meraj Faheem"></div>
+          <div class="speaker-name">Meraj Faheem</div>
+          <div class="speaker-role">Chief Executive Officer</div>
+          <div class="speaker-org">TGIC</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Chennapa Naidu.jpg" alt="Chennapa Naidu"></div>
+          <div class="speaker-name">Chennapa Naidu</div>
+          <div class="speaker-role">Chief Executive Officer</div>
+          <div class="speaker-org">TG10x</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Sravanth Gajula.jpg" alt="Sravanth Gajula"></div>
+          <div class="speaker-name">Sravanth Gajula</div>
+          <div class="speaker-role">Co-Founder &amp; Entrepreneur</div>
+          <div class="speaker-org">AdOnMo</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Kishore Indukuri.jpg" alt="Kishore Indukuri"></div>
+          <div class="speaker-name">Kishore Indukuri</div>
+          <div class="speaker-role">Founder</div>
+          <div class="speaker-org">Sid's Farms</div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar"><img src="Invited Dignitaries/Srikanth Badiga.jpg" alt="Srikanth Badiga"></div>
+          <div class="speaker-name">Srikanth Badiga</div>
+          <div class="speaker-role">Director</div>
+          <div class="speaker-org">Phoenix Group</div>
+        </div>
+      </div>
+
+    </div>
+    <div
+      style="margin-top: 5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; padding: 0 2rem;"
+      class="reveal">
+      <p
+        style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: rgba(122, 110, 95, 0.6); line-height: 1.6; font-style: italic;">
+        …with much more powerful presence of influential entrepreneurs, industry pioneers, corporate leaders and
+        changemakers from across the ecosystem.
+      </p>
+    </div>
+  </section>
+
+  <!-- VENUES -->
+  <section id="venues">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Where It Happens</div>
+    </div>
+    <h2 class="section-title reveal">Curated spaces built for <em>big conversations</em></h2>
+    <p class="section-sub reveal" style="margin-bottom:0;">Every venue was selected to match the ambition of the people
+      inside it.</p>
+
+    <div class="venues-grid reveal-parent">
+      <div class="venue-card primary reveal-child">
+        <div class="venue-bg-num">6–8</div>
+        <div class="venue-days-badge">July 6 – 8 · Learning Lab</div>
+        <div class="venue-name">Phoenix Arena</div>
+        <div class="venue-location">📍 Gachibowli, Hyderabad</div>
+        <p class="venue-desc">Hyderabad's premier innovation space. Three days of workshops, networking, real-world
+          simulations and mentor interactions in a collaborative environment designed for growth.</p>
+        <div style="margin-top:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span
+            style="background:var(--cream-dark);padding:0.3rem 0.75rem;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'DM Mono',monospace;color:var(--ink-light);">Day
+            1</span>
+          <span
+            style="background:var(--cream-dark);padding:0.3rem 0.75rem;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'DM Mono',monospace;color:var(--ink-light);">Day
+            2</span>
+          <span
+            style="background:var(--cream-dark);padding:0.3rem 0.75rem;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'DM Mono',monospace;color:var(--ink-light);">Day
+            3</span>
+        </div>
+      </div>
+      <div class="venue-card reveal-child">
+        <div class="venue-bg-num">9</div>
+        <div class="venue-days-badge">July 9 · Concept Cocoon</div>
+        <div class="venue-name">WeWork<br>Hitech City</div>
+        <div class="venue-location">📍 Hitech City, Hyderabad</div>
+        <p class="venue-desc">The real deal. A professional co-working environment where participants pitch to actual
+          investors and founders in a full Concept Cocoon simulation.</p>
+      </div>
+      <div class="venue-card" style="background:var(--ink);">
+        <div class="venue-bg-num" style="color:rgba(255,255,255,0.04);">10</div>
+        <div class="venue-days-badge" style="background:var(--gold);color:var(--ink);">July 10 · The Gala</div>
+        <div class="venue-name" style="color:var(--white);">Shilpakala<br>Vedika</div>
+        <div class="venue-location" style="color:rgba(255,255,255,0.4);">📍 Hyderabad</div>
+        <p class="venue-desc" style="color:rgba(255,255,255,0.45);">Hyderabad's iconic cultural venue hosts our closing
+          Corporate Gala panel discussions, awards and the networking event of the year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section id="who">
+    <div class="who-layout">
+      <div class="reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">Who It's For</div>
+        </div>
+        <h2 class="who-headline">This is not for <em>everyone.</em><br>It's for those ready to <em>move forward.</em>
+        </h2>
+        <div class="who-checks">
+          <div class="who-check">
+            <div class="who-check-mark">✓</div>
+            <p>You want to build <strong>real confidence</strong>, not just theoretical knowledge</p>
+          </div>
+          <div class="who-check">
+            <div class="who-check-mark">✓</div>
+            <p>You seek <strong>meaningful connections</strong> and high-value professional networks</p>
+          </div>
+          <div class="who-check">
+            <div class="who-check-mark">✓</div>
+            <p>You're willing to <strong>step outside your comfort zone</strong> and be challenged</p>
+          </div>
+          <div class="who-check">
+            <div class="who-check-mark">✓</div>
+            <p>You aspire to <strong>lead, build, create</strong> and grow with intent</p>
+          </div>
+          <div class="who-check">
+            <div class="who-check-mark">✓</div>
+            <p>You want <strong>real-world exposure</strong> to environments that shape careers</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="who-right">
+          <div class="who-right-title" style="font-size: clamp(1.1rem, 4vw, 1.8rem);">"A room built
+            for the ones who are ready to grow."</div>
+          <div class="who-profiles">
+            <div class="who-profile">
+              <div class="who-profile-icon">🎓</div>
+              <div>
+                <div class="who-profile-label">Students</div>
+                <div class="who-profile-sub">Final year & graduates ready to enter the real world</div>
+              </div>
+            </div>
+            <div class="who-profile">
+              <div class="who-profile-icon">🚀</div>
+              <div>
+                <div class="who-profile-label">Aspiring Entrepreneurs</div>
+                <div class="who-profile-sub">Building an idea or ready to pitch one</div>
+              </div>
+            </div>
+            <div class="who-profile">
+              <div class="who-profile-icon">💼</div>
+              <div>
+                <div class="who-profile-label">Early-Career Professionals</div>
+                <div class="who-profile-sub">0–5 years of experience, hungry to accelerate</div>
+              </div>
+            </div>
+            <div class="who-profile">
+              <div class="who-profile-icon">🎨</div>
+              <div>
+                <div class="who-profile-label">Creators & Builders</div>
+                <div class="who-profile-sub">Makers who want to connect with the ecosystem</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GAIN -->
+  <section id="gains">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">What You Walk Into</div>
+    </div>
+    <h2 class="section-title reveal">This is an <em>investment</em> in your future.</h2>
+    <div class="gains-layout">
+      <div class="gains-list reveal-parent">
+        <div class="gain-item reveal-child">
+          <div class="gain-number">01</div>
+          <div class="gain-content">
+            <h3 class="gain-title">A Strong Professional Network</h3>
+            <p class="gain-desc">Built with intent across 5 days of curated interactions, not casual card exchanges. The
+              kind of network that actually opens doors.</p>
+          </div>
+        </div>
+        <div class="gain-item reveal-child">
+          <div class="gain-number">02</div>
+          <div class="gain-content">
+            <h3 class="gain-title">A Growth-Driven Mindset</h3>
+            <p class="gain-desc">Clarity of thought, confident communication and leadership instincts developed through
+              real pressure, not simulated comfort.</p>
+          </div>
+        </div>
+        <div class="gain-item reveal-child">
+          <div class="gain-number">03</div>
+          <div class="gain-content">
+            <h3 class="gain-title">Real-World Exposure</h3>
+            <p class="gain-desc">Experience environments that traditional education and online courses simply cannot
+              replicate.</p>
+          </div>
+        </div>
+        <div class="gain-item reveal-child">
+          <div class="gain-number">04</div>
+          <div class="gain-content">
+            <h3 class="gain-title">Meaningful Industry Connections</h3>
+            <p class="gain-desc">Direct access to founders, investors and leaders who can mentor, hire, collaborate, or
+              invest in your journey.</p>
+          </div>
+        </div>
+        <div class="gain-item">
+          <div class="gain-number">05</div>
+          <div class="gain-content">
+            <h3 class="gain-title">Access to Opportunity</h3>
+            <p class="gain-desc">Internship leads, startup collaborations, investor conversations the kind of access
+              that defines career trajectories.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gains-right reveal reveal-delay-2">
+        <div class="gains-visual">
+          <div class="gains-visual-title">The YANC network you join</div>
+          <div class="gains-visual-big"><span>1000</span>+</div>
+          <div class="gains-visual-sub">Active Mentors</div>
+          <div class="gains-divider"></div>
+          <div class="gains-visual-big"><span>50</span>+</div>
+          <div class="gains-visual-sub">Dignitaries at the Gala</div>
+          <div class="gains-divider"></div>
+          <div class="gains-visual-big"><span>5</span></div>
+          <div class="gains-visual-sub">Days of curated access</div>
+          <div class="gains-divider"></div>
+          <div class="gains-visual-big"><span>∞</span></div>
+          <div class="gains-visual-sub">Connections for life</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="register">
+    <div class="register-layout">
+      <div class="register-left reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line" style="background:rgba(255,255,255,0.4);"></div>
+          <div class="section-eyebrow-text" style="color:rgba(255,255,255,0.6);">Secure Your Spot</div>
+        </div>
+        <h2 class="section-title" style="color:var(--white);">Seats are <em
+            style="color:var(--cream);">limited.</em><br>Intent is required.</h2>
+        <p class="register-sub">Confluence 2026 is a curated cohort not an open conference. We select for ambition,
+          intent and readiness. If you're reading this, you're already the kind of person we want in the room.</p>
+        <div style="margin-top:2rem;display:flex;gap:2rem;flex-wrap:wrap;">
+          <div>
+            <div
+              style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--white);line-height:1.2;">
+              July 6–10</div>
+            <div
+              style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;margin-top:0.5rem;">
+              2026</div>
+          </div>
+          <div>
+            <div
+              style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--white);line-height:1;">
+              Hyderabad</div>
+            <div
+              style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;">
+              3 Premium Venues</div>
+          </div>
+        </div>
+      </div>
+      <div class="register-right reveal reveal-delay-2">
+        <div class="register-card">
+          <div class="early-badge">🔥 Early Registrations Open</div>
+          <div class="register-card-title">Confluence 2026 Pass</div>
+          <div class="register-card-sub">Full 5-day access · Limited spots available</div>
+          <div class="register-includes">
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Full 5-day access to all sessions
+            </div>
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Concept Cocoon
+            </div>
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Corporate Gala access
+            </div>
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Job Opportunities
+            </div>
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Letter of Recommendations
+            </div>
+            <div class="register-include-item">
+              <span class="register-include-check">✓</span>
+              Certificate of completion
+            </div>
+          </div>
+          <a href="event.html"
+            class="btn-register">Apply for Confluence 2026 →</a>
+          <p class="register-note">Questions? Reach us at connect@yanc.in or +91 6309 545 559</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFLUENCE TEAM -->
+  <section id="confluence-team">
+    <div class="reveal">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <div class="section-eyebrow-text">The Organising Team</div>
+      </div>
+      <h2 class="section-title">The Force Behind <em>Confluence</em></h2>
+    </div>
+
+    <div class="confluence-team-grid reveal-parent" style="margin-top: 4rem;">
+      <div class="confluence-team-card reveal-child">
+        <div class="confluence-team-img">
+          <img src="Team/Rahul Reddy Chukka.jpg" alt="Rahul Chukka">
+        </div>
+        <div class="confluence-team-info">
+          <div class="confluence-team-name">Rahul Chukka</div>
+          <div class="confluence-team-role">Event Lead</div>
+          <p class="confluence-team-desc">Orchestrating every moment of Confluence with precision and vision.</p>
+        </div>
+      </div>
+
+      <div class="confluence-team-card reveal-child">
+        <div class="confluence-team-img">
+          <img src="Team/Mohana Karingula.jpg" alt="Mohana Karingula">
+        </div>
+        <div class="confluence-team-info">
+          <div class="confluence-team-name">Mohana Karingula</div>
+          <div class="confluence-team-role">Event Co-Lead</div>
+          <p class="confluence-team-desc">Ensuring every detail is flawless and every participant feels valued.</p>
+        </div>
+      </div>
+
+      <div class="confluence-team-card reveal-child">
+        <div class="confluence-team-img">
+          <img src="Team/Gowtham Kumar Ambadi.jpg" alt="Gowtham Kumar Ambadi">
+        </div>
+        <div class="confluence-team-info">
+          <div class="confluence-team-name">Gowtham Kumar Ambadi</div>
+          <div class="confluence-team-role">Growth & Strategy Lead</div>
+          <p class="confluence-team-desc">Shaping the strategic direction and scaling the impact of Confluence.</p>
+        </div>
+      </div>
+
+      <div class="confluence-team-card reveal-child">
+        <div class="confluence-team-img">
+          <img src="Team/Uday Pothalaraju.jpg" alt="Uday Pothalaraju">
+        </div>
+        <div class="confluence-team-info">
+          <div class="confluence-team-name">Uday Pothalaraju</div>
+          <div class="confluence-team-role">Partnership & Sales Lead</div>
+          <p class="confluence-team-desc">Building powerful partnerships that bring Confluence to life.</p>
+        </div>
+      </div>
+
+      <div class="confluence-team-card">
+        <div class="confluence-team-img">
+          <img src="Team/Lalith Adla.png" alt="Lalith Adla">
+        </div>
+        <div class="confluence-team-info">
+          <div class="confluence-team-name">Lalith Adla</div>
+          <div class="confluence-team-role">Marketing Lead</div>
+          <p class="confluence-team-desc">Amplifying the Confluence story and connecting with the right people.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEERS -->
+  <section id="volunteers">
+    <div class="volunteers-layout">
+      <div class="volunteers-left reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">Be Part of the Crew</div>
+        </div>
+        <h2 class="section-title">Shape<br><em>Confluence</em><br>from within</h2>
+        <p class="section-sub" style="margin-top:1.25rem;">Volunteering at Confluence 2026 is more than helping out —
+          it's an inside track to the event, the people and the network that powers YANC.</p>
+        <div class="volunteers-perks reveal-parent">
+          <div class="vol-perk reveal-child">
+            <span class="vol-perk-icon">📜</span>
+            <h4>Certificate</h4>
+            <p>Certificate of Participation from YANC's Flagship Event.</p>
+          </div>
+          <div class="vol-perk reveal-child">
+            <span class="vol-perk-icon">🎓</span>
+            <h4>Letter of Recommendation</h4>
+            <p>Official LOR signed by YANC leadership a portfolio asset.</p>
+          </div>
+          <div class="vol-perk reveal-child">
+            <span class="vol-perk-icon">🎟️</span>
+            <h4>Exclusive Access</h4>
+            <p>Access pass to YANC sessions, panels, workshops & meetups.</p>
+          </div>
+          <div class="vol-perk">
+            <span class="vol-perk-icon">🤝</span>
+            <h4>Curated Networking</h4>
+            <p>Connect with mentors, entrepreneurs & young leaders across India.</p>
+          </div>
+        </div>
+      </div>
+      <div class="volunteers-right reveal reveal-delay-2">
+        <div class="vol-cta-card">
+          <div class="section-eyebrow">
+            <div class="section-eyebrow-line"></div>
+            <div class="section-eyebrow-text">Volunteer Application Open</div>
+          </div>
+          <div class="vol-card-title">We're looking for<br><em>driven individuals</em><br>to join our team.</div>
+          <p class="vol-card-body">From operations and logistics to management, content and tech there's a role for
+            every skill set. Apply now to lock in your place on the Confluence 2026 volunteer crew.</p>
+          <div class="vol-roles">
+            <span class="vol-role-tag">Event Operations</span>
+            <span class="vol-role-tag">Photography & Videography</span>
+            <span class="vol-role-tag">Creative</span>
+            <span class="vol-role-tag">Guest Relations</span>
+            <span class="vol-role-tag">Tech Support</span>
+            <span class="vol-role-tag">Stage Management</span>
+          </div>
+          <a href="https://volunteers.yanc.in" target="_blank" class="btn-volunteer">
+            Apply to Volunteer →
+          </a>
+          <div class="vol-note">Applications reviewed on a rolling basis · Limited spots available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT YANC & TEAM -->
+  <section id="about-yanc">
+    <div class="yanc-layout">
+      <div class="reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">About YANC</div>
+        </div>
+        <h2 class="section-title">Yet Another<br>Networking Club?<br><em>Not quite.</em></h2>
+        <p class="yanc-body">YANC (Young Minds · Networking · Life Skills) is a curated ecosystem built to connect
+          ambitious individuals with meaningful opportunities, mentorship, industry access and growth-driven
+          environments.</p>
+
+
+        <div style="margin-top:4rem;">
+          <div class="mentors-network reveal reveal-delay-2">
+            <div class="network-headline"><span>1000+</span> Mentors</div>
+            <p class="network-desc">YANC's mentor network spans every domain that shapes careers and companies. These
+              are
+              professionals, founders and industry leaders actively building, solving and leading in the real world
+              accessible to you directly.</p>
+            <div class="network-domains">
+              <span class="domain-tag">Entrepreneurship</span>
+              <span class="domain-tag">Technology</span>
+              <span class="domain-tag">Psychology</span>
+              <span class="domain-tag">Business Strategy</span>
+              <span class="domain-tag">Design</span>
+              <span class="domain-tag">Leadership</span>
+              <span class="domain-tag">Healthcare</span>
+              <span class="domain-tag">Education</span>
+              <span class="domain-tag">Innovation</span>
+              <span class="domain-tag">Finance</span>
+              <span class="domain-tag">Marketing</span>
+              <span class="domain-tag">Real Estate</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3.5rem;">
+          <a href="https://yanc.in" target="_blank" class="btn-primary"
+            style="text-transform: none; font-size: 0.9rem; letter-spacing: 0.05em; padding: 0.8rem 2rem;">Know more
+            about YANC...</a>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="yanc-right">
+          <div class="yanc-mission">
+            "YANC exists to bridge the gap between <em>potential</em> and <em>opportunity</em> creating spaces where
+            the right people meet, collaborate and grow together."
+          </div>
+          <div class="yanc-pillars-mini">
+            <div class="yanc-pillar-mini">
+              <h4>Young Minds</h4>
+              <p>Built for the next generation of leaders and builders.</p>
+            </div>
+            <div class="yanc-pillar-mini">
+              <h4>Networking</h4>
+              <p>Curated, high-value, intentional connections.</p>
+            </div>
+            <div class="yanc-pillar-mini">
+              <h4>Life Skills</h4>
+              <p>Communication, leadership and real-world capability.</p>
+            </div>
+          </div>
+          <div class="yanc-contact">
+            <div class="contact-item">📧 <a href="mailto:connect@yanc.in">connect@yanc.in</a></div>
+            <div class="contact-item">📱 <a href="tel:+916309545559">+91 6309 545 559</a></div>
+            <div class="contact-item">🌐 <a href="https://yanc.in" target="_blank">yanc.in</a></div>
+            <div class="contact-item">📸 <a href="https://www.instagram.com/yancclub/" target="_blank">@yancclub</a></div>
+          </div>
+          <div
+            style="margin-top:2rem;padding:1rem;background:rgba(26,21,16,0.03);border:0.5px solid rgba(26,21,16,0.06);border-radius:2px;">
+            <div
+              style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(26,21,16,0.45);margin-bottom:0.5rem;">
+              Office</div>
+            <div style="font-size:0.8rem;color:rgba(26,21,16,0.6);line-height:1.6;">7th Floor, RMZ Spire, Hitech
+              City, Hyderabad</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-layout">
+      <div class="faq-intro reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <div class="section-eyebrow-text">FAQ</div>
+        </div>
+        <h2 class="section-title">Common<br><em>questions</em></h2>
+        <p class="section-sub" style="margin-top:1rem;">Still on the fence? Here are the answers to the questions
+          everyone's thinking.</p>
+        <div style="margin-top:2rem;">
+          <a href="mailto:connect@yanc.in" class="btn-ghost">Ask us directly →</a>
+        </div>
+      </div>
+      <div class="faq-list reveal reveal-delay-2">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>Who can attend Confluence 2026?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Confluence is open to students, aspiring entrepreneurs, early-career professionals (0–5
+            years) and creators who are serious about personal and professional growth. We look for intent and
+            ambition, not a specific background or degree.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>Is Confluence a residential event?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Confluence is a non-residential event. Sessions are held across three premium venues in
+            Hyderabad between July 6-10. Participants are responsible for their own accommodation and travel. We're
+            happy
+            to provide venue details and nearby stay recommendations.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>What does the registration fee cover?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Your registration covers full 5-day access to all sessions and workshops, the Concept Cocoon
+            experience on Day 4, the Corporate Gala at Shilpakala Vedika on Day 5, all mentor interaction sessions, YANC
+            community membership and your certificate of completion.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>Do I need an idea or startup to participate in the Concept Cocoon?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Yes, you need a startup idea to participate in Concept Cocoon.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>How many seats are available?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Confluence is a curated cohort seats are limited to ensure quality interactions and
+            meaningful networking. We strongly recommend registering early to secure your spot. Early registrations also
+            receive priority access to specific mentor sessions.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>Will I receive a certificate?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Yes. All participants who complete the 5-day Confluence experience will receive a certificate
+            of completion from YANC. This can be added to your LinkedIn profile and resume.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <h3>How do I contact YANC for more information?</h3>
+            <div class="faq-toggle">+</div>
+          </div>
+          <p class="faq-a">Reach us at connect@yanc.in or call +91 6309 545 559. You can also follow <a href="https://www.instagram.com/yancclub/" target="_blank">@yancclub</a> on social
+            media or visit yanc.in for the latest updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <img src="YANC Logo.png" alt="YANC Logo"
+            style="height: 30px; width: auto; display: block;">
+          <div class="footer-brand-tag" style="margin: 0;">Young Minds · Networking · Life Skills</div>
+        </div>
+        <p class="footer-brand-desc">YANC is a curated ecosystem bridging the gap between potential and opportunity
+          creating spaces where the right people meet, collaborate and grow.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#agenda">Event Agenda</a></li>
+          <li><a href="#speakers">Dignitaries</a></li>
+
+          <li><a href="#venues">Venues</a></li>
+          <li><a href="#who">Who It's For</a></li>
+          <li><a href="#volunteers">Volunteers</a></li>
+          <li><a href="#register">Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Event</div>
+        <ul class="footer-links">
+          <li><a href="#">Confluence 2026</a></li>
+          <li><a href="#">July 6–10, 2026</a></li>
+          <li><a href="#">Hyderabad, India</a></li>
+          <li><a href="#">3 Premium Venues</a></li>
+          <li><a href="#">50 Dignitaries</a></li>
+          <li><a href="#">1000+ Mentors</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:connect@yanc.in">connect@yanc.in</a></li>
+          <li><a href="tel:+916309545559">+91 6309 545 559</a></li>
+          <li><a href="https://yanc.in" target="_blank">yanc.in</a></li>
+          <li><a href="https://www.instagram.com/yancclub/" target="_blank">@yancclub</a></li>
+          <li><a href="#">RMZ Spire, Hitech City</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 YANC Young Minds · Networking · Life Skills · All Rights Reserved</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/yancclub/" target="_blank" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/oneyanc" target="_blank" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+      const target = new Date('2026-07-06T09:00:00+05:30').getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        document.getElementById('cd-secs').textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Scroll reveal with staggering support
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          
+          // If it's a grid/list, reveal children with stagger
+          const staggered = e.target.querySelectorAll('.reveal-child');
+          staggered.forEach((child, index) => {
+            setTimeout(() => {
+              child.classList.add('visible');
+            }, index * 100);
+          });
+          
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.reveal, .reveal-parent').forEach(el => revealObserver.observe(el));
+
+    // Active link highlighting (ScrollSpy)
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    const scrollSpyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+          
+          mobileNavLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+
+    sections.forEach(section => scrollSpyObserver.observe(section));
+
+    // FAQ toggle
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileAllLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isActive = mobileToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = isActive ? 'hidden' : '';
+      });
+
+      mobileAllLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
