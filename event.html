@@ -42,29 +42,36 @@
     /* ─── NAV ─── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 100;
-      padding: 1.2rem 4rem;
+      padding: 0.85rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(245, 240, 232, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 0.5px solid var(--border);
-      transition: all 0.3s ease;
+      background: rgba(20, 16, 10, 0.72);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.07);
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    nav.scrolled { padding: 0.8rem 4rem; background: rgba(245, 240, 232, 0.97); }
+    nav.scrolled { padding: 0.7rem 2rem; background: rgba(14, 11, 7, 0.88); top: 0.8rem; box-shadow: 0 16px 48px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.06); }
 
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-    .nav-logo-mark { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--ink); letter-spacing: 0.15em; }
-    .nav-logo-mark span { color: var(--orange); }
-    .nav-sub { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; font-family: 'DM Mono', monospace; margin-top: 2px; }
+    .nav-logo-mark { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.1rem; color: rgba(255,255,255,0.92); letter-spacing: 0.15em; }
+    .nav-logo-mark span { color: var(--orange-light); }
+    .nav-sub { font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; font-family: 'DM Mono', monospace; margin-top: 2px; }
 
     .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--ink-mid); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
-    .nav-cta { background: var(--ink) !important; color: var(--cream) !important; padding: 0.55rem 1.4rem !important; border-radius: 2px !important; font-weight: 500 !important; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--orange) !important; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.65); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-light); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: 0.55rem 1.4rem !important; border-radius: 6px !important; font-weight: 500 !important; transition: all 0.2s !important; border: 1px solid rgba(255,255,255,0.15) !important; }
+    .nav-cta:hover { background: var(--orange-light) !important; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212, 85, 42, 0.4) !important; }
 
     /* Mobile nav */
     .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
@@ -81,7 +88,7 @@
 
     /* ─── PAGE HERO ─── */
     .page-hero {
-      padding: 9rem 4rem 5rem;
+      padding: 10rem 4rem 5rem;
       background: var(--cream);
       position: relative;
       overflow: hidden;
@@ -108,12 +115,19 @@
       max-width: 760px;
     }
     .section-eyebrow {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      background: rgba(212, 85, 42, 0.08);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border: 1px solid rgba(212, 85, 42, 0.18);
+      border-radius: 100px;
+      padding: 0.38rem 1rem 0.38rem 0.75rem;
+      box-shadow: 0 2px 12px rgba(212, 85, 42, 0.06), inset 0 1px 0 rgba(255,255,255,0.12);
     }
-    .section-eyebrow-line { width: 30px; height: 1px; background: var(--orange); }
+    .section-eyebrow-line { width: 24px; height: 1px; background: var(--orange); opacity: 0.7; }
     .section-eyebrow-text { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); }
     .page-hero-title {
       font-family: 'Cormorant Garamond', serif;
@@ -137,10 +151,13 @@
       align-items: center;
       gap: 0.6rem;
       margin-top: 2rem;
-      background: var(--white);
-      border: 0.5px solid var(--border-gold);
+      background: rgba(253, 250, 245, 0.6);
+      border: 1px solid rgba(201, 168, 76, 0.3);
       padding: 0.65rem 1.25rem;
-      border-radius: 2px;
+      border-radius: 100px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 16px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
     }
     .hero-notice-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
     .hero-notice span { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
@@ -246,14 +263,17 @@
 
     /* Pass Cards */
     .pass-card {
-      background: var(--white);
-      border: 0.5px solid var(--border);
-      border-radius: 4px;
+      background: rgba(253, 250, 245, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
       overflow: hidden;
       margin-bottom: 1.5rem;
-      transition: box-shadow 0.3s ease;
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      box-shadow: 0 8px 32px rgba(26,21,16,0.07), inset 0 1px 0 rgba(255,255,255,0.8);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
-    .pass-card:hover { box-shadow: 0 8px 40px rgba(26,21,16,0.08); }
+    .pass-card:hover { box-shadow: 0 16px 48px rgba(26,21,16,0.12); transform: translateY(-2px); }
 
     .pass-card-head {
       padding: 2.5rem 3rem;
@@ -585,17 +605,20 @@
     .policy-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 0.5px solid var(--border);
+      gap: 1rem;
       margin-top: 3rem;
     }
     .policy-card {
-      background: var(--cream-dark);
+      background: rgba(253, 250, 245, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 14px;
       padding: 2.5rem 2rem;
-      transition: background 0.2s;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 4px 20px rgba(26,21,16,0.05), inset 0 1px 0 rgba(255,255,255,0.75);
+      transition: all 0.3s ease;
     }
-    .policy-card:hover { background: var(--white); }
+    .policy-card:hover { background: rgba(253, 250, 245, 0.85); box-shadow: 0 8px 32px rgba(26,21,16,0.1); transform: translateY(-2px); }
     .policy-icon { font-size: 1.5rem; margin-bottom: 1rem; }
     .policy-title {
       font-family: 'Cormorant Garamond', serif;
@@ -688,7 +711,7 @@
     /* ── Tablet (≤ 900px) ── */
     @media (max-width: 900px) {
       /* Nav */
-      nav { padding: 1rem 1.5rem; }
+      nav { padding: 0.85rem 1.5rem; width: calc(100% - 2rem); border-radius: 14px; }
       nav.scrolled { padding: 0.7rem 1.5rem; }
       .nav-links { display: none; }
       .mobile-toggle { display: flex; }
@@ -696,7 +719,7 @@
       .nav-logo-mark { font-size: 0.95rem; }
 
       /* Hero */
-      .page-hero { padding: 7rem 1.5rem 3.5rem; }
+      .page-hero { padding: 8rem 1.5rem 3.5rem; }
 
       /* Sections */
       #glance, #passes, #compare, #policy, .cta-band { padding: 4rem 1.5rem; }
