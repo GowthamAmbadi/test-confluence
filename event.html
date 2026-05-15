@@ -58,9 +58,57 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.07);
       width: calc(100% - 3rem);
       max-width: 1200px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: padding 0.5s cubic-bezier(0.16,1,0.3,1),
+                  background 0.45s ease,
+                  box-shadow 0.45s ease,
+                  top 0.45s ease,
+                  width 0.55s cubic-bezier(0.16,1,0.3,1),
+                  max-width 0.55s cubic-bezier(0.16,1,0.3,1);
     }
-    nav.scrolled { padding: 0.7rem 2rem; background: rgba(14, 11, 7, 0.88); top: 0.8rem; box-shadow: 0 16px 48px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.06); }
+
+    /* ── Collapsed state (scrolled) ── */
+    nav.scrolled {
+      padding: 0.6rem 1.5rem;
+      background: rgba(22, 17, 11, 0.76);
+      top: 0.8rem;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.09);
+      width: max-content;
+      max-width: max-content;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* ── Expanded on click ── */
+    nav.scrolled.expanded {
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      justify-content: space-between;
+      cursor: default;
+    }
+
+    /* Nav links & toggle: fade + remove from flow when hidden */
+    .nav-links, .mobile-toggle {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    nav.scrolled .nav-links,
+    nav.scrolled .mobile-toggle {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: none;
+    }
+    nav.scrolled.expanded .nav-links {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    nav.scrolled.expanded .mobile-toggle {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .nav-logo-mark { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.1rem; color: rgba(255,255,255,0.92); letter-spacing: 0.15em; }
@@ -1485,12 +1533,30 @@
   </footer>
 
   <script>
-    // Navbar scroll
+    // Navbar scroll + click-to-expand
     const navbar = document.getElementById('navbar');
+
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+        navbar.classList.remove('expanded');
+      }
     });
+
+    // Click collapsed bar → expand
+    navbar.addEventListener('click', (e) => {
+      if (navbar.classList.contains('scrolled') && !navbar.classList.contains('expanded')) {
+        navbar.classList.add('expanded');
+        e.stopPropagation();
+      }
+    });
+    // Click outside → collapse
+    document.addEventListener('click', () => {
+      navbar.classList.remove('expanded');
+    });
+    navbar.addEventListener('click', (e) => e.stopPropagation());
 
     // Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
