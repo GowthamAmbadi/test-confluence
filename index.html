@@ -192,6 +192,36 @@
       box-shadow: 0 6px 20px rgba(212, 85, 42, 0.4) !important;
     }
 
+    .nav-cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.8) !important;
+      padding: 0.5rem 1rem !important;
+      border-radius: 8px !important;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      cursor: pointer;
+      transition: all 0.2s !important;
+      text-decoration: none;
+    }
+    .nav-cart-btn:hover { background: rgba(255,255,255,0.15) !important; }
+    .cart-count {
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 500;
+      min-width: 18px;
+    }
+
     /* ─── HERO ─── */
     #hero {
       min-height: 100vh;
@@ -2594,14 +2624,13 @@
 
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
-    <div class="nav-logo">
+    <a class="nav-logo" href="index.html">
       <img src="YANC Logo.png" alt="YANC Logo"
         style="height: 25px; width: auto; display: block;">
       <span style="color: rgba(255,255,255,0.45); font-size: 0.95rem; font-weight: 300; margin: 0 0.1rem;">×</span>
       <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 25px; width: auto; display: block;">
-    </div>
+    </a>
     <ul class="nav-links">
       <li><a href="#agenda" class="nav-link">Agenda</a></li>
       <li><a href="#speakers" class="nav-link">Speakers</a></li>
@@ -3206,7 +3235,7 @@
               Certificate of completion
             </div>
           </div>
-          <a href="event.html"
+          <a href="waiting.html"
             class="btn-register">Apply for Confluence 2026 →</a>
           <p class="register-note">Questions? Reach us at connect@yanc.in or +91 6309 545 559</p>
         </div>

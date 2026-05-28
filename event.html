@@ -561,6 +561,47 @@
     }
     .btn-register-gold:hover { background: var(--gold-light) !important; }
 
+    /* Pass card — 3-button action group */
+    .pass-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; width: 100%; }
+    .pass-actions .btn-cart {
+      flex: 1; min-width: 130px;
+      padding: 0.7rem 1rem; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; border: none; text-align: center; text-decoration: none;
+      background: var(--orange); color: var(--white);
+      transition: background 0.2s, transform 0.18s;
+    }
+    .pass-actions .btn-cart:hover { background: var(--ink); transform: translateY(-1px); }
+    .pass-actions .btn-apply {
+      flex: 1; min-width: 110px;
+      padding: 0.7rem 1rem; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; text-align: center; text-decoration: none; display: inline-block;
+      background: transparent; color: var(--ink);
+      border: 1.5px solid rgba(26,21,16,0.18);
+      transition: border-color 0.2s, background 0.2s, transform 0.18s;
+    }
+    .pass-actions .btn-apply:hover { border-color: var(--ink); background: rgba(26,21,16,0.04); transform: translateY(-1px); }
+    .pass-actions .btn-later {
+      padding: 0.7rem 0.85rem; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; background: transparent; color: rgba(26,21,16,0.4);
+      border: 1.5px solid rgba(26,21,16,0.1);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .pass-actions .btn-later:hover { color: var(--ink); border-color: rgba(26,21,16,0.25); }
+    /* All-access dark card variants */
+    .pass-card.all-access .pass-actions .btn-cart { background: var(--gold); color: var(--ink); }
+    .pass-card.all-access .pass-actions .btn-cart:hover { background: #b8942f; }
+    .pass-card.all-access .pass-actions .btn-apply { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.18); }
+    .pass-card.all-access .pass-actions .btn-apply:hover { color: var(--white); border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+    .pass-card.all-access .pass-actions .btn-later { color: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.1); }
+    .pass-card.all-access .pass-actions .btn-later:hover { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.2); }
+    @media (max-width: 480px) {
+      .pass-actions { flex-direction: column; }
+      .pass-actions .btn-cart, .pass-actions .btn-apply { min-width: unset; }
+    }
+
     .all-access-for {
       grid-column: 1 / -1;
       margin-bottom: 0.5rem;
@@ -901,31 +942,38 @@
   <!-- NAV -->
   <nav id="navbar">
     <a class="nav-logo" href="index.html">
-      <img src="YANC Logo.png" alt="YANC Logo" style="height: 36px; width: auto; display: block;">
-      <span style="color: rgba(255,255,255,0.45); font-size: 1rem; font-weight: 300; margin: 0 0.1rem;">×</span>
-      <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 36px; width: auto; display: block;">
+      <img src="YANC Logo.png" alt="YANC Logo"
+        style="height: 25px; width: auto; display: block;">
+      <span style="color: rgba(255,255,255,0.45); font-size: 0.95rem; font-weight: 300; margin: 0 0.1rem;">×</span>
+      <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 25px; width: auto; display: block;">
     </a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#agenda">Agenda</a></li>
-      <li><a href="index.html#speakers">Dignitaries</a></li>
-      <li><a href="index.html#venues">Venues</a></li>
-      <li><a href="event.html" class="active">Passes</a></li>
+      <li><a href="index.html#agenda" class="nav-link">Agenda</a></li>
+      <li><a href="index.html#speakers" class="nav-link">Speakers</a></li>
+      <li><a href="index.html#mentors" class="nav-link">Mentors</a></li>
+      <li><a href="index.html#venues" class="nav-link">Venues</a></li>
+      <li><a href="index.html#about-yanc" class="nav-link">About</a></li>
+      <li><a href="index.html#volunteers" class="nav-link">Volunteers</a></li>
       <li><a href="index.html#register" class="nav-cta">Register</a></li>
     </ul>
-    <div class="mobile-toggle" id="mobile-toggle">
-      <span></span><span></span><span></span>
-    </div>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="index.html#agenda">Agenda</a>
-    <a href="index.html#speakers">Dignitaries</a>
-    <a href="index.html#venues">Venues</a>
-    <a href="event.html">Passes</a>
-    <a href="index.html#register" class="mob-cta">Register Now</a>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#agenda" class="mobile-nav-link">Agenda</a></li>
+      <li><a href="index.html#speakers" class="mobile-nav-link">Speakers</a></li>
+      <li><a href="index.html#mentors" class="mobile-nav-link">Mentors</a></li>
+      <li><a href="index.html#venues" class="mobile-nav-link">Venues</a></li>
+      <li><a href="index.html#about-yanc" class="mobile-nav-link">About</a></li>
+      <li><a href="index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
+      <li><a href="index.html#register" class="nav-cta">Register</a></li>
+    </ul>
   </div>
 
   <!-- PAGE HERO -->
@@ -1082,7 +1130,11 @@
       </div>
       <div class="pass-card-foot">
         <span class="pass-card-foot-note">Individual pass · 3-day workshop experience</span>
-        <a href="index.html#register" class="btn-register">Register for Learning Lab</a>
+        <div class="pass-actions">
+          <button class="btn-cart" onclick="cartAddFromEvent('learning-lab')">Add to Cart</button>
+          <a href="forms/learning-lab.html" class="btn-apply">Apply Now</a>
+          <button class="btn-later" onclick="buyLater()">Buy Later</button>
+        </div>
       </div>
     </div>
 
@@ -1154,7 +1206,11 @@
       </div>
       <div class="pass-card-foot">
         <span class="pass-card-foot-note">Per startup / team · Competition day only</span>
-        <a href="index.html#register" class="btn-register">Register for Concept Cocoon</a>
+        <div class="pass-actions">
+          <button class="btn-cart" onclick="cartAddFromEvent('concept-cocoon')">Add to Cart</button>
+          <a href="forms/concept-cocoon.html" class="btn-apply">Apply Now</a>
+          <button class="btn-later" onclick="buyLater()">Buy Later</button>
+        </div>
       </div>
     </div>
 
@@ -1213,7 +1269,11 @@
       </div>
       <div class="pass-card-foot">
         <span class="pass-card-foot-note">Individual pass · Evening gala only · Limited seats</span>
-        <a href="index.html#register" class="btn-register">Register for Gala</a>
+        <div class="pass-actions">
+          <button class="btn-cart" onclick="cartAddFromEvent('networking-gala')">Add to Cart</button>
+          <a href="forms/networking-gala.html" class="btn-apply">Apply Now</a>
+          <button class="btn-later" onclick="buyLater()">Buy Later</button>
+        </div>
       </div>
     </div>
 
@@ -1289,7 +1349,11 @@
       </div>
       <div class="pass-card-foot">
         <span class="pass-card-foot-note">The complete 5-day Confluence 2026 experience</span>
-        <a href="index.html#register" class="btn-register btn-register-gold">Get All Access Pass</a>
+        <div class="pass-actions">
+          <button class="btn-cart" onclick="cartAddFromEvent('all-access')">Add to Cart</button>
+          <a href="forms/all-access.html" class="btn-apply">Apply Now</a>
+          <button class="btn-later" onclick="buyLater()">Buy Later</button>
+        </div>
       </div>
     </div>
   </section>
@@ -1531,6 +1595,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Supabase + shared JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
 
   <script>
     // Navbar scroll + click-to-expand

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Networking Gala Application — Confluence 2026</title>
+  <meta name="description" content="Apply for the Networking Gala Pass — Confluence 2026, Hyderabad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/forms.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="../index.html">
+    <img src="../YANC Logo.png" alt="YANC Logo"
+      style="height: 25px; width: auto; display: block;">
+    <span style="color: rgba(255,255,255,0.45); font-size: 0.95rem; font-weight: 300; margin: 0 0.1rem;">×</span>
+    <img src="../CONFLUENC Logo.png" alt="Confluence Logo" style="height: 25px; width: auto; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#agenda" class="nav-link">Agenda</a></li>
+    <li><a href="../index.html#speakers" class="nav-link">Speakers</a></li>
+    <li><a href="../index.html#mentors" class="nav-link">Mentors</a></li>
+    <li><a href="../index.html#venues" class="nav-link">Venues</a></li>
+    <li><a href="../index.html#about-yanc" class="nav-link">About</a></li>
+    <li><a href="../index.html#volunteers" class="nav-link">Volunteers</a></li>
+    <li><a href="../cart.html" class="nav-cart-btn">Cart <span class="cart-count" style="display:none">0</span></a></li>
+    <li><a href="../index.html#register" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html#agenda" class="mobile-nav-link">Agenda</a></li>
+    <li><a href="../index.html#speakers" class="mobile-nav-link">Speakers</a></li>
+    <li><a href="../index.html#mentors" class="mobile-nav-link">Mentors</a></li>
+    <li><a href="../index.html#venues" class="mobile-nav-link">Venues</a></li>
+    <li><a href="../index.html#about-yanc" class="mobile-nav-link">About</a></li>
+    <li><a href="../index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
+    <li><a href="../cart.html" class="mobile-nav-link">Cart <span class="cart-count" style="display:none">0</span></a></li>
+    <li><a href="../index.html#register" class="nav-cta">Register</a></li>
+  </ul>
+</div>
+
+<section id="form-section">
+  <div class="form-layout">
+
+    <div class="pass-identity">
+      <div class="pass-identity-info">
+        <div class="pass-identity-tag">03 · Network Track</div>
+        <div class="pass-identity-name">Networking Gala Pass</div>
+        <div class="pass-identity-desc">An exclusive evening of curated conversations with industry leaders and mentors.</div>
+      </div>
+      <div>
+        <div class="pass-identity-price"><sub>₹</sub>2,499</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);text-align:right;margin-top:0.3rem;">Per person</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:2rem;">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Application Form</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,60px);font-weight:300;line-height:1;color:var(--ink);">
+        Apply for<br><em style="font-style:italic;color:var(--orange);">Networking Gala</em>
+      </h1>
+      <p style="margin-top:1rem;font-size:0.9rem;color:var(--ink-light);line-height:1.7;max-width:540px;">
+        Invite-reviewed access. Limited to 300 curated professionals. Applications reviewed within 48 hours.
+      </p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="form-card" id="form-success" style="display:none;">
+      <div class="form-success visible">
+        <div class="success-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="success-title">Application Submitted</h2>
+        <div class="success-reg-id" id="success-reg-id">—</div>
+        <p class="success-sub">Your Networking Gala application has been received. We'll be in touch within 48 hours.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+          <a href="../event.html" class="btn btn-outline">Browse More Passes</a>
+          <a href="../cart.html" class="btn btn-primary">Go to Cart</a>
+        </div>
+      </div>
+    </div>
+
+    <form id="pass-form" data-pass-type="networking-gala" novalidate>
+
+      <div class="form-card">
+        <div class="form-section-label">Personal Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="full_name">Full Name <span class="required">*</span></label>
+            <input class="form-input" id="full_name" name="full_name" type="text" placeholder="Your full name" data-validate="required" autocomplete="name">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+            <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" data-validate="required,email" autocomplete="email">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number <span class="required">*</span></label>
+            <input class="form-input" id="phone" name="phone" type="tel" placeholder="10-digit mobile" data-validate="required,phone" autocomplete="tel">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="college_company">College / Company <span class="required">*</span></label>
+            <input class="form-input" id="college_company" name="college_company" type="text" placeholder="Where you study or work" data-validate="required">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="city">City <span class="required">*</span></label>
+            <input class="form-input" id="city" name="city" type="text" placeholder="Your city" data-validate="required">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="experience_level">Experience Level <span class="required">*</span></label>
+            <select class="form-select" id="experience_level" name="experience_level" data-validate="required">
+              <option value="">Select level</option>
+              <option value="student">Student</option>
+              <option value="early">Early Career (0–2 yrs)</option>
+              <option value="mid">Mid Career (3–6 yrs)</option>
+              <option value="senior">Senior (7+ yrs)</option>
+              <option value="founder">Founder / Entrepreneur</option>
+            </select>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="linkedin">LinkedIn URL <span class="required">*</span></label>
+            <input class="form-input" id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/you" data-validate="required,url">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="instagram">Instagram Handle</label>
+            <input class="form-input" id="instagram" name="instagram" type="text" placeholder="@yourhandle">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-section-label">Motivation & Goals</div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label" for="why_attend">Why do you want to attend? <span class="required">*</span></label>
+            <textarea class="form-textarea" id="why_attend" name="why_attend" rows="4" placeholder="Share your motivation..." data-validate="required,min:80"></textarea>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" for="building">What are you building or interested in? <span class="required">*</span></label>
+            <textarea class="form-textarea" id="building" name="building" rows="3" placeholder="Describe your current work or interests..." data-validate="required,min:40"></textarea>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="portfolio">Resume / Portfolio Link</label>
+            <input class="form-input" id="portfolio" name="portfolio" type="url" placeholder="https://..." data-validate="url">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dietary">Dietary Preferences</label>
+            <select class="form-select" id="dietary" name="dietary">
+              <option value="">Select preference</option>
+              <option value="veg">Vegetarian</option>
+              <option value="nonveg">Non-Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="jain">Jain</option>
+              <option value="none">No Preference</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Networking Gala Specific -->
+      <div class="form-card">
+        <div class="form-section-label">Networking Profile</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="industry">Industry <span class="required">*</span></label>
+            <select class="form-select" id="industry" name="industry" data-validate="required">
+              <option value="">Select industry</option>
+              <option value="tech">Technology</option>
+              <option value="finance">Finance & Banking</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="education">Education</option>
+              <option value="media">Media & Entertainment</option>
+              <option value="consulting">Consulting</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="retail">Retail & E-commerce</option>
+              <option value="startup">Startup / Venture</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mentor_domain">Preferred Mentor Domain <span class="required">*</span></label>
+            <select class="form-select" id="mentor_domain" name="mentor_domain" data-validate="required">
+              <option value="">Select domain</option>
+              <option value="product">Product & Strategy</option>
+              <option value="growth">Growth & Marketing</option>
+              <option value="fundraising">Fundraising & VC</option>
+              <option value="leadership">Leadership & Management</option>
+              <option value="tech">Engineering & Tech</option>
+              <option value="ops">Operations & Scale</option>
+              <option value="hr">People & Culture</option>
+            </select>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" for="networking_goals">Networking Goals <span class="required">*</span></label>
+            <textarea class="form-textarea" id="networking_goals" name="networking_goals" rows="4" placeholder="What connections are you seeking? What do you hope to gain from the Gala?" data-validate="required,min:60"></textarea>
+            <span class="form-error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-section-label">Emergency Contact</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="ec_name">Contact Name <span class="required">*</span></label>
+            <input class="form-input" id="ec_name" name="ec_name" type="text" data-validate="required" placeholder="Name">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ec_phone">Contact Number <span class="required">*</span></label>
+            <input class="form-input" id="ec_phone" name="ec_phone" type="tel" data-validate="required,phone" placeholder="Phone number">
+            <span class="form-error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div style="margin-bottom:1.5rem;">
+          <label class="form-check">
+            <input type="checkbox" id="agree_terms" name="agree_terms" data-validate="required">
+            <span>I agree to the <a href="#">Terms & Conditions</a> and confirm all information is accurate. I understand this is an invite-reviewed pass.</span>
+          </label>
+        </div>
+        <div class="form-actions">
+          <span style="font-size:0.78rem;color:var(--ink-light);">All fields marked * are required</span>
+          <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-tag">Young Minds · Networking · Life Skills</div><p class="footer-brand-desc">YANC creates curated spaces where the right people meet, collaborate and grow.</p></div>
+    <div><div class="footer-col-title">Passes</div><ul class="footer-links"><li><a href="learning-lab.html">Learning Lab</a></li><li><a href="concept-cocoon.html">Concept Cocoon</a></li><li><a href="networking-gala.html">Networking Gala</a></li><li><a href="all-access.html">All Access</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:connect@yanc.in">connect@yanc.in</a></li><li><a href="https://yanc.in" target="_blank">yanc.in</a></li></ul></div>
+    <div><div class="footer-col-title">Event</div><ul class="footer-links"><li><a href="#">July 6–10, 2026</a></li><li><a href="#">Hyderabad, India</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-legal">© 2026 YANC · All Rights Reserved</div></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/forms.js"></script>
+</body>
+</html>

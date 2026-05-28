@@ -1,0 +1,211 @@
+/* ============================================================
+   CONFLUENCE 2026 — FORMS STYLES
+   ============================================================ */
+
+/* ─── FORM PAGE LAYOUT ─── */
+#form-section {
+  min-height: 80vh;
+  padding: 9rem 4rem 6rem;
+  background: var(--cream);
+}
+.form-layout {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ─── PASS IDENTITY BANNER ─── */
+.pass-identity {
+  background: rgba(253,250,245,0.6);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 14px;
+  padding: 1.75rem 2.5rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 6px 24px rgba(26,21,16,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.pass-identity::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--orange);
+}
+.pass-identity.gold-accent::before { background: var(--gold); }
+.pass-identity-info {}
+.pass-identity-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 0.4rem;
+}
+.pass-identity.gold-accent .pass-identity-tag { color: var(--gold); }
+.pass-identity-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 400; color: var(--ink); line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.pass-identity-desc { font-size: 0.82rem; color: var(--ink-light); line-height: 1.5; }
+.pass-identity-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300; color: var(--ink);
+  text-align: right;
+}
+.pass-identity-price sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem; color: var(--orange); vertical-align: baseline; margin-right: 2px;
+}
+.pass-identity.gold-accent .pass-identity-price sub { color: var(--gold); }
+
+/* ─── FORM CARD ─── */
+.form-card {
+  background: rgba(253,250,245,0.65);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 8px 32px rgba(26,21,16,0.07), inset 0 1px 0 rgba(255,255,255,0.8);
+  margin-bottom: 1.5rem;
+}
+
+.form-section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.form-section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+/* ─── FORM GRID ─── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-grid .full { grid-column: 1 / -1; }
+
+/* ─── FORM FIELDS ─── */
+.form-group {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.form-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.form-label .required { color: var(--orange); margin-left: 2px; }
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  background: rgba(245,240,232,0.5);
+  border: 1px solid rgba(26,21,16,0.12);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(122,110,95,0.5); }
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--orange);
+  background: rgba(253,250,245,0.9);
+  box-shadow: 0 0 0 3px rgba(212,85,42,0.08);
+}
+.form-input.error, .form-textarea.error, .form-select.error {
+  border-color: var(--orange);
+  background: rgba(212,85,42,0.03);
+}
+.form-input.valid { border-color: #228E50; }
+.form-error {
+  font-size: 0.72rem; color: var(--orange);
+  font-family: 'DM Mono', monospace; letter-spacing: 0.05em;
+  display: none;
+}
+.form-error.visible { display: block; }
+
+.form-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A6E5F' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* ─── CHECKBOX / RADIO ─── */
+.form-check {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.85rem; color: var(--ink-mid); line-height: 1.55;
+  cursor: pointer;
+}
+.form-check input {
+  margin-top: 3px; accent-color: var(--orange); flex-shrink: 0;
+  width: 16px; height: 16px;
+}
+.form-check a { color: var(--orange); text-underline-offset: 2px; }
+
+/* ─── FORM ACTIONS ─── */
+.form-actions {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  margin-top: 0.5rem;
+}
+.form-actions .btn { min-width: 180px; justify-content: center; }
+
+/* ─── SUCCESS STATE ─── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.form-success.visible { display: block; }
+.success-icon {
+  width: 72px; height: 72px;
+  background: rgba(34,142,80,0.1);
+  border: 1px solid rgba(34,142,80,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.75rem;
+  animation: scaleIn 0.5s var(--ease-apple);
+}
+@keyframes scaleIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.success-reg-id {
+  display: inline-block;
+  background: rgba(212,85,42,0.07);
+  border: 1px solid rgba(212,85,42,0.18);
+  padding: 0.5rem 1.5rem;
+  border-radius: 100px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem; letter-spacing: 0.15em;
+  color: var(--orange); margin: 1.25rem 0;
+}
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 4vw, 48px); font-weight: 300;
+  color: var(--ink); margin-bottom: 0.75rem;
+}
+.success-sub { font-size: 0.9rem; color: var(--ink-light); line-height: 1.7; max-width: 420px; margin: 0 auto; }
+
+/* ─── WAITLIST PAGE ─── */
+.waitlist-layout { max-width: 640px; margin: 0 auto; }
+.waitlist-hero-note {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.22);
+  padding: 0.6rem 1.25rem;
+  border-radius: 100px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-top: 1.5rem;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #form-section { padding: 9rem 1.5rem 5rem; }
+  .form-card { padding: 1.75rem 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: 1; }
+  .pass-identity { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .pass-identity-price { text-align: left; }
+}

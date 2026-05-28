@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're In — Confluence 2026</title>
+  <meta name="description" content="Your Confluence 2026 registration is confirmed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <style>
+    body { background: var(--cream); }
+
+    /* ─── HERO ─── */
+    #success-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Background radiating rings */
+    .success-rings {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .success-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+      animation: ringPulse 3s ease-out infinite;
+    }
+    .success-ring:nth-child(1) { width: 200px; height: 200px; animation-delay: 0s; }
+    .success-ring:nth-child(2) { width: 380px; height: 380px; animation-delay: 0.6s; }
+    .success-ring:nth-child(3) { width: 560px; height: 560px; animation-delay: 1.2s; }
+    .success-ring:nth-child(4) { width: 740px; height: 740px; animation-delay: 1.8s; }
+    @keyframes ringPulse {
+      0% { opacity: 0; transform: translate(-50%,-50%) scale(0.85); }
+      40% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(1); }
+    }
+
+    .bg-word {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 20vw, 280px);
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,21,16,0.04);
+      pointer-events: none;
+      user-select: none;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      white-space: nowrap;
+    }
+
+    /* ─── CHECK ANIMATION ─── */
+    .success-check-wrap {
+      width: 96px; height: 96px;
+      background: rgba(34,142,80,0.08);
+      border: 1.5px solid rgba(34,142,80,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      z-index: 1;
+      animation: popIn 0.6s var(--ease-apple) both;
+    }
+    @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .check-circle-svg { width: 52px; height: 52px; }
+    .check-circle-svg circle {
+      fill: none;
+      stroke: #4ade80;
+      stroke-width: 2.5;
+      stroke-dasharray: 188;
+      stroke-dashoffset: 188;
+      animation: drawCircle 0.8s 0.3s var(--ease-apple) forwards;
+    }
+    .check-circle-svg path {
+      fill: none;
+      stroke: #4ade80;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.5s 0.9s var(--ease-apple) forwards;
+    }
+    @keyframes drawCircle { to { stroke-dashoffset: 0; } }
+    @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+
+    /* ─── CONTENT ─── */
+    .success-eyebrow {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #4ade80;
+      background: rgba(34,142,80,0.08);
+      border: 1px solid rgba(34,142,80,0.15);
+      padding: 0.35rem 1.1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.6s 0.5s var(--ease-apple) both;
+    }
+
+    .success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 96px);
+      font-weight: 300;
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.65s var(--ease-apple) both;
+    }
+    .success-title em { font-style: italic; color: var(--orange); }
+
+    .success-sub {
+      font-size: 1rem; font-weight: 300;
+      color: var(--ink-mid); line-height: 1.7;
+      max-width: 480px; margin: 0 auto 2.5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.75s var(--ease-apple) both;
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+    /* ─── ORDER TICKET ─── */
+    .success-ticket {
+      background: rgba(253,250,245,0.65);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      box-shadow: 0 16px 56px rgba(26,21,16,0.1), inset 0 1px 0 rgba(255,255,255,0.85);
+      max-width: 520px; width: 100%;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.8s 0.9s var(--ease-apple) both;
+      text-align: left;
+    }
+
+    /* Ticket top border */
+    .success-ticket::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* Perforated line */
+    .ticket-divider {
+      border: none;
+      border-top: 1.5px dashed rgba(26,21,16,0.12);
+      margin: 1.5rem 0;
+    }
+
+    .ticket-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-light); margin-bottom: 0.3rem;
+    }
+    .ticket-value {
+      font-size: 0.92rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem;
+    }
+    .ticket-value:last-child { margin-bottom: 0; }
+
+    .ticket-order-id {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem; letter-spacing: 0.15em;
+      color: var(--orange);
+      background: rgba(212,85,42,0.06);
+      border: 1px solid rgba(212,85,42,0.14);
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .ticket-total {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--ink);
+    }
+    .ticket-total sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem; color: var(--orange); vertical-align: baseline; margin-right: 2px;
+    }
+
+    .success-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 300; font-style: italic;
+      color: var(--ink-mid); margin: 3rem 0 2rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.8s 1.1s var(--ease-apple) both;
+    }
+
+    .success-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.8s 1.2s var(--ease-apple) both;
+    }
+
+    @media (max-width: 600px) {
+      .success-ticket { padding: 1.75rem 1.5rem; }
+      .success-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <img src="YANC Logo.png" alt="YANC Logo"
+      style="height: 25px; width: auto; display: block;">
+    <span style="color: rgba(255,255,255,0.45); font-size: 0.95rem; font-weight: 300; margin: 0 0.1rem;">×</span>
+    <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 25px; width: auto; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#agenda" class="nav-link">Agenda</a></li>
+    <li><a href="index.html#speakers" class="nav-link">Speakers</a></li>
+    <li><a href="index.html#mentors" class="nav-link">Mentors</a></li>
+    <li><a href="index.html#venues" class="nav-link">Venues</a></li>
+    <li><a href="index.html#about-yanc" class="nav-link">About</a></li>
+    <li><a href="index.html#volunteers" class="nav-link">Volunteers</a></li>
+    <li><a href="cart.html" class="nav-cart-btn">Cart <span class="cart-count" style="display:none">0</span></a></li>
+    <li><a href="index.html#register" class="nav-cta">Register</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html#agenda" class="mobile-nav-link">Agenda</a></li>
+    <li><a href="index.html#speakers" class="mobile-nav-link">Speakers</a></li>
+    <li><a href="index.html#mentors" class="mobile-nav-link">Mentors</a></li>
+    <li><a href="index.html#venues" class="mobile-nav-link">Venues</a></li>
+    <li><a href="index.html#about-yanc" class="mobile-nav-link">About</a></li>
+    <li><a href="index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
+    <li><a href="cart.html" class="mobile-nav-link">Cart <span class="cart-count" style="display:none">0</span></a></li>
+    <li><a href="index.html#register" class="nav-cta">Register</a></li>
+  </ul>
+</div>
+
+<!-- SUCCESS HERO -->
+<section id="success-hero">
+  <div class="success-rings">
+    <div class="success-ring"></div>
+    <div class="success-ring"></div>
+    <div class="success-ring"></div>
+    <div class="success-ring"></div>
+  </div>
+  <div class="bg-word">Confirmed</div>
+
+  <!-- Animated check -->
+  <div class="success-check-wrap">
+    <svg class="check-circle-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="26" cy="26" r="23"/>
+      <path d="M14 26l9 9 15-16"/>
+    </svg>
+  </div>
+
+  <span class="success-eyebrow">Registration Confirmed</span>
+
+  <h1 class="success-title">
+    You're<br><em>in, officially.</em>
+  </h1>
+
+  <p class="success-sub">
+    Your pass has been secured for Confluence 2026. Get ready for 5 days of real conversations, real mentors, and real growth.
+  </p>
+
+  <!-- ORDER TICKET -->
+  <div class="success-ticket">
+    <div class="ticket-label">Order ID</div>
+    <div class="ticket-order-id" id="success-order-id">—</div>
+
+    <hr class="ticket-divider">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div>
+        <div class="ticket-label">Name</div>
+        <div class="ticket-value" id="success-name">—</div>
+      </div>
+      <div>
+        <div class="ticket-label">Email</div>
+        <div class="ticket-value" id="success-email" style="word-break:break-all;font-size:0.82rem;">—</div>
+      </div>
+    </div>
+
+    <hr class="ticket-divider">
+
+    <!-- Item list -->
+    <div class="ticket-label" style="margin-bottom:0.75rem;">Passes</div>
+    <div id="success-items"></div>
+
+    <hr class="ticket-divider">
+
+    <div>
+      <div class="ticket-label">Total Paid</div>
+      <div class="ticket-total" id="success-total">—</div>
+    </div>
+
+    <hr class="ticket-divider" style="margin-top:1.5rem;">
+
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.25rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      <span style="font-size:0.78rem;color:var(--ink-light);">Confirmation sent to your email · Hyderabad, July 6–10, 2026</span>
+    </div>
+  </div>
+
+  <p class="success-tagline">"See you at Confluence 2026."</p>
+
+  <div class="success-actions">
+    <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+    <a href="event.html" class="btn btn-outline btn-lg">Explore More Passes</a>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>
