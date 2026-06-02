@@ -17,19 +17,30 @@
 <nav id="navbar">
   <a class="nav-logo" href="../index.html">
     <img src="../YANC Logo.png" alt="YANC Logo"
-      style="height: 25px; width: auto; display: block;">
-    <span style="color: rgba(255,255,255,0.45); font-size: 0.95rem; font-weight: 300; margin: 0 0.1rem;">×</span>
-    <img src="../CONFLUENC Logo.png" alt="Confluence Logo" style="height: 25px; width: auto; display: block;">
+      style="height: 32px; width: auto; display: block;">
+    <span style="color: rgba(255,255,255,0.45); font-size: 1.2rem; font-weight: 300; margin: 0 0.15rem;">×</span>
+    <img src="../CONFLUENC Logo.png" alt="Confluence Logo" style="height: 32px; width: auto; display: block;">
   </a>
   <ul class="nav-links">
-    <li><a href="../index.html#agenda" class="nav-link">Agenda</a></li>
-    <li><a href="../index.html#speakers" class="nav-link">Speakers</a></li>
-    <li><a href="../index.html#mentors" class="nav-link">Mentors</a></li>
-    <li><a href="../index.html#venues" class="nav-link">Venues</a></li>
-    <li><a href="../index.html#about-yanc" class="nav-link">About</a></li>
+    <li class="nav-dropdown-wrapper">
+      <a href="../index.html#agenda" class="nav-link nav-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="../index.html#venues">Venues</a></li>
+      </ul>
+    </li>
+    <li><a href="../index.html#speakers" class="nav-link">Dignitaries</a></li>
     <li><a href="../index.html#volunteers" class="nav-link">Volunteers</a></li>
-    <li><a href="../cart.html" class="nav-cart-btn">Cart <span class="cart-count" style="display:none">0</span></a></li>
-    <li><a href="../index.html#register" class="nav-cta">Register</a></li>
+    <li class="nav-dropdown-wrapper">
+      <a href="../event.html" class="nav-link nav-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="learning-lab.html">Learning Lab</a></li>
+        <li><a href="concept-cocoon.html">Concept Cocoon</a></li>
+        <li><a href="networking-gala.html">Networking Gala</a></li>
+        <li><a href="all-access.html">All Access</a></li>
+      </ul>
+    </li>
+    <li><a href="../exclusives.html" class="nav-link">Exclusives</a></li>
+    <li><a href="../index.html#about-yanc" class="nav-link">About</a></li>
   </ul>
   <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
     <span></span>
@@ -40,14 +51,25 @@
 
 <div class="mobile-menu" id="mobile-menu">
   <ul class="mobile-nav-links">
-    <li><a href="../index.html#agenda" class="mobile-nav-link">Agenda</a></li>
-    <li><a href="../index.html#speakers" class="mobile-nav-link">Speakers</a></li>
-    <li><a href="../index.html#mentors" class="mobile-nav-link">Mentors</a></li>
-    <li><a href="../index.html#venues" class="mobile-nav-link">Venues</a></li>
-    <li><a href="../index.html#about-yanc" class="mobile-nav-link">About</a></li>
+    <li class="mobile-dropdown-wrapper">
+      <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+      <ul class="mobile-dropdown-menu">
+        <li><a href="../index.html#venues" class="mobile-nav-sub-link">· Venues</a></li>
+      </ul>
+    </li>
+    <li><a href="../index.html#speakers" class="mobile-nav-link">Dignitaries</a></li>
     <li><a href="../index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
-    <li><a href="../cart.html" class="mobile-nav-link">Cart <span class="cart-count" style="display:none">0</span></a></li>
-    <li><a href="../index.html#register" class="nav-cta">Register</a></li>
+    <li class="mobile-dropdown-wrapper">
+      <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+      <ul class="mobile-dropdown-menu">
+        <li><a href="learning-lab.html" class="mobile-nav-sub-link">· Learning Lab Pass</a></li>
+        <li><a href="concept-cocoon.html" class="mobile-nav-sub-link">· Concept Cocoon Pass</a></li>
+        <li><a href="networking-gala.html" class="mobile-nav-sub-link">· Networking Gala Pass</a></li>
+        <li><a href="all-access.html" class="mobile-nav-sub-link">· All Access Pass</a></li>
+      </ul>
+    </li>
+    <li><a href="../exclusives.html" class="mobile-nav-link">Exclusives</a></li>
+    <li><a href="../index.html#about-yanc" class="mobile-nav-link">About</a></li>
   </ul>
 </div>
 
@@ -62,8 +84,8 @@
         <div class="pass-identity-desc">Pitch your idea, get expert feedback, and build in a curated startup environment.</div>
       </div>
       <div>
-        <div class="pass-identity-price"><sub>₹</sub>1,999</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);text-align:right;margin-top:0.3rem;">Per person</div>
+        <div class="pass-identity-price"><sub>₹</sub>1,000</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);text-align:right;margin-top:0.3rem;">Per startup / team</div>
       </div>
     </div>
 
@@ -76,7 +98,10 @@
         Apply for<br><em style="font-style:italic;color:var(--orange);">Concept Cocoon</em>
       </h1>
       <p style="margin-top:1rem;font-size:0.9rem;color:var(--ink-light);line-height:1.7;max-width:540px;">
-        A startup idea is required. Applications reviewed within 48–72 hours. Limited to 150 founders.
+        A startup idea is required. Applications reviewed within 48–72 hours. Limited to 150 founders.<br>
+        <span style="display:inline-block;margin-top:0.5rem;font-size:0.82rem;color:var(--orange);font-weight:500;">
+          Note: The ₹1,000 fee is for registration. Shortlisted teams will pay an additional ₹4,000 for pitching. Teams receiving assured funding must become YANC members to avail funding.
+        </span>
       </p>
     </div>
 
@@ -90,8 +115,7 @@
         <div class="success-reg-id" id="success-reg-id">—</div>
         <p class="success-sub">Your Concept Cocoon application is under review. We'll be in touch within 48–72 hours.</p>
         <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
-          <a href="../event.html" class="btn btn-outline">Browse More Passes</a>
-          <a href="../cart.html" class="btn btn-primary">Go to Cart</a>
+          <a href="../event.html" class="btn btn-primary">Browse More Passes</a>
         </div>
       </div>
     </div>
@@ -230,6 +254,24 @@
             </select>
             <span class="form-error"></span>
           </div>
+          <div class="form-group">
+            <label class="form-label" for="pitch_deck_url">Startup Pitch Deck Link <span class="required">*</span></label>
+            <input class="form-input" id="pitch_deck_url" name="pitch_deck_url" type="url" placeholder="Google Drive / Canva link" data-validate="required,url">
+            <span style="font-size: 0.72rem; color: var(--ink-light); display: block; margin-top: 0.25rem;">Ensure link sharing is set to "Anyone with the link can view".</span>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pitch_video_url">Startup Pitch Video Link <span class="required">*</span></label>
+            <input class="form-input" id="pitch_video_url" name="pitch_video_url" type="url" placeholder="Google Drive / Dropbox link" data-validate="required,url">
+            <span style="font-size: 0.72rem; color: var(--ink-light); display: block; margin-top: 0.25rem;">Ensure link sharing is set to "Anyone with the link can view".</span>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="intro_video_url">Self Introduction Video Link <span class="required">*</span></label>
+            <input class="form-input" id="intro_video_url" name="intro_video_url" type="url" placeholder="Google Drive / Dropbox link" data-validate="required,url">
+            <span style="font-size: 0.72rem; color: var(--ink-light); display: block; margin-top: 0.25rem;">Ensure link sharing is set to "Anyone with the link can view".</span>
+            <span class="form-error"></span>
+          </div>
         </div>
       </div>
 
@@ -260,7 +302,7 @@
         </div>
         <div class="form-actions">
           <span style="font-size:0.78rem;color:var(--ink-light);">All fields marked * are required</span>
-          <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+          <button type="submit" class="btn btn-primary btn-lg">Proceed to Payment</button>
         </div>
       </div>
     </form>

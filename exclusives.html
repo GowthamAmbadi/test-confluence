@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusives — Confluence 2026</title>
+  <meta name="description" content="Curated experiences beyond the passes. Investor dinners, networking evenings, 1-on-1 mentorship and hand-picked stalls — only at Confluence 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D9;
+      --ink: #1A1510;
+      --ink-mid: #3D3428;
+      --ink-light: #7A6E5F;
+      --orange: #D4552A;
+      --orange-light: #E8784A;
+      --gold: #C9A84C;
+      --gold-light: #E2C577;
+      --gold-dim: rgba(201, 168, 76, 0.12);
+      --white: #FDFAF5;
+      --border: rgba(26, 21, 16, 0.08);
+      --border-gold: rgba(201, 168, 76, 0.2);
+      --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(20, 16, 10, 0.72);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      transition: padding 0.5s var(--ease-apple), background 0.45s ease,
+                  box-shadow 0.45s ease, top 0.45s ease,
+                  width 0.55s var(--ease-apple), max-width 0.55s var(--ease-apple);
+    }
+    nav.scrolled {
+      padding: 0.75rem 1.8rem;
+      background: rgba(22, 17, 11, 0.76);
+      top: 1.2rem;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      width: max-content;
+      max-width: max-content;
+      justify-content: center;
+      cursor: pointer;
+    }
+    nav.scrolled.expanded {
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      justify-content: space-between;
+      cursor: default;
+    }
+    .nav-links, .mobile-toggle { transition: opacity 0.3s ease, visibility 0.3s ease; }
+    nav.scrolled .nav-links, nav.scrolled .mobile-toggle { opacity:0; visibility:hidden; pointer-events:none; display:none; }
+    nav.scrolled.expanded .nav-links { display:flex; opacity:1; visibility:visible; pointer-events:auto; }
+    nav.scrolled.expanded .mobile-toggle { display:flex; opacity:1; visibility:visible; pointer-events:auto; }
+    .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
+    .nav-links a { text-decoration:none; color:rgba(255,255,255,0.65); font-size:0.85rem; font-weight:400; letter-spacing:0.05em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--orange-light); }
+
+    /* ─── DROPDOWN MENU ─── */
+    .nav-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .nav-dropdown-trigger {
+      display: flex !important;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav-dropdown-trigger .chevron {
+      font-size: 0.45rem;
+      transition: transform 0.3s var(--ease-apple);
+      display: inline-block;
+      margin-top: 1px;
+    }
+    .nav-dropdown-wrapper:hover .nav-dropdown-trigger .chevron {
+      transform: rotate(180deg);
+      color: var(--orange-light);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(20, 16, 10, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.75rem 0;
+      min-width: 210px;
+      list-style: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease-apple), transform 0.3s var(--ease-apple), visibility 0.3s;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+    }
+    .nav-dropdown-wrapper:hover .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px);
+    }
+    .nav-dropdown-menu li {
+      width: 100%;
+    }
+    .nav-dropdown-menu li a {
+      display: block;
+      padding: 0.7rem 1.25rem;
+      color: rgba(255, 255, 255, 0.7) !important;
+      font-size: 0.75rem !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      text-decoration: none;
+      transition: all 0.2s;
+      text-align: left;
+    }
+    .nav-dropdown-menu li a:hover {
+      background: rgba(212, 85, 42, 0.12);
+      color: var(--orange-light) !important;
+      padding-left: 1.5rem;
+    }
+
+    .mobile-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .mobile-toggle span { display:block; width:24px; height:1px; background:rgba(255,255,255,0.7); transition:all 0.3s; }
+    .mobile-toggle.active span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .mobile-toggle.active span:nth-child(2) { opacity:0; }
+    .mobile-toggle.active span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--cream); z-index:99; padding:6rem 2rem 2rem; flex-direction:column; gap:0; }
+    .mobile-menu.active { display:flex; }
+    .mobile-menu a { text-decoration:none; color:var(--ink-mid); font-size:1rem; letter-spacing:0.08em; text-transform:uppercase; padding:1.2rem 0; border-bottom:0.5px solid var(--border); display:block; font-weight:400; }
+    .mobile-menu a:hover { color:var(--orange); }
+
+    /* Mobile dropdown styles */
+    .mobile-dropdown-menu {
+      list-style: none;
+      padding-left: 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-top: 0.25rem;
+    }
+    .mobile-dropdown-wrapper.active .mobile-dropdown-menu {
+      max-height: 250px;
+    }
+    .mobile-dropdown-trigger {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .mobile-dropdown-trigger .chevron {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: rgba(26, 21, 16, 0.4);
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    .mobile-dropdown-wrapper.active .mobile-dropdown-trigger .chevron {
+      transform: rotate(180deg);
+      color: var(--orange);
+    }
+    .mobile-nav-sub-link {
+      font-size: 1.1rem !important;
+      font-family: 'Outfit', sans-serif !important;
+      opacity: 0.7;
+      text-transform: none;
+      text-decoration: none;
+      color: var(--ink) !important;
+      padding: 0.4rem 0;
+      display: block;
+      letter-spacing: normal !important;
+      border-bottom: none !important;
+    }
+    .mobile-nav-sub-link:hover {
+      color: var(--orange) !important;
+      opacity: 1;
+    }
+
+    /* ─── EYEBROW ─── */
+    .section-eyebrow {
+      display:inline-flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;
+      background:rgba(212,85,42,0.08); backdrop-filter:blur(12px) saturate(160%);
+      -webkit-backdrop-filter:blur(12px) saturate(160%);
+      border:1px solid rgba(212,85,42,0.18); border-radius:100px;
+      padding:0.38rem 1rem 0.38rem 0.75rem;
+      box-shadow:0 2px 12px rgba(212,85,42,0.06), inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+    .section-eyebrow-line { width:24px; height:1px; background:var(--orange); opacity:0.7; }
+    .section-eyebrow-text { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--orange); }
+
+    /* ─── HERO ─── */
+    .page-hero {
+      min-height: 100vh;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 4rem 7rem;
+    }
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    /* big ambient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+    }
+    .orb-1 { width: 700px; height: 700px; background: var(--gold); top: -200px; right: -100px; animation: floatOrb 14s ease-in-out infinite; }
+    .orb-2 { width: 500px; height: 500px; background: var(--orange); bottom: -100px; left: -150px; animation: floatOrb 18s ease-in-out infinite reverse; }
+    .orb-3 { width: 300px; height: 300px; background: var(--gold-light); top: 40%; left: 40%; opacity: 0.08; animation: floatOrb 22s ease-in-out infinite 3s; }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.04); }
+      66% { transform: translate(-20px, 15px) scale(0.97); }
+    }
+    /* fine grain overlay */
+    .hero-canvas::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+    }
+    /* diagonal rule lines */
+    .hero-rules {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(201,168,76,0.025) 60px,
+        rgba(201,168,76,0.025) 61px
+      );
+    }
+    .hero-bg-word {
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.05em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 22vw, 320px);
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.08);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-apple) 0.3s forwards;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 9vw, 130px);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 1.1s var(--ease-apple) 0.5s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      margin-top: 2.5rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-apple) 0.75s forwards;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+      z-index: 2;
+    }
+    .hero-scroll-hint span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.5), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(0.6); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ─── INTRO BAND ─── */
+    .intro-band {
+      background: var(--gold);
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      overflow: hidden;
+    }
+    .intro-band-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      white-space: nowrap;
+    }
+    .intro-band-item span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .band-dot { width: 5px; height: 5px; background: rgba(26,21,16,0.3); border-radius: 50%; }
+
+    /* ─── SECTION SHARED ─── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-apple), transform 0.8s var(--ease-apple);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── COMING SOON BANNER ─── */
+    .coming-soon-banner {
+      background: var(--ink);
+      padding: 5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .coming-soon-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(201,168,76,0.03) 80px,
+        rgba(201,168,76,0.03) 81px
+      );
+    }
+    .cs-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .cs-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .cs-title em { font-style: italic; color: var(--gold); }
+    .cs-sub {
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      font-weight: 300;
+    }
+    .cs-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .cs-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.25;
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    .cs-dot:nth-child(2) { animation-delay: 0.3s; }
+    .cs-dot:nth-child(3) { animation-delay: 0.6s; }
+    .cs-dot:nth-child(4) { animation-delay: 0.9s; }
+    .cs-dot:nth-child(5) { animation-delay: 1.2s; }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(0.8); }
+      50% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* ─── EXCLUSIVES GRID ─── */
+    #exclusives {
+      padding: 7rem 4rem;
+      background: var(--cream);
+    }
+    .exclusives-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+    .exclusives-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .exclusives-title em { font-style: italic; color: var(--orange); }
+    .exclusives-intro {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      line-height: 1.75;
+      padding-top: 0.5rem;
+    }
+
+    /* card grid */
+    .exclusives-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .excl-card {
+      background: var(--cream);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s var(--ease-apple);
+    }
+    .excl-card:hover { background: var(--white); }
+
+    /* corner number */
+    .excl-num {
+      position: absolute;
+      top: 2.5rem;
+      right: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,21,16,0.06);
+      line-height: 1;
+      pointer-events: none;
+      transition: -webkit-text-stroke-color 0.4s;
+    }
+    .excl-card:hover .excl-num { -webkit-text-stroke-color: rgba(201,168,76,0.15); }
+
+    .excl-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-apple);
+    }
+    .excl-card:hover .excl-icon-wrap {
+      background: rgba(201,168,76,0.2);
+      border-color: rgba(201,168,76,0.4);
+      transform: scale(1.08) rotate(-3deg);
+    }
+    .excl-icon-wrap svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .excl-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .excl-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 2.8vw, 38px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    .excl-name em { font-style: italic; color: var(--orange); font-weight: 300; }
+    .excl-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    /* coming soon pill */
+    .excl-cs {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(26,21,16,0.05);
+      border: 1px solid rgba(26,21,16,0.08);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      transition: all 0.3s;
+    }
+    .excl-card:hover .excl-cs {
+      background: var(--gold-dim);
+      border-color: var(--border-gold);
+    }
+    .excl-cs-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink-light);
+      animation: csDotBlink 2.4s ease-in-out infinite;
+      transition: background 0.3s;
+    }
+    .excl-card:hover .excl-cs-dot { background: var(--gold); }
+    @keyframes csDotBlink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    .excl-cs span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      transition: color 0.3s;
+    }
+    .excl-card:hover .excl-cs span { color: var(--gold); }
+
+    /* bottom rule */
+    .excl-foot {
+      position: absolute;
+      bottom: 0;
+      left: 3.5rem;
+      right: 3.5rem;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-apple);
+    }
+    .excl-card:hover .excl-foot { transform: scaleX(1); }
+
+    /* ─── NOTIFY STRIP ─── */
+    .notify-strip {
+      background: var(--cream-dark);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+    .notify-left { flex: 1; }
+    .notify-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .notify-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .notify-title em { font-style: italic; color: var(--orange); }
+    .notify-sub {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+    .notify-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-shrink: 0;
+      width: 420px;
+    }
+    .notify-input {
+      flex: 1;
+      padding: 0.85rem 1.2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .notify-input::placeholder { color: var(--ink-light); opacity: 0.6; }
+    .notify-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
+    .notify-btn {
+      padding: 0.85rem 1.6rem;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .notify-btn:hover { background: var(--orange); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-top {
+      padding: 4rem 4rem 3rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-brand-desc { font-size: 0.82rem; line-height: 1.75; color: rgba(255,255,255,0.38); max-width: 280px; }
+    .footer-col-title { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.2rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-links a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.42); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange-light); }
+    .footer-bottom { padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+    .footer-legal { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+    .footer-social { display: flex; gap: 1.2rem; }
+    .footer-social a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--orange-light); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .page-hero { padding: 0 2.5rem 5rem; }
+      #exclusives { padding: 5rem 2.5rem; }
+      .exclusives-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+      .exclusives-grid { grid-template-columns: 1fr; }
+      .excl-card.dark .excl-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .excl-card.dark .excl-perks { grid-template-columns: 1fr 1fr; }
+      .notify-strip { flex-direction: column; padding: 3rem 2.5rem; gap: 2rem; }
+      .notify-form { width: 100%; }
+      .footer-top { grid-template-columns: 1fr 1fr; padding: 3rem 2.5rem 2rem; }
+      .footer-bottom { padding: 1.5rem 2.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .intro-band { padding: 1.2rem 2rem; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .coming-soon-banner { padding: 4rem 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .page-hero { padding: 0 1.5rem 4rem; }
+      #exclusives { padding: 4rem 1.5rem; }
+      .excl-card { padding: 2.5rem 2rem; }
+      .excl-card.dark .excl-perks { grid-template-columns: 1fr; }
+      .notify-strip { padding: 2.5rem 1.5rem; }
+      .notify-form { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 1.5rem; }
+      .footer-bottom { padding: 1.5rem; }
+      .mobile-toggle { display: flex; }
+      .nav-links { display: none; }
+      .hero-scroll-hint { display: none; }
+      .intro-band { display: none; }
+      .coming-soon-banner { padding: 3rem 1.5rem; }
+      nav { top: 0.8rem; }
+      nav.scrolled { top: 0.6rem; }
+      .nav-logo img { height: 25px !important; }
+      .nav-logo span { font-size: 0.95rem !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="YANC Logo.png" alt="YANC Logo"
+        style="height: 32px; width: auto; display: block;">
+      <span style="color: rgba(255,255,255,0.45); font-size: 1.2rem; font-weight: 300; margin: 0 0.15rem;">×</span>
+      <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 32px; width: auto; display: block;">
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown-wrapper">
+        <a href="index.html#agenda" class="nav-link nav-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="index.html#venues">Venues</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#speakers" class="nav-link">Dignitaries</a></li>
+      <li><a href="index.html#volunteers" class="nav-link">Volunteers</a></li>
+      <li class="nav-dropdown-wrapper">
+        <a href="event.html" class="nav-link nav-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="forms/learning-lab.html">Learning Lab</a></li>
+          <li><a href="forms/concept-cocoon.html">Concept Cocoon</a></li>
+          <li><a href="forms/networking-gala.html">Networking Gala</a></li>
+          <li><a href="forms/all-access.html">All Access</a></li>
+        </ul>
+      </li>
+      <li><a href="exclusives.html" class="nav-link active">Exclusives</a></li>
+      <li><a href="index.html#about-yanc" class="nav-link">About</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li class="mobile-dropdown-wrapper">
+        <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+        <ul class="mobile-dropdown-menu">
+          <li><a href="index.html#venues" class="mobile-nav-sub-link">· Venues</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#speakers" class="mobile-nav-link">Dignitaries</a></li>
+      <li><a href="index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
+      <li class="mobile-dropdown-wrapper">
+        <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+        <ul class="mobile-dropdown-menu">
+          <li><a href="forms/learning-lab.html" class="mobile-nav-sub-link">· Learning Lab Pass</a></li>
+          <li><a href="forms/concept-cocoon.html" class="mobile-nav-sub-link">· Concept Cocoon Pass</a></li>
+          <li><a href="forms/networking-gala.html" class="mobile-nav-sub-link">· Networking Gala Pass</a></li>
+          <li><a href="forms/all-access.html" class="mobile-nav-sub-link">· All Access Pass</a></li>
+        </ul>
+      </li>
+      <li><a href="exclusives.html" class="mobile-nav-link">Exclusives</a></li>
+      <li><a href="index.html#about-yanc" class="mobile-nav-link">About</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="hero-canvas">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="hero-rules"></div>
+    </div>
+    <div class="hero-bg-word">Exclusive</div>
+    <div class="hero-inner">
+      <div class="hero-label">Confluence 2026 · Curated Experiences</div>
+      <h1 class="hero-title">Beyond the<br><em>Ordinary.</em></h1>
+      <p class="hero-desc">A layer of Confluence reserved for the few. Hand-picked dinners, curated stalls, personal mentorship and rooms where the right conversations happen.</p>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band">
+    <div class="intro-band-item">
+      <span>Curated Stalls</span>
+    </div>
+    <div class="band-dot"></div>
+    <div class="intro-band-item">
+      <span>Investor Dinner</span>
+    </div>
+    <div class="band-dot"></div>
+    <div class="intro-band-item">
+      <span>Networking Dinner</span>
+    </div>
+    <div class="band-dot"></div>
+    <div class="intro-band-item">
+      <span>1-on-1 Mentorship</span>
+    </div>
+    <div class="band-dot"></div>
+    <div class="intro-band-item">
+      <span>July 6–10 · Hyderabad</span>
+    </div>
+  </div>
+
+  <!-- EXCLUSIVES GRID -->
+  <section id="exclusives">
+    <div class="container">
+
+      <div class="exclusives-header">
+        <div class="reveal">
+          <div class="section-eyebrow">
+            <div class="section-eyebrow-line"></div>
+            <div class="section-eyebrow-text">Confluence 2026 · Exclusives</div>
+          </div>
+          <h2 class="exclusives-title">Four Curated<br><em>Experiences.</em></h2>
+        </div>
+        <p class="exclusives-intro reveal">Every exclusive at Confluence 2026 is designed with one intention — to put you in the room where it happens. Details, availability and access criteria will be revealed soon.</p>
+      </div>
+
+      <div class="exclusives-grid">
+
+        <!-- 01 Curated Stalls -->
+        <div class="excl-card reveal">
+          <div class="excl-num">01</div>
+          <div class="excl-icon-wrap">
+            <!-- shop icon -->
+            <svg viewBox="0 0 24 24"><path d="M3 9l1-6h16l1 6"/><path d="M3 9a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0 2 2 2 2 0 0 0 2-2"/><path d="M5 21V11M19 21V11"/><rect x="9" y="14" width="6" height="7"/></svg>
+          </div>
+          <div class="excl-tag">Experience 01</div>
+          <h3 class="excl-name">Curated <em>Stalls</em></h3>
+          <p class="excl-desc">A handpicked marketplace of founders, products and ideas — each stall selected for quality, relevance and story. Discover, network and engage with the ecosystem in motion.</p>
+          <div class="excl-cs">
+            <div class="excl-cs-dot"></div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="excl-foot"></div>
+        </div>
+
+        <!-- 02 Investor Dinner -->
+        <div class="excl-card reveal">
+          <div class="excl-num">02</div>
+          <div class="excl-icon-wrap">
+            <!-- briefcase/money icon -->
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <div class="excl-tag">Experience 02</div>
+          <h3 class="excl-name">Curated <em>Investor</em> Dinner</h3>
+          <p class="excl-desc">An intimate evening meal with vetted investors and capital allocators. Reserved for a small cohort of founders — structured conversations, warm introductions and the kind of access that doesn't happen in a conference hall.</p>
+          <div class="excl-cs">
+            <div class="excl-cs-dot"></div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="excl-foot"></div>
+        </div>
+
+        <!-- 03 Networking Dinner -->
+        <div class="excl-card reveal">
+          <div class="excl-num">03</div>
+          <div class="excl-icon-wrap">
+            <!-- users icon -->
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="excl-tag">Experience 03</div>
+          <h3 class="excl-name">Curated <em>Networking</em> Dinner</h3>
+          <p class="excl-desc">A carefully orchestrated dinner where every seat is intentional. Matched by industry, ambition and stage — so that every conversation across the table is one worth having. The most human part of Confluence.</p>
+          <div class="excl-cs">
+            <div class="excl-cs-dot"></div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="excl-foot"></div>
+        </div>
+
+        <!-- 04 Mentorship -->
+        <div class="excl-card reveal">
+          <div class="excl-num">04</div>
+          <div class="excl-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <div class="excl-tag">Experience 04</div>
+          <h3 class="excl-name">1-on-1 <em>Mentorship</em></h3>
+          <p class="excl-desc">Private, structured sessions with senior mentors — founders who've built, investors who've backed, and leaders who've scaled. Limited slots, maximum depth. Not a panel. Not a keynote. Just you and someone who's been where you want to go.</p>
+          <div class="excl-cs">
+            <div class="excl-cs-dot"></div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="excl-foot"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMING SOON BANNER -->
+  <div class="coming-soon-banner reveal">
+    <div class="cs-label">Confluence 2026 · Details Incoming</div>
+    <h2 class="cs-title">All Four Experiences<br><em>Dropping Soon.</em></h2>
+    <p class="cs-sub">Pricing, eligibility criteria and access windows will be announced closer to the event.</p>
+    <div class="cs-dots">
+      <div class="cs-dot"></div>
+      <div class="cs-dot"></div>
+      <div class="cs-dot"></div>
+      <div class="cs-dot"></div>
+      <div class="cs-dot"></div>
+    </div>
+  </div>
+
+  <!-- NOTIFY STRIP -->
+  <div class="notify-strip">
+    <div class="notify-left reveal">
+      <div class="notify-eyebrow">Stay in the Loop</div>
+      <h3 class="notify-title">Be the first to know<br>when <em>Exclusives</em> open.</h3>
+      <p class="notify-sub">Drop your email and we'll notify you the moment access windows go live — before anyone else.</p>
+    </div>
+    <div class="notify-form reveal">
+      <input class="notify-input" type="email" placeholder="your@email.com" id="notifyEmail">
+      <button class="notify-btn" onclick="handleNotify()">Notify Me</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-tag">Young Minds · Networking · Life Skills</div>
+        <p class="footer-brand-desc">YANC is a curated ecosystem bridging the gap between potential and opportunity — creating spaces where the right people meet, collaborate and grow.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html#agenda">Event Agenda</a></li>
+          <li><a href="index.html#speakers">Dignitaries</a></li>
+          <li><a href="index.html#venues">Venues</a></li>
+          <li><a href="index.html#who">Who It's For</a></li>
+          <li><a href="event.html">Passes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Event</div>
+        <ul class="footer-links">
+          <li><a href="#">Confluence 2026</a></li>
+          <li><a href="#">July 6–10, 2026</a></li>
+          <li><a href="#">Hyderabad, India</a></li>
+          <li><a href="#">3 Premium Venues</a></li>
+          <li><a href="#">50 Dignitaries</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:connect@yanc.in">connect@yanc.in</a></li>
+          <li><a href="tel:+916309545559">+91 6309 545 559</a></li>
+          <li><a href="https://yanc.in" target="_blank">yanc.in</a></li>
+          <li><a href="https://www.instagram.com/yancclub/" target="_blank">@yancclub</a></li>
+          <li><a href="#">RMZ Spire, Hitech City</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 YANC Young Minds · Networking · Life Skills · All Rights Reserved</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/yancclub/" target="_blank" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/oneyanc" target="_blank" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Notify handler
+    function handleNotify() {
+      const email = document.getElementById('notifyEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('notifyEmail').style.borderColor = '#D4552A';
+        document.getElementById('notifyEmail').focus();
+        return;
+      }
+      const btn = document.querySelector('.notify-btn');
+      btn.textContent = "You're on the list ✓";
+      btn.style.background = '#2d5a27';
+      btn.disabled = true;
+      document.getElementById('notifyEmail').disabled = true;
+    }
+
+    // Navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+        navbar.classList.remove('expanded');
+      }
+    });
+    navbar.addEventListener('click', (e) => {
+      if (navbar.classList.contains('scrolled') && !navbar.classList.contains('expanded')) {
+        navbar.classList.add('expanded');
+        e.stopPropagation();
+      }
+    });
+    document.addEventListener('click', () => navbar.classList.remove('expanded'));
+    navbar.addEventListener('click', (e) => e.stopPropagation());
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileToggle.addEventListener('click', () => {
+      const isActive = mobileToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = isActive ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.classList.contains('mobile-dropdown-trigger')) {
+          e.preventDefault();
+          e.stopPropagation();
+          const wrapper = link.closest('.mobile-dropdown-wrapper');
+          if (wrapper) {
+            wrapper.classList.toggle('active');
+          }
+          return;
+        }
+        mobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+
+</body>
+</html>

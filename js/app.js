@@ -39,7 +39,16 @@ function initMobileMenu() {
   });
 
   menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      if (link.classList.contains('mobile-dropdown-trigger')) {
+        e.preventDefault();
+        e.stopPropagation();
+        const wrapper = link.closest('.mobile-dropdown-wrapper');
+        if (wrapper) {
+          wrapper.classList.toggle('active');
+        }
+        return;
+      }
       toggle.classList.remove('active');
       menu.classList.remove('active');
       document.body.style.overflow = '';

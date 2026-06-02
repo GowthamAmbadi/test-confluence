@@ -7,10 +7,10 @@ const GST_RATE = 0.18;
 
 // Pass catalogue (fallback if Supabase unavailable)
 const PASS_CATALOGUE = {
-  'learning-lab': { id: 'learning-lab', name: 'Learning Lab Pass', tag: 'Skill Track', price: 1499, accent: 'orange', formUrl: 'forms/learning-lab.html' },
-  'concept-cocoon': { id: 'concept-cocoon', name: 'Concept Cocoon Pass', tag: 'Startup Track', price: 1999, accent: 'orange', formUrl: 'forms/concept-cocoon.html' },
-  'networking-gala': { id: 'networking-gala', name: 'Networking Gala Pass', tag: 'Network Track', price: 2499, accent: 'orange', formUrl: 'forms/networking-gala.html' },
-  'all-access': { id: 'all-access', name: 'All Access Pass', tag: 'Full Experience', price: 4999, accent: 'gold', formUrl: 'forms/all-access.html' },
+  'learning-lab': { id: 'learning-lab', name: 'Learning Lab Pass', tag: 'Skill Track', price: 4500, accent: 'orange', formUrl: 'forms/learning-lab.html' },
+  'concept-cocoon': { id: 'concept-cocoon', name: 'Concept Cocoon Pass', tag: 'Startup Track', price: 1000, accent: 'orange', formUrl: 'forms/concept-cocoon.html' },
+  'networking-gala': { id: 'networking-gala', name: 'Networking Gala Pass', tag: 'Network Track', price: 250, accent: 'orange', formUrl: 'forms/networking-gala.html' },
+  'all-access': { id: 'all-access', name: 'All Access Pass', tag: 'Full Experience', price: 6000, accent: 'gold', formUrl: 'forms/all-access.html' },
 };
 
 // ─── CART STORAGE ───
@@ -243,7 +243,10 @@ function recalcWithCoupon() {
 
 // ─── SUCCESS PAGE ───
 function renderSuccessPage() {
-  const pending = JSON.parse(sessionStorage.getItem('confluenceOrder') || 'null');
+  let pending = JSON.parse(sessionStorage.getItem('confluenceOrder') || 'null');
+  if (!pending) {
+    pending = JSON.parse(localStorage.getItem('confluenceOrder') || 'null');
+  }
   if (!pending) return;
 
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };

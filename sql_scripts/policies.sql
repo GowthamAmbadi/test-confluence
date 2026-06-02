@@ -31,6 +31,19 @@ CREATE POLICY "participants_public_insert"
   TO anon
   WITH CHECK (TRUE);
 
+-- Allow public users to read participant records (needed for upsert return)
+CREATE POLICY "participants_public_read"
+  ON participants FOR SELECT
+  TO anon
+  USING (TRUE);
+
+-- Allow public users to update participant records (needed for upsert)
+CREATE POLICY "participants_public_update"
+  ON participants FOR UPDATE
+  TO anon
+  USING (TRUE)
+  WITH CHECK (TRUE);
+
 -- Authenticated users (admins) can read all
 CREATE POLICY "participants_admin_read"
   ON participants FOR SELECT
@@ -54,6 +67,12 @@ CREATE POLICY "applications_public_insert"
   TO anon
   WITH CHECK (TRUE);
 
+-- Allow public users to read applications (needed for returning inserted application)
+CREATE POLICY "applications_public_read"
+  ON applications FOR SELECT
+  TO anon
+  USING (TRUE);
+
 CREATE POLICY "applications_admin_read"
   ON applications FOR SELECT
   TO authenticated
@@ -74,6 +93,12 @@ CREATE POLICY "orders_public_insert"
   ON cart_orders FOR INSERT
   TO anon
   WITH CHECK (TRUE);
+
+-- Allow public users to read orders (needed for returning inserted order)
+CREATE POLICY "orders_public_read"
+  ON cart_orders FOR SELECT
+  TO anon
+  USING (TRUE);
 
 CREATE POLICY "orders_admin_read"
   ON cart_orders FOR SELECT

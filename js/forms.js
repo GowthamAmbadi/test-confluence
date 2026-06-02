@@ -104,16 +104,60 @@ async function handleFormSubmit(e, passType) {
   const formData = collectFormData(form);
   formData.pass_type = passType;
 
+  // Get details from catalog for success page
+  const passInfo = window.cartHelpers ? window.cartHelpers.PASS_CATALOGUE[passType] : null;
+  const passName = passInfo ? passInfo.name : (passType.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + ' Pass');
+  const passPrice = passInfo ? passInfo.price : 0;
+
   try {
     const { application } = await window.db.submitApplication(formData, passType);
-    showFormSuccess(form, application.registration_id);
-    toast.success('Application submitted!', 'Success');
+    
+    const orderData = {
+      orderId: application.registration_id,
+      name: formData.full_name,
+      email: formData.email,
+      items: [{
+        name: passName,
+        price: passPrice,
+        qty: 1
+      }],
+      total: passPrice
+    };
+    
+    // Store in both sessionStorage and localStorage for success.html
+    sessionStorage.setItem('confluenceOrder', JSON.stringify(orderData));
+    localStorage.setItem('confluenceOrder', JSON.stringify(orderData));
+
+    toast.success('Application submitted! Redirecting to payment...', 'Success');
+    setTimeout(() => {
+      window.location.href = 'https://razorpay.me/@yancenterprises';
+    }, 1000);
   } catch (err) {
     console.error('Submission error:', err);
+    
     // Fallback: generate ID client-side and show success anyway for demo
     const regId = window.db.generateRegistrationId(passType);
-    showFormSuccess(form, regId);
-    toast.success('Application submitted!', 'Success');
+    
+    const orderDataFallback = {
+      orderId: regId,
+      name: formData.full_name,
+      email: formData.email,
+      items: [{
+        name: passName,
+        price: passPrice,
+        qty: 1
+      }],
+      total: passPrice
+    };
+    
+    // Store in both sessionStorage and localStorage for success.html
+    sessionStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
+    localStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
+    
+    toast.success('Application submitted! Redirecting to payment...', 'Success');
+    setTimeout(() => {
+      window.location.href = 'https://razorpay.me/@yancenterprises';
+    }, 1000);
   } finally {
     setSubmitState(btn, false);
   }

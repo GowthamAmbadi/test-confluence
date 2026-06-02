@@ -5,8 +5,8 @@
    Find them in: Supabase Dashboard → Project Settings → API
    ============================================================ */
 
-const SUPABASE_URL = "https://qmuxmblinicmtkenhejz.supabase.co"
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtdXhtYmxpbmljbXRrZW5oZWp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4ODc1OTIsImV4cCI6MjA5NTQ2MzU5Mn0.musTzuviLENgQypboBptngzV2bxtSVDA9QoCT3QSOP8"
+const SUPABASE_URL = "https://jktxnmwtbjyonhzygwpu.supabase.co"
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprdHhubXd0Ymp5b25oenlnd3B1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTc2MDEsImV4cCI6MjA5NTk3MzYwMX0.lxhcIVV0O0LlpMdyjRo2tRM7wHy27HSwBKrCMVKDDPs"
 
 // CDN client (loaded via <script> in HTML)
 let _db = null;
