@@ -104,8 +104,18 @@ async function handleFormSubmit(e, passType) {
   const formData = collectFormData(form);
   formData.pass_type = passType;
 
+  // Fallback pass catalogue in case cart.js is not loaded
+  const fallbackCatalogue = {
+    'learning-lab': { name: 'Learning Lab Pass', price: 4500 },
+    'concept-cocoon': { name: 'Concept Cocoon Pass', price: 1000 },
+    'networking-gala': { name: 'Networking Gala Pass', price: 250 },
+    'all-access': { name: 'All Access Pass', price: 6000 }
+  };
+
   // Get details from catalog for success page
-  const passInfo = window.cartHelpers ? window.cartHelpers.PASS_CATALOGUE[passType] : null;
+  const passInfo = (window.cartHelpers && window.cartHelpers.PASS_CATALOGUE) 
+    ? window.cartHelpers.PASS_CATALOGUE[passType] 
+    : fallbackCatalogue[passType];
   const passName = passInfo ? passInfo.name : (passType.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + ' Pass');
   const passPrice = passInfo ? passInfo.price : 0;
 

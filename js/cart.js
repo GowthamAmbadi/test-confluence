@@ -375,6 +375,33 @@ async function renderSuccessPage() {
         el.style.stroke = 'var(--gold)';
       });
     }
+
+    // Dev Simulation Button for Local Testing
+    const actionsEl = document.querySelector('.success-actions');
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (isLocalhost && actionsEl && !document.getElementById('dev-simulate-btn')) {
+      const devBtn = document.createElement('button');
+      devBtn.id = 'dev-simulate-btn';
+      devBtn.className = 'btn btn-outline btn-lg';
+      devBtn.style.borderColor = 'var(--gold)';
+      devBtn.style.color = 'var(--gold)';
+      devBtn.style.background = 'rgba(201, 168, 76, 0.05)';
+      devBtn.style.cursor = 'pointer';
+      devBtn.textContent = '⚡ Simulate Payment Success (Dev Mode)';
+      devBtn.onclick = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('razorpay_payment_id', 'pay_dev_simulated_' + Math.random().toString(36).substring(2, 9).toUpperCase());
+        url.searchParams.set('razorpay_payment_link_status', 'paid');
+        window.location.href = url.toString();
+      };
+      actionsEl.appendChild(devBtn);
+    }
+  }
+
+  // Remove dev simulate button if payment succeeds
+  const devBtn = document.getElementById('dev-simulate-btn');
+  if (paymentId && devBtn) {
+    devBtn.remove();
   }
 }
 
