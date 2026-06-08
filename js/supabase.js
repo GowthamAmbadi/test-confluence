@@ -165,16 +165,16 @@ function generateRegistrationId(passType = 'pass') {
  */
 async function approveApplication(registrationId, paymentId) {
   const db = getDB();
-  
+
   // 1. Fetch current application to get current answers
   const { data: app, error: fetchError } = await db
     .from('applications')
     .select('answers')
     .eq('registration_id', registrationId)
     .single();
-    
+
   if (fetchError) throw fetchError;
-  
+
   const updatedAnswers = {
     ...app.answers,
     razorpay_payment_id: paymentId,
@@ -184,7 +184,7 @@ async function approveApplication(registrationId, paymentId) {
   // 2. Update status and answers
   const { data, error } = await db
     .from('applications')
-    .update({ 
+    .update({
       status: 'approved',
       answers: updatedAnswers
     })

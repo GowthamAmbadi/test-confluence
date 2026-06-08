@@ -129,7 +129,7 @@ async function handleFormSubmit(e, passType) {
     localStorage.setItem('confluenceOrder', JSON.stringify(orderData));
 
     // Construct Razorpay URL with prefill parameters
-    const razorpayUrl = new URL('https://pages.razorpay.com/pl_Sz2t5ic0V75F6g/view');
+    const razorpayUrl = new URL('https://rzp.io/rzp/osgvpJt');
     razorpayUrl.searchParams.set('name', formData.full_name);
     razorpayUrl.searchParams.set('email', formData.email);
     razorpayUrl.searchParams.set('phone', formData.phone);
@@ -164,7 +164,7 @@ async function handleFormSubmit(e, passType) {
     localStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
     
     // Construct Razorpay URL with prefill parameters for fallback path as well
-    const razorpayUrlFallback = new URL('https://pages.razorpay.com/pl_Sz2t5ic0V75F6g/view');
+    const razorpayUrlFallback = new URL('https://rzp.io/rzp/osgvpJt');
     razorpayUrlFallback.searchParams.set('name', formData.full_name);
     razorpayUrlFallback.searchParams.set('email', formData.email);
     razorpayUrlFallback.searchParams.set('phone', formData.phone);

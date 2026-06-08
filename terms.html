@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions — Confluence 2026</title>
+  <meta name="description" content="Terms and Conditions for Confluence 2026 by YANC. Hyderabad, July 6–10, 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D9;
+      --ink: #1A1510;
+      --ink-mid: #3D3428;
+      --ink-light: #7A6E5F;
+      --orange: #D4552A;
+      --orange-light: #E8784A;
+      --gold: #C9A84C;
+      --gold-light: #E2C577;
+      --navy: #1C2B4A;
+      --white: #FDFAF5;
+      --border: rgba(26, 21, 16, 0.08);
+      --border-gold: rgba(201, 168, 76, 0.2);
+      --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(20, 16, 10, 0.72);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.07);
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      transition: padding 0.5s var(--ease-apple), background 0.45s ease,
+                  box-shadow 0.45s ease, top 0.45s ease,
+                  width 0.55s var(--ease-apple), max-width 0.55s var(--ease-apple);
+    }
+    nav.scrolled {
+      padding: 0.75rem 1.8rem;
+      background: rgba(22, 17, 11, 0.76);
+      top: 1.2rem;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.09);
+      width: max-content;
+      max-width: max-content;
+      justify-content: center;
+      cursor: pointer;
+    }
+    nav.scrolled.expanded {
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      justify-content: space-between;
+      cursor: default;
+    }
+    .nav-links, .mobile-toggle { transition: opacity 0.3s ease, visibility 0.3s ease; }
+    nav.scrolled .nav-links, nav.scrolled .mobile-toggle { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
+    nav.scrolled.expanded .nav-links { display: flex; opacity: 1; visibility: visible; pointer-events: auto; }
+    nav.scrolled.expanded .mobile-toggle { display: flex; opacity: 1; visibility: visible; pointer-events: auto; }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange-light); }
+
+    .nav-dropdown-wrapper { position: relative; display: inline-block; }
+    .nav-dropdown-trigger { display: flex !important; align-items: center; gap: 0.3rem; }
+    .nav-dropdown-trigger .chevron { font-size: 0.45rem; transition: transform 0.3s var(--ease-apple); display: inline-block; margin-top: 1px; }
+    .nav-dropdown-wrapper:hover .nav-dropdown-trigger .chevron { transform: rotate(180deg); color: var(--orange-light); }
+    .nav-dropdown-menu {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: rgba(20, 16, 10, 0.95); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 0.75rem 0; min-width: 210px; list-style: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s var(--ease-apple), transform 0.3s var(--ease-apple), visibility 0.3s;
+      z-index: 1000; backdrop-filter: blur(20px);
+    }
+    .nav-dropdown-wrapper:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(5px); }
+    .nav-dropdown-menu li a { display: block; padding: 0.7rem 1.25rem; color: rgba(255,255,255,0.7) !important; font-size: 0.75rem !important; font-weight: 400 !important; letter-spacing: 0.05em !important; text-transform: uppercase !important; text-decoration: none; transition: all 0.2s; text-align: left; }
+    .nav-dropdown-menu li a:hover { background: rgba(212,85,42,0.12); color: var(--orange-light) !important; padding-left: 1.5rem; }
+
+    .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .mobile-toggle span { display: block; width: 22px; height: 1.5px; background: rgba(255,255,255,0.7); border-radius: 2px; transition: all 0.3s var(--ease-apple); }
+    .mobile-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .mobile-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 90;
+      background: rgba(15,11,7,0.97); backdrop-filter: blur(24px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.35s var(--ease-apple), visibility 0.35s;
+    }
+    .mobile-menu.active { opacity: 1; visibility: visible; pointer-events: auto; }
+    .mobile-nav-links { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 0.25rem; width: 100%; padding: 0 2rem; }
+    .mobile-nav-link { display: block; padding: 0.85rem 1rem; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; border-bottom: 0.5px solid rgba(255,255,255,0.04); }
+    .mobile-nav-link:hover { color: var(--orange-light); }
+    .mobile-dropdown-menu { list-style: none; overflow: hidden; max-height: 0; transition: max-height 0.35s var(--ease-apple); }
+    .mobile-dropdown-wrapper.active .mobile-dropdown-menu { max-height: 200px; }
+    .mobile-nav-sub-link { display: block; padding: 0.6rem 1rem 0.6rem 1.5rem; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+    .mobile-nav-sub-link:hover { color: var(--orange-light); }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding: 10rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-bg-text {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(100px, 18vw, 240px);
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,21,16,0.05);
+      pointer-events: none;
+      user-select: none;
+      top: 50%; right: -2%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      letter-spacing: -0.03em;
+    }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.5rem;
+    }
+    .section-eyebrow-line { width: 40px; height: 1px; background: var(--orange); flex-shrink: 0; }
+    .section-eyebrow-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--ink-light);
+    }
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 300;
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .page-hero-title em { font-style: italic; color: var(--orange); }
+    .page-hero-sub {
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--ink-light); line-height: 1.75;
+      max-width: 520px; margin-bottom: 2rem;
+    }
+    .hero-meta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-light);
+      background: rgba(26,21,16,0.04);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+    }
+    .hero-meta-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+    /* ─── TOC SIDEBAR LAYOUT ─── */
+    .tc-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ─── TOC ─── */
+    .toc-wrap {
+      position: sticky;
+      top: 8rem;
+    }
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .toc-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--orange); flex-shrink: 0; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .toc-list li { border-left: 1px solid var(--border); }
+    .toc-list li.active { border-left-color: var(--orange); }
+    .toc-list a {
+      display: block;
+      padding: 0.55rem 1rem;
+      font-size: 0.78rem; font-weight: 400;
+      color: var(--ink-light);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .toc-list li.active a,
+    .toc-list a:hover { color: var(--orange); padding-left: 1.25rem; }
+    .toc-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--ink-light);
+      opacity: 0.5;
+      margin-right: 0.4rem;
+    }
+    .toc-updated {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(26,21,16,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .toc-updated-label { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.3rem; }
+    .toc-updated-date { font-size: 0.8rem; color: var(--ink-mid); font-weight: 400; }
+
+    /* ─── MAIN CONTENT ─── */
+    .tc-content { min-width: 0; }
+
+    .tc-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .tc-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .tc-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .tc-section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      opacity: 0.7;
+      flex-shrink: 0;
+      margin-top: 0.4rem;
+    }
+    .tc-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .tc-section-title em { font-style: italic; color: var(--orange); }
+
+    .tc-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+    .tc-body p { margin-bottom: 1.1rem; }
+    .tc-body p:last-child { margin-bottom: 0; }
+    .tc-body strong { font-weight: 500; color: var(--ink); }
+
+    /* Clause list */
+    .clause-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    .clause-list li {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+    .clause-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+      margin-top: 0.6rem;
+    }
+
+    /* Pass-specific callout blocks */
+    .pass-callout {
+      background: rgba(26,21,16,0.03);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 1.75rem;
+      margin: 1.75rem 0;
+    }
+    .pass-callout.gold { border-left-color: var(--gold); }
+    .pass-callout-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+    .pass-callout.gold .pass-callout-tag { color: var(--gold); }
+    .pass-callout-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .pass-callout-body {
+      font-size: 0.84rem; font-weight: 300;
+      color: var(--ink-light); line-height: 1.7;
+    }
+    .pass-callout-body ul { margin-top: 0.5rem; }
+    .pass-callout-body li { padding-left: 1em; position: relative; margin-bottom: 0.35rem; }
+    .pass-callout-body li::before { content: '·'; position: absolute; left: 0; color: var(--orange); }
+    .pass-callout.gold .pass-callout-body li::before { color: var(--gold); }
+
+    /* Highlight box */
+    .tc-highlight {
+      background: rgba(212,85,42,0.05);
+      border: 1px solid rgba(212,85,42,0.15);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+    .tc-highlight strong { color: var(--orange); font-weight: 500; }
+    .tc-highlight.gold-highlight {
+      background: rgba(201,168,76,0.05);
+      border-color: rgba(201,168,76,0.15);
+    }
+    .tc-highlight.gold-highlight strong { color: var(--gold); }
+
+    /* Contact block */
+    .contact-block {
+      background: var(--ink);
+      border-radius: 16px;
+      padding: 2.5rem 2.75rem;
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 3rem;
+    }
+    .contact-item-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 0.3rem;
+    }
+    .contact-item-value {
+      font-size: 0.88rem; font-weight: 400;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-item-value:hover { color: var(--orange-light); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--ink); border-top: 0.5px solid rgba(255,255,255,0.06); }
+    .footer-top {
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25); margin-bottom: 0.75rem;
+    }
+    .footer-brand-desc { font-size: 0.82rem; color: rgba(255,255,255,0.25); line-height: 1.7; max-width: 280px; }
+    .footer-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 1.25rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom {
+      padding: 1.5rem 4rem;
+      border-top: 0.5px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-legal { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+    .footer-social { display: flex; align-items: center; gap: 1rem; }
+    .footer-social a { color: rgba(255,255,255,0.25); transition: color 0.2s; display: flex; }
+    .footer-social a:hover { color: var(--orange); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s var(--ease-apple), transform 0.65s var(--ease-apple); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { top: 0.8rem; padding: 0.85rem 1.5rem; width: calc(100% - 2rem); border-radius: 14px; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-logo img { height: 25px !important; }
+      .page-hero { padding: 8rem 1.5rem 3.5rem; }
+      .tc-layout { grid-template-columns: 1fr; gap: 0; padding: 3rem 1.5rem; }
+      .toc-wrap { position: static; margin-bottom: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .footer-bottom { padding: 1.25rem 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+      .contact-block { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .page-hero { padding: 6.5rem 1.25rem 3rem; }
+      .tc-layout { padding: 2.5rem 1.25rem; }
+      .tc-section { margin-bottom: 3rem; padding-bottom: 3rem; }
+      .footer-top { grid-template-columns: 1fr; padding: 2.5rem 1.25rem; gap: 2rem; }
+      .footer-bottom { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <img src="YANC Logo.png" alt="YANC Logo" style="height: 32px; width: auto; display: block;">
+    <span style="color: rgba(255,255,255,0.45); font-size: 1.2rem; font-weight: 300; margin: 0 0.15rem;">×</span>
+    <img src="CONFLUENC Logo.png" alt="Confluence Logo" style="height: 32px; width: auto; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li class="nav-dropdown-wrapper">
+      <a href="index.html#agenda" class="nav-link nav-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="index.html#venues">Venues</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#speakers" class="nav-link">Dignitaries</a></li>
+    <li><a href="index.html#volunteers" class="nav-link">Volunteers</a></li>
+    <li class="nav-dropdown-wrapper">
+      <a href="event.html" class="nav-link nav-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="forms/learning-lab.html">Learning Lab</a></li>
+        <li><a href="forms/concept-cocoon.html">Concept Cocoon</a></li>
+        <li><a href="forms/networking-gala.html">Networking Gala</a></li>
+        <li><a href="forms/all-access.html">All Access</a></li>
+      </ul>
+    </li>
+    <li><a href="exclusives.html" class="nav-link">Exclusives</a></li>
+    <li><a href="index.html#about-yanc" class="nav-link">About</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-nav-links">
+    <li class="mobile-dropdown-wrapper">
+      <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Agenda <span class="chevron">▼</span></a>
+      <ul class="mobile-dropdown-menu">
+        <li><a href="index.html#venues" class="mobile-nav-sub-link">· Venues</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#speakers" class="mobile-nav-link">Dignitaries</a></li>
+    <li><a href="index.html#volunteers" class="mobile-nav-link">Volunteers</a></li>
+    <li class="mobile-dropdown-wrapper">
+      <a href="javascript:void(0)" class="mobile-nav-link mobile-dropdown-trigger">Passes <span class="chevron">▼</span></a>
+      <ul class="mobile-dropdown-menu">
+        <li><a href="forms/learning-lab.html" class="mobile-nav-sub-link">· Learning Lab Pass</a></li>
+        <li><a href="forms/concept-cocoon.html" class="mobile-nav-sub-link">· Concept Cocoon Pass</a></li>
+        <li><a href="forms/networking-gala.html" class="mobile-nav-sub-link">· Networking Gala Pass</a></li>
+        <li><a href="forms/all-access.html" class="mobile-nav-sub-link">· All Access Pass</a></li>
+      </ul>
+    </li>
+    <li><a href="exclusives.html" class="mobile-nav-link">Exclusives</a></li>
+    <li><a href="index.html#about-yanc" class="mobile-nav-link">About</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-bg-text">T&amp;C</div>
+  <div class="page-hero-inner">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Confluence 2026 · Legal</div>
+    </div>
+    <h1 class="page-hero-title reveal">Terms &amp;<br><em>Conditions.</em></h1>
+    <p class="page-hero-sub reveal">
+      Please read these terms carefully before completing your registration. By registering for Confluence 2026, you agree to be bound by these terms in full.
+    </p>
+    <div class="hero-meta reveal">
+      <div class="hero-meta-dot"></div>
+      Effective Date: June 1, 2026 &nbsp;·&nbsp; Event: July 6–10, 2026 &nbsp;·&nbsp; Hyderabad, India
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="tc-layout">
+
+  <!-- TABLE OF CONTENTS -->
+  <aside class="toc-wrap">
+    <div class="toc-label">Contents</div>
+    <ul class="toc-list" id="toc-list">
+      <li><a href="#s1"><span class="toc-num">01</span>Definitions</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span>Acceptance of Terms</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span>Registration &amp; Eligibility</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span>Passes &amp; Pricing</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span>Payment &amp; GST</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span>Refund &amp; Cancellation</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span>Transferability</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span>Pass-Specific Terms</a></li>
+      <li><a href="#s9"><span class="toc-num">09</span>Performance-Based Benefits</a></li>
+      <li><a href="#s10"><span class="toc-num">10</span>Conduct &amp; Venue</a></li>
+      <li><a href="#s11"><span class="toc-num">11</span>Photography &amp; Media</a></li>
+      <li><a href="#s12"><span class="toc-num">12</span>Data &amp; Privacy</a></li>
+      <li><a href="#s13"><span class="toc-num">13</span>IP &amp; Confidentiality</a></li>
+      <li><a href="#s14"><span class="toc-num">14</span>Liability &amp; Indemnity</a></li>
+      <li><a href="#s15"><span class="toc-num">15</span>Force Majeure</a></li>
+      <li><a href="#s16"><span class="toc-num">16</span>Amendments</a></li>
+      <li><a href="#s17"><span class="toc-num">17</span>Governing Law</a></li>
+      <li><a href="#s18"><span class="toc-num">18</span>Contact Us</a></li>
+    </ul>
+    <div class="toc-updated">
+      <div class="toc-updated-label">Last Updated</div>
+      <div class="toc-updated-date">June 1, 2026</div>
+    </div>
+  </aside>
+
+  <!-- SECTIONS -->
+  <main class="tc-content">
+
+    <!-- 01 -->
+    <section class="tc-section reveal" id="s1">
+      <div class="tc-section-header">
+        <span class="tc-section-num">01</span>
+        <h2 class="tc-section-title">Definitions</h2>
+      </div>
+      <div class="tc-body">
+        <p>In these Terms and Conditions, the following words and expressions bear the meanings set out below:</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div><strong>"YANC" / "We" / "Organiser"</strong> refers to YANC Young Minds · Networking · Life Skills, the organising entity for Confluence 2026, contactable at connect@yanc.in.</div></li>
+          <li><div class="clause-dot"></div><div><strong>"Event"</strong> refers to Confluence 2026, held across multiple venues in Hyderabad, India, from July 6 to July 10, 2026.</div></li>
+          <li><div class="clause-dot"></div><div><strong>"Participant" / "You"</strong> refers to any individual, startup team, or group who has registered for and/or purchased a pass for the Event.</div></li>
+          <li><div class="clause-dot"></div><div><strong>"Pass"</strong> refers to any one of the four ticketing options — Learning Lab Pass, Concept Cocoon Pass, Networking Gala Pass, or All Access Pass — granting access to specific portions of the Event.</div></li>
+          <li><div class="clause-dot"></div><div><strong>"Registration"</strong> means the act of submitting an application form and completing payment via Razorpay, resulting in a confirmed Order ID issued by YANC.</div></li>
+          <li><div class="clause-dot"></div><div><strong>"Performance-Based Benefits"</strong> refers to merit-contingent outcomes including but not limited to LORs, internship placements, mentorship access, and funding opportunities that are earned through demonstrated performance at the Event.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="tc-section reveal" id="s2">
+      <div class="tc-section-header">
+        <span class="tc-section-num">02</span>
+        <h2 class="tc-section-title">Acceptance of <em>Terms</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>By ticking the "I agree to the Terms &amp; Conditions" checkbox on any registration form and proceeding to payment, you confirm that you have read, understood, and agree to be legally bound by these Terms and Conditions in their entirety.</p>
+        <p>If you are registering on behalf of a team or startup (as applicable to the Concept Cocoon Pass), you represent that you have the authority to bind all team members to these terms, and that each member has been made aware of and has agreed to them.</p>
+        <div class="tc-highlight">
+          <strong>Minors:</strong> If you are under 18 years of age, your registration must be accompanied by written consent from a parent or legal guardian. YANC reserves the right to request proof of such consent at any time.
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="tc-section reveal" id="s3">
+      <div class="tc-section-header">
+        <span class="tc-section-num">03</span>
+        <h2 class="tc-section-title">Registration &amp; <em>Eligibility</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>Registration for Confluence 2026 is open to individuals, professionals, students, and startup teams who meet the eligibility criteria described below and in the individual pass terms in Section 8.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>All information provided during registration must be accurate, complete, and truthful. Misrepresentation of any information — including name, institution, city, experience level, or startup details — may result in immediate disqualification without refund.</div></li>
+          <li><div class="clause-dot"></div><div>A valid Order ID issued upon successful payment confirmation is required for physical entry. YANC will send your Order ID to the registered email address.</div></li>
+          <li><div class="clause-dot"></div><div>YANC reserves the right to verify the credentials of any registrant and to decline or revoke a registration at its sole discretion.</div></li>
+          <li><div class="clause-dot"></div><div>Applications are reviewed within 48–72 hours of submission. Submission of an application does not guarantee automatic confirmation — YANC will confirm your slot via email.</div></li>
+          <li><div class="clause-dot"></div><div>Seat availability is limited per pass type. YANC reserves the right to close registrations once capacity is reached, regardless of the registration deadline.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="tc-section reveal" id="s4">
+      <div class="tc-section-header">
+        <span class="tc-section-num">04</span>
+        <h2 class="tc-section-title">Passes &amp; <em>Pricing</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>Confluence 2026 offers four distinct pass types. Each pass grants access only to the specific sessions or events listed under that pass. Access is not interchangeable between pass types unless you hold the All Access Pass.</p>
+
+        <div class="pass-callout">
+          <div class="pass-callout-tag">Pass 01 · Skill Track</div>
+          <div class="pass-callout-title">Learning Lab Pass — ₹4,500 per person</div>
+          <div class="pass-callout-body">3-day immersive workshop · Limited to 50 participants · Includes workshops, mentor access, certification, goodies kit, and snacks + lunch across 3 days.</div>
+        </div>
+
+        <div class="pass-callout">
+          <div class="pass-callout-tag">Pass 02 · Startup Track</div>
+          <div class="pass-callout-title">Concept Cocoon Pass — ₹1,000 per startup/team (registration fee)</div>
+          <div class="pass-callout-body">Shark-tank-style pitch competition · Registration fee of ₹1,000 is payable upfront. Shortlisted teams will be required to pay an additional ₹4,000 pitching fee. Assured-funding recipients must become YANC members to avail the funding benefit.</div>
+        </div>
+
+        <div class="pass-callout">
+          <div class="pass-callout-tag">Pass 03 · Network Track</div>
+          <div class="pass-callout-title">Networking Gala Pass — ₹250 per person</div>
+          <div class="pass-callout-body">Single evening event · Limited seating on a first-come, first-served basis. Includes welcome snacks, welcome gift, and networking access. Does not grant access to workshops, concept cocoon or networking dinner.</div>
+        </div>
+
+        <div class="pass-callout gold">
+          <div class="pass-callout-tag">Pass 04 · Full Experience</div>
+          <div class="pass-callout-title">All Access Pass — ₹6,000 per person</div>
+          <div class="pass-callout-body">5-day full event access · Limited participants. Includes the complete Learning Lab (3 days), Concept Cocoon participation, Networking Gala Dinner, all certifications, mentor access, meals, goodies, and priority placement consideration.</div>
+        </div>
+
+        <p>All prices are listed in Indian Rupees (INR) and are inclusive of all applicable taxes including GST at 18%. No additional charges will be levied at the point of registration.</p>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="tc-section reveal" id="s5">
+      <div class="tc-section-header">
+        <span class="tc-section-num">05</span>
+        <h2 class="tc-section-title">Payment &amp; <em>GST</em></h2>
+      </div>
+      <div class="tc-body">
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>All payments are processed securely through Razorpay. By proceeding to payment, you agree to Razorpay's Terms of Service in addition to these Terms.</div></li>
+          <li><div class="clause-dot"></div><div>Your registration is confirmed only upon successful payment. A confirmation email containing your Order ID will be sent to your registered email address. If you do not receive a confirmation within 24 hours of payment, please contact connect@yanc.in.</div></li>
+          <li><div class="clause-dot"></div><div>All displayed prices are <strong>inclusive of 18% GST</strong>. No additional tax will be charged at checkout. YANC will provide a GST receipt upon request.</div></li>
+          <li><div class="clause-dot"></div><div>For the Concept Cocoon Pass, the ₹1,000 registration fee is payable upfront. The additional ₹4,000 pitching fee (applicable only to shortlisted teams) will be invoiced separately and must be settled before the pitch day.</div></li>
+          <li><div class="clause-dot"></div><div>YANC is not responsible for payment failures, delays, or errors caused by third-party payment processors. If a payment is debited but no confirmation is received, please contact us immediately with your payment reference.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="tc-section reveal" id="s6">
+      <div class="tc-section-header">
+        <span class="tc-section-num">06</span>
+        <h2 class="tc-section-title">Refund &amp; <em>Cancellation</em></h2>
+      </div>
+      <div class="tc-body">
+        <div class="tc-highlight">
+          <strong>All passes are strictly non-refundable once issued.</strong> Please confirm your availability, dates (July 6–10, 2026), and pass selection carefully before completing your registration.
+        </div>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>No refund will be issued for any reason including, but not limited to, personal schedule conflicts, inability to attend, travel disruptions, or change of plans.</div></li>
+          <li><div class="clause-dot"></div><div>In the unlikely event that YANC cancels or significantly modifies the Event, registered participants will be offered a credit note or a rescheduled date. Cash refunds are at YANC's sole discretion.</div></li>
+          <li><div class="clause-dot"></div><div>Disqualification due to misconduct, misrepresentation, or violation of these Terms will not entitle the participant to any refund.</div></li>
+          <li><div class="clause-dot"></div><div>For the Concept Cocoon Pass, the ₹1,000 registration fee is non-refundable regardless of shortlisting outcome. The ₹4,000 pitching fee paid by shortlisted teams is also non-refundable once submitted.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="tc-section reveal" id="s7">
+      <div class="tc-section-header">
+        <span class="tc-section-num">07</span>
+        <h2 class="tc-section-title">Transferability</h2>
+      </div>
+      <div class="tc-body">
+        <p>All passes are <strong>non-transferable</strong> and are issued to the registered individual or team only. Passes may not be sold, gifted, or otherwise transferred to another person or entity.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Entry to the Event will be validated against the registered participant's name and Order ID. Presenting a pass registered under a different name will result in denial of entry without refund.</div></li>
+          <li><div class="clause-dot"></div><div>YANC may, at its sole discretion, approve a name transfer in exceptional circumstances (e.g. medical emergency). Such requests must be submitted in writing to connect@yanc.in at least 7 days before the Event and will be considered on a case-by-case basis.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="tc-section reveal" id="s8">
+      <div class="tc-section-header">
+        <span class="tc-section-num">08</span>
+        <h2 class="tc-section-title">Pass-Specific <em>Terms</em></h2>
+      </div>
+      <div class="tc-body">
+
+        <p><strong>Learning Lab Pass</strong></p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Participants are expected to be present and engaged across all three days of the workshop to be eligible for the full range of benefits including certification and LOR consideration.</div></li>
+          <li><div class="clause-dot"></div><div>Partial attendance does not entitle the participant to benefits designated for full attendance.</div></li>
+          <li><div class="clause-dot"></div><div>Mentor access is subject to mentor availability and session scheduling, which may change without prior notice.</div></li>
+        </ul>
+
+        <br>
+        <p><strong>Concept Cocoon Pass</strong></p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Teams must register with a complete and accurate startup profile before the stated registration deadline. Incomplete profiles will not be considered for slot confirmation.</div></li>
+          <li><div class="clause-dot"></div><div>A minimum of 2 team members must be physically present on the competition day. Failure to meet this requirement will result in disqualification without refund.</div></li>
+          <li><div class="clause-dot"></div><div>Shortlisting is at the sole discretion of the YANC selection committee and is not subject to appeal.</div></li>
+          <li><div class="clause-dot"></div><div>Funding opportunities are subject to investor interest and are not guaranteed. Teams receiving assured funding must complete YANC membership formalities to access the funding.</div></li>
+          <li><div class="clause-dot"></div><div>Ideas and startup concepts shared during the pitch are done so at the participant's own risk. YANC does not assume responsibility for idea confidentiality in a public pitch setting.</div></li>
+        </ul>
+
+        <br>
+        <p><strong>Networking Gala Pass</strong></p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Entry is on a first-come, first-served basis subject to available seating. Pre-registration does not guarantee physical seating if capacity is reached prior to your arrival.</div></li>
+          <li><div class="clause-dot"></div><div>The Networking Gala Pass grants access to the evening event only. It does not include access to the Learning Lab workshops or the Concept Cocoon pitch competition.</div></li>
+        </ul>
+
+        <br>
+        <p><strong>All Access Pass</strong></p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>The All Access Pass is limited to 100 participants and is subject to a more detailed application review process. YANC reserves the right to decline applications that do not meet its curation criteria.</div></li>
+          <li><div class="clause-dot"></div><div>All Access holders are expected to participate in good faith across all five days. Habitual absence from sessions may result in forfeiture of performance-based benefits.</div></li>
+          <li><div class="clause-dot"></div><div>Funding opportunities under the All Access Pass are merit-based and subject to the same conditions as the Concept Cocoon Pass where applicable.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section class="tc-section reveal" id="s9">
+      <div class="tc-section-header">
+        <span class="tc-section-num">09</span>
+        <h2 class="tc-section-title">Performance-Based <em>Benefits</em></h2>
+      </div>
+      <div class="tc-body">
+        <div class="tc-highlight gold-highlight">
+          <strong>Important:</strong> LOR issuance, internship placements, mentorship access, funding opportunities, and awards are performance-based and merit-contingent. They are not guaranteed to all participants — they are earned through demonstrated performance and panel selection at the Event.
+        </div>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Letter of Recommendation (LOR) issuance is at the sole discretion of YANC and relevant industry leaders. The receipt of a pass does not create any obligation for YANC or any mentor/dignitary to issue a LOR.</div></li>
+          <li><div class="clause-dot"></div><div>Internship placements are subject to the requirements and hiring decisions of participating organisations. YANC facilitates introductions but does not guarantee placement outcomes.</div></li>
+          <li><div class="clause-dot"></div><div>Startup funding opportunities are subject to investor interest, due diligence, and YANC membership requirements. Registration fees do not form part of any funding amount.</div></li>
+          <li><div class="clause-dot"></div><div>The assessment criteria for performance-based benefits are determined by YANC and panel judges whose decisions are final and binding.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="tc-section reveal" id="s10">
+      <div class="tc-section-header">
+        <span class="tc-section-num">10</span>
+        <h2 class="tc-section-title">Conduct &amp; <em>Venue</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>Confluence 2026 is a professional, curated event. All participants are expected to conduct themselves in a manner consistent with the values of YANC and the spirit of the Event.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Participants must comply with all rules and guidelines set by venue authorities at RMZ Spire, Hitech City, and any other designated venues.</div></li>
+          <li><div class="clause-dot"></div><div>Any form of harassment, discrimination, disruptive behaviour, or conduct prejudicial to the reputation of YANC or other participants will result in immediate removal from the Event without refund.</div></li>
+          <li><div class="clause-dot"></div><div>Participants are responsible for their own personal belongings. YANC and its venues are not liable for any loss, theft, or damage to personal property.</div></li>
+          <li><div class="clause-dot"></div><div>Participants must carry a valid government-issued photo ID and their Order ID confirmation for entry verification on each day of attendance.</div></li>
+          <li><div class="clause-dot"></div><div>Consumption of alcohol or illicit substances on venue premises is strictly prohibited unless explicitly arranged by the organiser.</div></li>
+          <li><div class="clause-dot"></div><div>YANC reserves the right to modify the schedule, speakers, sessions, or venue at any time without prior notice.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="tc-section reveal" id="s11">
+      <div class="tc-section-header">
+        <span class="tc-section-num">11</span>
+        <h2 class="tc-section-title">Photography &amp; <em>Media</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>By registering for Confluence 2026, you grant YANC and its authorised partners a perpetual, royalty-free, non-exclusive licence to use photographs, video recordings, and audio recordings of you taken at the Event for promotional, educational, and archival purposes across all media including social media, print, and digital platforms.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>If you do not consent to being photographed or recorded, you must inform YANC staff at registration check-in on the day of the event.</div></li>
+          <li><div class="clause-dot"></div><div>Participants may not record or photograph sessions, speakers, or other attendees for commercial purposes without prior written consent from YANC.</div></li>
+          <li><div class="clause-dot"></div><div>Pitch content presented at the Concept Cocoon may be recorded by YANC for documentation purposes. Teams may request the exclusion of specific proprietary content in writing prior to the competition day.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="tc-section reveal" id="s12">
+      <div class="tc-section-header">
+        <span class="tc-section-num">12</span>
+        <h2 class="tc-section-title">Data &amp; <em>Privacy</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>YANC collects and processes personal information provided during registration in accordance with applicable Indian data protection laws and its Privacy Policy.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Data collected includes: full name, email address, phone number, college/company, city, experience level, LinkedIn URL, Instagram handle, dietary preferences, emergency contact details, and any responses to application questions.</div></li>
+          <li><div class="clause-dot"></div><div>This data is used for the purposes of registration processing, event coordination, communication, performance assessment, and benefit delivery.</div></li>
+          <li><div class="clause-dot"></div><div>By registering, you consent to YANC sharing relevant details (name, institution, contact) with mentors, panellists, and partner organisations for the purposes of mentorship matching, internship referrals, and networking facilitation.</div></li>
+          <li><div class="clause-dot"></div><div>YANC will not sell your personal data to third parties. Data is stored securely using Supabase and subject to appropriate access controls.</div></li>
+          <li><div class="clause-dot"></div><div>To request deletion or correction of your data, contact connect@yanc.in with your registered email and Order ID.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="tc-section reveal" id="s13">
+      <div class="tc-section-header">
+        <span class="tc-section-num">13</span>
+        <h2 class="tc-section-title">IP &amp; <em>Confidentiality</em></h2>
+      </div>
+      <div class="tc-body">
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>All content, materials, session recordings, and resources provided by YANC and its speakers during the Event are the intellectual property of YANC or the respective creator. Reproduction, redistribution, or commercial use without prior written consent is strictly prohibited.</div></li>
+          <li><div class="clause-dot"></div><div>Participants retain all intellectual property rights in their own work, ideas, and pitches presented at the Event. Registration with YANC does not constitute any transfer of IP rights.</div></li>
+          <li><div class="clause-dot"></div><div>Participants are encouraged to exercise due care regarding any proprietary or confidential information they share in public forum settings (e.g., pitch competitions). YANC does not provide NDA protections in group settings.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="tc-section reveal" id="s14">
+      <div class="tc-section-header">
+        <span class="tc-section-num">14</span>
+        <h2 class="tc-section-title">Liability &amp; <em>Indemnity</em></h2>
+      </div>
+      <div class="tc-body">
+        <div class="tc-highlight">
+          <strong>To the fullest extent permitted by law</strong>, YANC, its directors, employees, volunteers, partners, and sponsors shall not be liable for any direct, indirect, incidental, or consequential loss or damage arising from your participation in Confluence 2026.
+        </div>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>This includes, without limitation, any personal injury, illness, loss of data, loss of business opportunity, or reputational damage suffered in connection with the Event.</div></li>
+          <li><div class="clause-dot"></div><div>YANC does not guarantee specific outcomes from networking, mentorship, or pitch sessions. Any business relationships, employment, or investment decisions arising from connections made at the Event are solely between the relevant parties.</div></li>
+          <li><div class="clause-dot"></div><div>You agree to indemnify and hold harmless YANC, its employees, and its partners from and against any claims, liabilities, damages, and costs arising from your breach of these Terms or your conduct at the Event.</div></li>
+          <li><div class="clause-dot"></div><div>Participants attend and participate at their own risk. YANC strongly advises all outstation participants to arrange appropriate travel and accommodation insurance.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="tc-section reveal" id="s15">
+      <div class="tc-section-header">
+        <span class="tc-section-num">15</span>
+        <h2 class="tc-section-title">Force <em>Majeure</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>YANC shall not be in breach of these Terms and shall not be liable for any failure or delay in performing its obligations where such failure or delay results from any cause beyond YANC's reasonable control.</p>
+        <ul class="clause-list">
+          <li><div class="clause-dot"></div><div>Force majeure events include, without limitation: acts of God, natural disasters, pandemic or public health emergency declarations, government orders, civil unrest, terrorism, venue unavailability, strikes, or technical failures affecting critical event infrastructure.</div></li>
+          <li><div class="clause-dot"></div><div>In the event of a force majeure, YANC will make reasonable efforts to reschedule the Event and will communicate updates to all registered participants via their registered email addresses.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="tc-section reveal" id="s16">
+      <div class="tc-section-header">
+        <span class="tc-section-num">16</span>
+        <h2 class="tc-section-title">Amendments</h2>
+      </div>
+      <div class="tc-body">
+        <p>YANC reserves the right to update, modify, or replace any part of these Terms and Conditions at any time. Changes will be effective immediately upon publication on yanc.in. Continued participation in the Event following any such changes constitutes acceptance of the revised Terms.</p>
+        <p>For material changes that may affect your registration, YANC will make reasonable efforts to notify registered participants by email.</p>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="tc-section reveal" id="s17">
+      <div class="tc-section-header">
+        <span class="tc-section-num">17</span>
+        <h2 class="tc-section-title">Governing <em>Law</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>These Terms and Conditions are governed by and construed in accordance with the laws of India. Any dispute arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of Hyderabad, Telangana, India.</p>
+        <p>In the event of a dispute, the parties agree to first attempt resolution through good-faith negotiation for a period of 30 days before initiating any formal proceedings.</p>
+      </div>
+    </section>
+
+    <!-- 18 -->
+    <section class="tc-section reveal" id="s18">
+      <div class="tc-section-header">
+        <span class="tc-section-num">18</span>
+        <h2 class="tc-section-title">Contact <em>Us</em></h2>
+      </div>
+      <div class="tc-body">
+        <p>If you have any questions about these Terms and Conditions or your registration, please reach out to us through any of the channels below.</p>
+        <div class="contact-block">
+          <div>
+            <div class="contact-item-label">Email</div>
+            <a href="mailto:connect@yanc.in" class="contact-item-value">connect@yanc.in</a>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <a href="tel:+916309545559" class="contact-item-value">+91 6309 545 559</a>
+          </div>
+          <div>
+            <div class="contact-item-label">Website</div>
+            <a href="https://yanc.in" target="_blank" class="contact-item-value">yanc.in</a>
+          </div>
+          <div>
+            <div class="contact-item-label">Instagram</div>
+            <a href="https://www.instagram.com/yancclub/" target="_blank" class="contact-item-value">@yancclub</a>
+          </div>
+          <div>
+            <div class="contact-item-label">Event Venue</div>
+            <div class="contact-item-value">RMZ Spire, Hitech City, Hyderabad</div>
+          </div>
+          <div>
+            <div class="contact-item-label">Event Dates</div>
+            <div class="contact-item-value">July 6–10, 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-tag">Young Minds · Networking · Life Skills</div>
+      <p class="footer-brand-desc">YANC is a curated ecosystem bridging the gap between potential and opportunity — creating spaces where the right people meet, collaborate and grow.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="index.html#agenda">Event Agenda</a></li>
+        <li><a href="index.html#speakers">Dignitaries</a></li>
+        <li><a href="index.html#venues">Venues</a></li>
+        <li><a href="event.html">Passes</a></li>
+        <li><a href="exclusives.html">Exclusives</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Event</div>
+      <ul class="footer-links">
+        <li><a href="#">Confluence 2026</a></li>
+        <li><a href="#">July 6–10, 2026</a></li>
+        <li><a href="#">Hyderabad, India</a></li>
+        <li><a href="#">3 Premium Venues</a></li>
+        <li><a href="#">50 Dignitaries</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:connect@yanc.in">connect@yanc.in</a></li>
+        <li><a href="tel:+916309545559">+91 6309 545 559</a></li>
+        <li><a href="https://yanc.in" target="_blank">yanc.in</a></li>
+        <li><a href="https://www.instagram.com/yancclub/" target="_blank">@yancclub</a></li>
+        <li><a href="terms.html" style="color: var(--gold); opacity: 0.7;">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 YANC Young Minds · Networking · Life Skills · All Rights Reserved</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/yancclub/" target="_blank" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/oneyanc" target="_blank" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── NAV ───
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+    else { navbar.classList.remove('scrolled', 'expanded'); }
+  });
+  navbar.addEventListener('click', (e) => {
+    if (navbar.classList.contains('scrolled') && !navbar.classList.contains('expanded')) {
+      navbar.classList.add('expanded'); e.stopPropagation();
+    }
+  });
+  document.addEventListener('click', () => navbar.classList.remove('expanded'));
+  navbar.addEventListener('click', (e) => e.stopPropagation());
+
+  // ─── MOBILE MENU ───
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const a = toggle.classList.toggle('active');
+    menu.classList.toggle('active');
+    document.body.style.overflow = a ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (link.classList.contains('mobile-dropdown-trigger')) {
+        e.preventDefault(); e.stopPropagation();
+        link.closest('.mobile-dropdown-wrapper')?.classList.toggle('active');
+        return;
+      }
+      toggle.classList.remove('active');
+      menu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ─── SCROLL REVEAL ───
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // ─── TOC ACTIVE HIGHLIGHT ───
+  const sections = document.querySelectorAll('.tc-section[id]');
+  const tocItems = document.querySelectorAll('#toc-list li');
+  const tocLinks = document.querySelectorAll('#toc-list a');
+
+  const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tocItems.forEach(li => li.classList.remove('active'));
+        const activeLink = document.querySelector(`#toc-list a[href="#${id}"]`);
+        if (activeLink) activeLink.closest('li').classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+
+  sections.forEach(s => tocObserver.observe(s));
+</script>
+
+</body>
+</html>
