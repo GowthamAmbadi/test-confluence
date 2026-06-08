@@ -73,6 +73,13 @@ CREATE POLICY "applications_public_read"
   TO anon
   USING (TRUE);
 
+-- Allow public users to update application status and answers upon successful payment verification
+CREATE POLICY "applications_public_update"
+  ON applications FOR UPDATE
+  TO anon
+  USING (TRUE)
+  WITH CHECK (TRUE);
+
 CREATE POLICY "applications_admin_read"
   ON applications FOR SELECT
   TO authenticated

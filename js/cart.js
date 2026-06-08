@@ -242,7 +242,7 @@ function recalcWithCoupon() {
 }
 
 // ─── SUCCESS PAGE ───
-function renderSuccessPage() {
+async function renderSuccessPage() {
   let pending = JSON.parse(sessionStorage.getItem('confluenceOrder') || 'null');
   if (!pending) {
     pending = JSON.parse(localStorage.getItem('confluenceOrder') || 'null');
@@ -263,6 +263,118 @@ function renderSuccessPage() {
         <span>₹${formatINR(i.price * i.qty)}</span>
       </div>
     `).join('');
+  }
+
+  // Retrieve query params from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentId = urlParams.get('razorpay_payment_id');
+  const paymentStatus = urlParams.get('razorpay_payment_link_status') || urlParams.get('payment_status');
+
+  const eyebrowEl = document.querySelector('.success-eyebrow');
+  const titleEl = document.querySelector('.success-title');
+  const subEl = document.querySelector('.success-sub');
+  const checkWrap = document.querySelector('.success-check-wrap');
+  const checkSvg = document.querySelector('.check-circle-svg');
+
+  // Inject pulsing animation CSS
+  if (!document.getElementById('verification-animations')) {
+    const style = document.createElement('style');
+    style.id = 'verification-animations';
+    style.textContent = `
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  if (paymentId && (paymentStatus === 'confirmed' || paymentStatus === 'paid' || !paymentStatus)) {
+    // Show Loading state during Supabase DB update
+    if (eyebrowEl) {
+      eyebrowEl.textContent = 'Verifying Payment...';
+      eyebrowEl.style.background = 'rgba(201, 168, 76, 0.1)';
+      eyebrowEl.style.borderColor = 'rgba(201, 168, 76, 0.3)';
+      eyebrowEl.style.color = 'var(--gold)';
+      eyebrowEl.style.animation = 'pulse 1.5s infinite';
+    }
+    if (titleEl) {
+      titleEl.innerHTML = 'Verifying<br><em>your payment...</em>';
+    }
+
+    try {
+      // Update Supabase Application Status to 'approved' and save payment ID
+      await window.db.approveApplication(pending.orderId, paymentId);
+
+      // Verification Success UX:
+      if (eyebrowEl) {
+        eyebrowEl.textContent = 'Payment Verified';
+        eyebrowEl.style.background = 'rgba(34,142,80,0.08)';
+        eyebrowEl.style.borderColor = 'rgba(34,142,80,0.15)';
+        eyebrowEl.style.color = '#4ade80';
+        eyebrowEl.style.animation = '';
+      }
+      if (titleEl) {
+        titleEl.innerHTML = 'You\'re<br><em>in, officially.</em>';
+      }
+      if (subEl) {
+        subEl.textContent = 'Your payment was verified. Your pass has been secured for Confluence 2026. Get ready for 5 days of real growth!';
+      }
+      toast.success('Payment verified successfully!', 'Confirmed');
+
+      // Clear the local cart now that the registration is complete & paid
+      clearCart();
+    } catch (error) {
+      console.error('Error verifying payment:', error);
+      // Database update failed but payment was made (e.g. RLS problem, offline, etc.)
+      if (eyebrowEl) {
+        eyebrowEl.textContent = 'Verification Error';
+        eyebrowEl.style.background = 'rgba(212,85,42,0.08)';
+        eyebrowEl.style.borderColor = 'rgba(212,85,42,0.15)';
+        eyebrowEl.style.color = 'var(--orange)';
+        eyebrowEl.style.animation = '';
+      }
+      if (titleEl) {
+        titleEl.innerHTML = 'Payment<br><em>Unverified</em>';
+      }
+      if (subEl) {
+        subEl.textContent = 'We detected your payment ID but couldn\'t update the database. Please keep your Order ID safe and contact support.';
+      }
+      if (checkWrap) {
+        checkWrap.style.background = 'rgba(212,85,42,0.08)';
+        checkWrap.style.borderColor = 'rgba(212,85,42,0.2)';
+      }
+      if (checkSvg) {
+        checkSvg.querySelectorAll('circle, path').forEach(el => {
+          el.style.stroke = 'var(--orange)';
+        });
+      }
+      toast.error('Could not verify payment with the database. Please contact support.', 'DB Sync Failed');
+    }
+  } else {
+    // No paymentId found in the URL. Verification is pending.
+    if (eyebrowEl) {
+      eyebrowEl.textContent = 'Verification Pending';
+      eyebrowEl.style.background = 'rgba(201, 168, 76, 0.08)';
+      eyebrowEl.style.borderColor = 'rgba(201, 168, 76, 0.2)';
+      eyebrowEl.style.color = 'var(--gold)';
+    }
+    if (titleEl) {
+      titleEl.innerHTML = 'Verification<br><em>Pending...</em>';
+    }
+    if (subEl) {
+      subEl.textContent = 'Your registration details are saved, but payment status is pending. If you\'ve already completed payment, please wait for manual verification.';
+    }
+    if (checkWrap) {
+      checkWrap.style.background = 'rgba(201, 168, 76, 0.08)';
+      checkWrap.style.borderColor = 'rgba(201, 168, 76, 0.2)';
+    }
+    if (checkSvg) {
+      checkSvg.querySelectorAll('circle, path').forEach(el => {
+        el.style.stroke = 'var(--gold)';
+      });
+    }
   }
 }
 

@@ -128,9 +128,18 @@ async function handleFormSubmit(e, passType) {
     sessionStorage.setItem('confluenceOrder', JSON.stringify(orderData));
     localStorage.setItem('confluenceOrder', JSON.stringify(orderData));
 
+    // Construct Razorpay URL with prefill parameters
+    const razorpayUrl = new URL('https://pages.razorpay.com/pl_Sz2t5ic0V75F6g/view');
+    razorpayUrl.searchParams.set('name', formData.full_name);
+    razorpayUrl.searchParams.set('email', formData.email);
+    razorpayUrl.searchParams.set('phone', formData.phone);
+    razorpayUrl.searchParams.set('prefill[name]', formData.full_name);
+    razorpayUrl.searchParams.set('prefill[email]', formData.email);
+    razorpayUrl.searchParams.set('prefill[contact]', formData.phone);
+
     toast.success('Application submitted! Redirecting to payment...', 'Success');
     setTimeout(() => {
-      window.location.href = 'https://razorpay.me/@yancenterprises';
+      window.location.href = razorpayUrl.toString();
     }, 1000);
   } catch (err) {
     console.error('Submission error:', err);
@@ -154,9 +163,18 @@ async function handleFormSubmit(e, passType) {
     sessionStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
     localStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
     
+    // Construct Razorpay URL with prefill parameters for fallback path as well
+    const razorpayUrlFallback = new URL('https://pages.razorpay.com/pl_Sz2t5ic0V75F6g/view');
+    razorpayUrlFallback.searchParams.set('name', formData.full_name);
+    razorpayUrlFallback.searchParams.set('email', formData.email);
+    razorpayUrlFallback.searchParams.set('phone', formData.phone);
+    razorpayUrlFallback.searchParams.set('prefill[name]', formData.full_name);
+    razorpayUrlFallback.searchParams.set('prefill[email]', formData.email);
+    razorpayUrlFallback.searchParams.set('prefill[contact]', formData.phone);
+
     toast.success('Application submitted! Redirecting to payment...', 'Success');
     setTimeout(() => {
-      window.location.href = 'https://razorpay.me/@yancenterprises';
+      window.location.href = razorpayUrlFallback.toString();
     }, 1000);
   } finally {
     setSubmitState(btn, false);

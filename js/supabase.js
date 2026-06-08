@@ -160,5 +160,41 @@ function generateRegistrationId(passType = 'pass') {
   return `${prefix}${year}-${rand}`;
 }
 
+/**
+ * Update application status to 'approved' and store payment ID inside JSONB answers.
+ */
+async function approveApplication(registrationId, paymentId) {
+  const db = getDB();
+  
+  // 1. Fetch current application to get current answers
+  const { data: app, error: fetchError } = await db
+    .from('applications')
+    .select('answers')
+    .eq('registration_id', registrationId)
+    .single();
+    
+  if (fetchError) throw fetchError;
+  
+  const updatedAnswers = {
+    ...app.answers,
+    razorpay_payment_id: paymentId,
+    payment_verified_at: new Date().toISOString()
+  };
+
+  // 2. Update status and answers
+  const { data, error } = await db
+    .from('applications')
+    .update({ 
+      status: 'approved',
+      answers: updatedAnswers
+    })
+    .eq('registration_id', registrationId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
 // ─── EXPORTS ───
-window.db = { getDB, upsertParticipant, insertApplication, submitApplication, insertWaitlist, createOrder, fetchPassTypes, generateRegistrationId };
+window.db = { getDB, upsertParticipant, insertApplication, submitApplication, insertWaitlist, createOrder, fetchPassTypes, generateRegistrationId, approveApplication };
