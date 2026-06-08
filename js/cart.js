@@ -270,6 +270,24 @@ async function renderSuccessPage() {
   const paymentId = urlParams.get('razorpay_payment_id');
   const paymentStatus = urlParams.get('razorpay_payment_link_status') || urlParams.get('payment_status');
 
+  // Check database if the order is already marked as approved (handles redirects without query params)
+  let isApprovedInDb = false;
+  try {
+    const db = window.db ? window.db.getDB() : null;
+    if (db && pending.orderId) {
+      const { data, error } = await db
+        .from('applications')
+        .select('status')
+        .eq('registration_id', pending.orderId)
+        .single();
+      if (!error && data && data.status === 'approved') {
+        isApprovedInDb = true;
+      }
+    }
+  } catch (err) {
+    console.error('Error checking database verification status:', err);
+  }
+
   const eyebrowEl = document.querySelector('.success-eyebrow');
   const titleEl = document.querySelector('.success-title');
   const subEl = document.querySelector('.success-sub');
@@ -290,7 +308,7 @@ async function renderSuccessPage() {
     document.head.appendChild(style);
   }
 
-  if (paymentId && (paymentStatus === 'confirmed' || paymentStatus === 'paid' || !paymentStatus)) {
+  if (isApprovedInDb || (paymentId && (paymentStatus === 'confirmed' || paymentStatus === 'paid' || !paymentStatus))) {
     // Show Loading state during Supabase DB update
     if (eyebrowEl) {
       eyebrowEl.textContent = 'Verifying Payment...';
@@ -304,8 +322,10 @@ async function renderSuccessPage() {
     }
 
     try {
-      // Update Supabase Application Status to 'approved' and save payment ID
-      await window.db.approveApplication(pending.orderId, paymentId);
+      if (!isApprovedInDb && paymentId) {
+        // Update Supabase Application Status to 'approved' and save payment ID
+        await window.db.approveApplication(pending.orderId, paymentId);
+      }
 
       // Verification Success UX:
       if (eyebrowEl) {
@@ -321,7 +341,9 @@ async function renderSuccessPage() {
       if (subEl) {
         subEl.textContent = 'Your payment was verified. Your pass has been secured for Confluence 2026. Get ready for 5 days of real growth!';
       }
-      toast.success('Payment verified successfully!', 'Confirmed');
+      if (!isApprovedInDb) {
+        toast.success('Payment verified successfully!', 'Confirmed');
+      }
 
       // Clear the local cart now that the registration is complete & paid
       clearCart();
