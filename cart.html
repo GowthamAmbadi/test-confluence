@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Confluence 2026</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+<nav id="navbar" class="scrolled">
+  <a class="nav-logo" href="index.html">Confluence 2026</a>
+  <ul class="nav-links">
+    <li><a href="event.html" class="nav-link">Passes</a></li>
+    <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<section id="form-section">
+  <div class="form-layout" style="max-width:960px;">
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;margin-bottom:0.5rem;">Your Cart</h1>
+    <p id="cart-count-label" style="color:var(--ink-light);margin-bottom:2rem;">0 items</p>
+
+    <div id="cart-empty" style="display:none;text-align:center;padding:3rem;">
+      <p style="margin-bottom:1rem;">Your cart is empty.</p>
+      <a href="event.html" class="btn btn-primary">Browse Passes</a>
+    </div>
+
+    <div id="cart-items" class="cart-items-list"></div>
+
+    <div id="cart-summary" class="cart-summary-card" style="display:none;">
+      <div class="summary-line"><span>Subtotal</span><span id="summary-subtotal">—</span></div>
+      <div class="summary-line"><span>GST (18%)</span><span id="summary-gst">—</span></div>
+      <div class="summary-line total"><span>Total</span><span><sub>₹</sub><span id="summary-total">—</span></span></div>
+      <a href="checkout.html" class="btn btn-primary" style="width:100%;margin-top:1.5rem;text-align:center;">Proceed to Checkout</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

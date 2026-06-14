@@ -73,12 +73,8 @@ CREATE POLICY "applications_public_read"
   TO anon
   USING (TRUE);
 
--- Allow public users to update application status and answers upon successful payment verification
-CREATE POLICY "applications_public_update"
-  ON applications FOR UPDATE
-  TO anon
-  USING (TRUE)
-  WITH CHECK (TRUE);
+-- REMOVED (Phase 1): applications_public_update — anon must not approve applications.
+-- Apply sql_scripts/migrations/009_revoke_legacy_anon_updates.sql on deployed databases.
 
 CREATE POLICY "applications_admin_read"
   ON applications FOR SELECT

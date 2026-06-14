@@ -1,7 +1,11 @@
 -- ============================================================
--- CONFLUENCE 2026 — Database Schema
+-- CONFLUENCE 2026 — Database Schema (LEGACY — Phase 1)
 -- ============================================================
 -- Run this in Supabase SQL Editor (Database > SQL Editor)
+--
+-- Phase 1+ schema: see sql_scripts/migrations/ (events, registrations,
+-- registration_items, orders, payments, audit_logs). Legacy tables below
+-- are retained for backward compatibility until Phase 2 cutover.
 -- ============================================================
 
 -- Enable UUID extension

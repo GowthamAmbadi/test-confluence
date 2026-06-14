@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Registration — Confluence 2026</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+<nav id="navbar" class="scrolled">
+  <a class="nav-logo" href="index.html">Confluence 2026</a>
+</nav>
+
+<section id="form-section">
+  <div class="form-layout">
+    <div class="form-card">
+      <div class="form-section-label">Track Registration</div>
+      <form id="track-form">
+        <div class="form-group full">
+          <label class="form-label" for="registration_id">Registration ID</label>
+          <input class="form-input" id="registration_id" name="registration_id" type="text" placeholder="e.g. LL26-AB12C or payment reference" data-validate="required">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top:1rem;">Check Status</button>
+      </form>
+      <div id="track-result" style="margin-top:2rem;display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/forms.js"></script>
+<script>
+document.getElementById('track-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('registration_id').value.trim();
+  const el = document.getElementById('track-result');
+  el.style.display = 'block';
+  el.innerHTML = '<p>Loading…</p>';
+  try {
+    const data = await window.db.getRegistrationStatus(id);
+    el.innerHTML = `
+      <p><strong>Status:</strong> ${data.status}</p>
+      <p><strong>Reference:</strong> ${data.registration_reference || '—'}</p>
+      <p><strong>Total:</strong> ${data.total != null ? '₹' + data.total.toLocaleString('en-IN') : '—'}</p>
+      <p><strong>Payment ID:</strong> ${data.payment_id || '—'}</p>
+      <ul>${(data.events || []).map(ev => `<li>${ev.name} × ${ev.quantity}</li>`).join('')}</ul>
+    `;
+  } catch (err) {
+    el.innerHTML = '<p style="color:var(--orange);">Registration not found.</p>';
+  }
+});
+const params = new URLSearchParams(location.search);
+if (params.get('registration_id')) {
+  document.getElementById('registration_id').value = params.get('registration_id');
+  document.getElementById('track-form').requestSubmit();
+}
+</script>
+</body>
+</html>

@@ -107,35 +107,27 @@ async function insertWaitlist(data) {
 }
 
 /**
- * Create cart order after checkout.
+ * Fetch active pass types from DB (legacy table).
  */
-async function createOrder(orderData) {
+async function fetchPassTypes() {
   const db = getDB();
   const { data, error } = await db
-    .from('cart_orders')
-    .insert({
-      customer_name: orderData.name,
-      customer_email: orderData.email,
-      order_data: orderData.items,
-      subtotal: orderData.subtotal,
-      gst: orderData.gst,
-      total: orderData.total,
-      payment_status: 'paid',
-    })
-    .select()
-    .single();
+    .from('pass_types')
+    .select('*')
+    .eq('is_active', true)
+    .order('price', { ascending: true });
 
   if (error) throw error;
   return data;
 }
 
 /**
- * Fetch active pass types from DB.
+ * Fetch active events from DB (Phase 2+ catalogue).
  */
-async function fetchPassTypes() {
+async function fetchEvents() {
   const db = getDB();
   const { data, error } = await db
-    .from('pass_types')
+    .from('events')
     .select('*')
     .eq('is_active', true)
     .order('price', { ascending: true });
@@ -160,41 +152,109 @@ function generateRegistrationId(passType = 'pass') {
   return `${prefix}${year}-${rand}`;
 }
 
-/**
- * Update application status to 'approved' and store payment ID inside JSONB answers.
- */
-async function approveApplication(registrationId, paymentId) {
+// ─── EVENT CATALOG (slug → event row) ───
+
+let _eventsBySlug = null;
+
+async function loadEventsCatalog() {
+  if (_eventsBySlug) return _eventsBySlug;
+  const events = await fetchEvents();
+  _eventsBySlug = {};
+  for (const e of events) {
+    _eventsBySlug[e.slug] = e;
+  }
+  return _eventsBySlug;
+}
+
+function getEventBySlug(slug) {
+  return _eventsBySlug ? _eventsBySlug[slug] : null;
+}
+
+// ─── EDGE FUNCTIONS ───
+
+async function invokeFunction(name, body) {
   const db = getDB();
+  const { data, error } = await db.functions.invoke(name, { body });
+  if (error) {
+    const message = error.message || `Edge function ${name} failed`;
+    return { data: null, error: { message } };
+  }
+  if (data?.error) {
+    return { data: null, error: { message: data.error } };
+  }
+  return { data, error: null };
+}
 
-  // 1. Fetch current application to get current answers
-  const { data: app, error: fetchError } = await db
-    .from('applications')
-    .select('answers')
-    .eq('registration_id', registrationId)
-    .single();
+async function createRegistration(payload) {
+  return invokeFunction('create-registration', payload);
+}
 
-  if (fetchError) throw fetchError;
+async function createOrder(registrationId) {
+  return invokeFunction('create-order', { registration_id: registrationId });
+}
 
-  const updatedAnswers = {
-    ...app.answers,
-    razorpay_payment_id: paymentId,
-    payment_verified_at: new Date().toISOString()
-  };
-
-  // 2. Update status and answers
-  const { data, error } = await db
-    .from('applications')
-    .update({
-      status: 'approved',
-      answers: updatedAnswers
-    })
-    .eq('registration_id', registrationId)
-    .select()
-    .single();
-
+async function getRegistrationStatus(registrationId) {
+  const db = getDB();
+  const { data, error } = await db.functions.invoke('registration-status', {
+    body: { registration_id: registrationId },
+  });
   if (error) throw error;
   return data;
 }
 
+// ─── PUBLIC CONFIG (Razorpay key ID only — secrets stay server-side) ───
+
+let _publicConfig = null;
+let _publicConfigPromise = null;
+
+async function loadPublicConfig() {
+  if (_publicConfig) return _publicConfig;
+  if (_publicConfigPromise) return _publicConfigPromise;
+
+  _publicConfigPromise = (async () => {
+    const db = getDB();
+    if (!db) throw new Error('Supabase client not initialized');
+
+    const { data, error } = await db.functions.invoke('public-config', { body: {} });
+    if (error) {
+      throw new Error(error.message || 'Failed to load public configuration');
+    }
+    if (data?.error) {
+      throw new Error(data.error);
+    }
+    if (!data?.razorpay_key_id) {
+      throw new Error('Razorpay is not configured. Set RAZORPAY_KEY_ID in Supabase secrets.');
+    }
+
+    _publicConfig = { razorpayKeyId: data.razorpay_key_id };
+    return _publicConfig;
+  })();
+
+  try {
+    return await _publicConfigPromise;
+  } catch (err) {
+    _publicConfigPromise = null;
+    throw err;
+  }
+}
+
+async function getRazorpayKeyId() {
+  const config = await loadPublicConfig();
+  return config.razorpayKeyId;
+}
+
 // ─── EXPORTS ───
-window.db = { getDB, upsertParticipant, insertApplication, submitApplication, insertWaitlist, createOrder, fetchPassTypes, generateRegistrationId, approveApplication };
+window.db = {
+  getDB,
+  SUPABASE_URL,
+  insertWaitlist,
+  fetchPassTypes,
+  fetchEvents,
+  loadEventsCatalog,
+  getEventBySlug,
+  createRegistration,
+  createOrder,
+  getRegistrationStatus,
+  loadPublicConfig,
+  getRazorpayKeyId,
+};

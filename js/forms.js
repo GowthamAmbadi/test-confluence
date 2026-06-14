@@ -2,8 +2,6 @@
    CONFLUENCE 2026 — forms.js
    ============================================================ */
 
-// ─── VALIDATION RULES ───
-
 const VALIDATORS = {
   required: (v) => v.trim() !== '' || 'This field is required.',
   email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || 'Enter a valid email address.',
@@ -12,11 +10,32 @@ const VALIDATORS = {
   minLen: (n) => (v) => v.trim().length >= n || `Minimum ${n} characters required.`,
 };
 
-// ─── FIELD VALIDATION ───
+function getFieldErrorEl(input) {
+  return input.closest('.form-group')?.querySelector('.form-error')
+    || input.closest('div')?.querySelector('.form-error')
+    || input.parentElement?.querySelector('.form-error');
+}
+
+function getValidationRules(input) {
+  return (input.dataset.validate || '').split(',').map(r => {
+    r = r.trim();
+    if (r === 'required') {
+      if (input.type === 'checkbox') {
+        return () => input.checked || 'This field is required.';
+      }
+      return VALIDATORS.required;
+    }
+    if (r === 'email') return VALIDATORS.email;
+    if (r === 'phone') return VALIDATORS.phone;
+    if (r === 'url') return VALIDATORS.url;
+    if (r.startsWith('min:')) return VALIDATORS.minLen(parseInt(r.split(':')[1], 10));
+    return null;
+  }).filter(Boolean);
+}
 
 function validateField(input, rules = []) {
-  const val = input.value;
-  const errEl = input.parentElement.querySelector('.form-error');
+  const val = input.type === 'checkbox' ? (input.checked ? 'yes' : '') : input.value;
+  const errEl = getFieldErrorEl(input);
 
   for (const rule of rules) {
     const result = rule(val);
@@ -34,27 +53,22 @@ function validateField(input, rules = []) {
   return true;
 }
 
-// ─── FORM VALIDATION ───
-
 function validateForm(formEl) {
   let valid = true;
   formEl.querySelectorAll('[data-validate]').forEach(input => {
-    const rules = (input.dataset.validate || '').split(',').map(r => {
-      r = r.trim();
-      if (r === 'required') return VALIDATORS.required;
-      if (r === 'email') return VALIDATORS.email;
-      if (r === 'phone') return VALIDATORS.phone;
-      if (r === 'url') return VALIDATORS.url;
-      if (r.startsWith('min:')) return VALIDATORS.minLen(parseInt(r.split(':')[1]));
-      return null;
-    }).filter(Boolean);
-
-    if (!validateField(input, rules)) valid = false;
+    if (!validateField(input, getValidationRules(input))) valid = false;
   });
   return valid;
 }
 
-// ─── FORM DATA COLLECTOR ───
+function validateStep(stepEl) {
+  if (!stepEl) return true;
+  let valid = true;
+  stepEl.querySelectorAll('[data-validate]').forEach(input => {
+    if (!validateField(input, getValidationRules(input))) valid = false;
+  });
+  return valid;
+}
 
 function collectFormData(formEl) {
   const data = {};
@@ -69,26 +83,10 @@ function collectFormData(formEl) {
   return data;
 }
 
-// ─── SUBMIT STATE ───
-
 function setSubmitState(btn, loading) {
   btn.disabled = loading;
   btn.classList.toggle('btn-loading', loading);
 }
-
-// ─── SHOW SUCCESS ───
-
-function showFormSuccess(formEl, regId) {
-  formEl.style.display = 'none';
-  const success = document.getElementById('form-success');
-  if (success) {
-    success.classList.add('visible');
-    const regEl = document.getElementById('success-reg-id');
-    if (regEl) regEl.textContent = regId;
-  }
-}
-
-// ─── MAIN SUBMIT HANDLER ───
 
 async function handleFormSubmit(e, passType) {
   e.preventDefault();
@@ -100,126 +98,59 @@ async function handleFormSubmit(e, passType) {
     return;
   }
 
+  if (!window.checkout) {
+    toast.error('Checkout module not loaded.', 'Error');
+    return;
+  }
+
   setSubmitState(btn, true);
   const formData = collectFormData(form);
-  formData.pass_type = passType;
-
-  // Fallback pass catalogue in case cart.js is not loaded
-  const fallbackCatalogue = {
-    'learning-lab': { name: 'Learning Lab Pass', price: 4500 },
-    'concept-cocoon': { name: 'Concept Cocoon Pass', price: 1000 },
-    'networking-gala': { name: 'Networking Gala Pass', price: 250 },
-    'all-access': { name: 'All Access Pass', price: 6000 }
-  };
-
-  // Get details from catalog for success page
-  const passInfo = (window.cartHelpers && window.cartHelpers.PASS_CATALOGUE) 
-    ? window.cartHelpers.PASS_CATALOGUE[passType] 
-    : fallbackCatalogue[passType];
-  const passName = passInfo ? passInfo.name : (passType.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + ' Pass');
-  const passPrice = passInfo ? passInfo.price : 0;
 
   try {
-    const { application } = await window.db.submitApplication(formData, passType);
-    
-    const orderData = {
-      orderId: application.registration_id,
-      name: formData.full_name,
+    await window.db.loadEventsCatalog();
+    const event = window.db.getEventBySlug(passType);
+    if (!event) {
+      throw new Error('Event not found. Please try again later.');
+    }
+
+    await window.checkout.startCheckout({
+      full_name: formData.full_name,
       email: formData.email,
-      items: [{
-        name: passName,
-        price: passPrice,
-        qty: 1
+      phone: formData.phone,
+      college: formData.college_company || formData.college || '',
+      selected_events: [{
+        event_id: event.id,
+        quantity: 1,
+        event_answers: formData,
       }],
-      total: passPrice
-    };
-    
-    // Store in both sessionStorage and localStorage for success.html
-    sessionStorage.setItem('confluenceOrder', JSON.stringify(orderData));
-    localStorage.setItem('confluenceOrder', JSON.stringify(orderData));
-
-    // Construct Razorpay URL with prefill parameters
-    const razorpayUrl = new URL('https://rzp.io/rzp/osgvpJt');
-    razorpayUrl.searchParams.set('name', formData.full_name);
-    razorpayUrl.searchParams.set('email', formData.email);
-    razorpayUrl.searchParams.set('phone', formData.phone);
-    razorpayUrl.searchParams.set('prefill[name]', formData.full_name);
-    razorpayUrl.searchParams.set('prefill[email]', formData.email);
-    razorpayUrl.searchParams.set('prefill[contact]', formData.phone);
-
-    toast.success('Application submitted! Redirecting to payment...', 'Success');
-    setTimeout(() => {
-      window.location.href = razorpayUrl.toString();
-    }, 1000);
+    });
   } catch (err) {
-    console.error('Submission error:', err);
-    
-    // Fallback: generate ID client-side and show success anyway for demo
-    const regId = window.db.generateRegistrationId(passType);
-    
-    const orderDataFallback = {
-      orderId: regId,
-      name: formData.full_name,
-      email: formData.email,
-      items: [{
-        name: passName,
-        price: passPrice,
-        qty: 1
-      }],
-      total: passPrice
-    };
-    
-    // Store in both sessionStorage and localStorage for success.html
-    sessionStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
-    localStorage.setItem('confluenceOrder', JSON.stringify(orderDataFallback));
-    
-    // Construct Razorpay URL with prefill parameters for fallback path as well
-    const razorpayUrlFallback = new URL('https://rzp.io/rzp/osgvpJt');
-    razorpayUrlFallback.searchParams.set('name', formData.full_name);
-    razorpayUrlFallback.searchParams.set('email', formData.email);
-    razorpayUrlFallback.searchParams.set('phone', formData.phone);
-    razorpayUrlFallback.searchParams.set('prefill[name]', formData.full_name);
-    razorpayUrlFallback.searchParams.set('prefill[email]', formData.email);
-    razorpayUrlFallback.searchParams.set('prefill[contact]', formData.phone);
-
-    toast.success('Application submitted! Redirecting to payment...', 'Success');
-    setTimeout(() => {
-      window.location.href = razorpayUrlFallback.toString();
-    }, 1000);
+    console.error('Checkout error:', err);
+    if (err.message !== 'Payment cancelled') {
+      toast.error(err.message || 'Could not start checkout.', 'Error');
+    }
   } finally {
     setSubmitState(btn, false);
   }
 }
 
-// ─── INLINE VALIDATION ON BLUR ───
-
 function initInlineValidation(formEl) {
   formEl.querySelectorAll('[data-validate]').forEach(input => {
-    input.addEventListener('blur', () => {
-      const rules = (input.dataset.validate || '').split(',').map(r => {
-        r = r.trim();
-        if (r === 'required') return VALIDATORS.required;
-        if (r === 'email') return VALIDATORS.email;
-        if (r === 'phone') return VALIDATORS.phone;
-        if (r === 'url') return VALIDATORS.url;
-        if (r.startsWith('min:')) return VALIDATORS.minLen(parseInt(r.split(':')[1]));
-        return null;
-      }).filter(Boolean);
-      validateField(input, rules);
-    });
+    input.addEventListener('blur', () => validateField(input, getValidationRules(input)));
+    if (input.type === 'checkbox') {
+      input.addEventListener('change', () => validateField(input, getValidationRules(input)));
+    }
   });
 }
-
-// ─── AUTO-INIT ───
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('pass-form');
   if (!form) return;
 
   initInlineValidation(form);
-
   const passType = form.dataset.passType;
+  if (window.formWizard?.WIZARD_CONFIG?.[passType]) return;
   form.addEventListener('submit', (e) => handleFormSubmit(e, passType));
 });
 
-window.formHelpers = { validateForm, collectFormData, setSubmitState, showFormSuccess, handleFormSubmit };
+window.formHelpers = { validateForm, validateStep, collectFormData, setSubmitState, handleFormSubmit, initInlineValidation };

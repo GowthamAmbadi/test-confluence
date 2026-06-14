@@ -1,0 +1,26 @@
+/* Cart & checkout layout */
+.cart-items-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+.cart-item {
+  display: flex; gap: 1rem; align-items: center;
+  background: rgba(253,250,245,0.65); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem 1.5rem; position: relative; overflow: hidden;
+}
+.cart-item-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--orange); }
+.cart-item.all-access .cart-item-accent { background: var(--gold); }
+.cart-item-info { flex: 1; }
+.cart-item-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); }
+.cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--ink); }
+.cart-item-controls { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.qty-control { display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); border-radius: 8px; padding: 0.25rem; }
+.qty-btn { background: none; border: none; cursor: pointer; padding: 0.25rem 0.5rem; font-size: 1rem; }
+.cart-remove-btn { background: none; border: none; color: var(--orange); cursor: pointer; font-size: 0.8rem; }
+.cart-summary-card, .checkout-summary-card {
+  background: rgba(253,250,245,0.65); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem 2rem;
+}
+.checkout-layout { display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; max-width: 960px; }
+.summary-line { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.9rem; color: var(--ink-light); }
+.summary-line.total { font-size: 1.1rem; color: var(--ink); font-weight: 500; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.summary-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.summary-gst-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 0.5rem; }
+@media (max-width: 768px) { .checkout-layout { grid-template-columns: 1fr; } }
