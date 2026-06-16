@@ -32,23 +32,10 @@ VALUES
 (
   'Networking Gala Pass',
   'networking-gala',
-  250.00,
+  150.00,
   'Networking',
-
-  
   'Premium networking evening with curated connections, mentor speed-rounds, and exclusive community access.',
   '["Gala evening entry","Curated networking rounds","1-on-1 mentor sessions","Industry leader panels","Premium dinner","Exclusive Gala swag"]',
-  5000,
-  TRUE
-),
-
-(
-  'All Access Pass',
-  'all-access',
-  6000.00,
-  'Premium',
-  'The complete Confluence experience. Every session, every workshop, every networking opportunity — yours.',
-  '["Full 2-day access","All workshops & labs","Gala evening entry","Priority mentor sessions","Startup pitch slot","Investor meet","Premium gift box","VIP lounge access","All-Access lanyard"]',
   5000,
   TRUE
 );

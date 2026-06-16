@@ -26,12 +26,18 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim() !== '';
 }
 
-function calculateTotals(subtotal: number, discount = 0): OrderTotals {
-  const discountedSubtotal = Math.max(0, subtotal - discount);
-  const gst = Math.round(discountedSubtotal * GST_RATE);
-  const total = discountedSubtotal + gst;
-  const amountPaise = Math.round(total * 100);
-  return { subtotal, discount, gst, total, amountPaise };
+function calculateTotals(total: number, discount = 0): OrderTotals {
+  const discountedTotal = Math.max(0, total - discount);
+  const subtotal = Math.round(discountedTotal / (1 + GST_RATE));
+  const gst = discountedTotal - subtotal;
+  const amountPaise = Math.round(discountedTotal * 100);
+  return { 
+    subtotal: Math.round(total / (1 + GST_RATE)),
+    discount, 
+    gst, 
+    total: discountedTotal, 
+    amountPaise 
+  };
 }
 
 async function createRazorpayOrder(

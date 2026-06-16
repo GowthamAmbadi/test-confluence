@@ -143,7 +143,6 @@ function generateRegistrationId(passType = 'pass') {
     'learning-lab': 'LL',
     'concept-cocoon': 'CC',
     'networking-gala': 'NG',
-    'all-access': 'AA',
     'waitlist': 'WL',
   }[passType] || 'CF';
 

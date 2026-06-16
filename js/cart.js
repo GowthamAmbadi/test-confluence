@@ -8,8 +8,7 @@ const GST_RATE = 0.18;
 const PASS_CATALOGUE = {
   'learning-lab': { id: 'learning-lab', name: 'Learning Lab Pass', tag: 'Skill Track', price: 4500, accent: 'orange', formUrl: 'forms/learning-lab.html' },
   'concept-cocoon': { id: 'concept-cocoon', name: 'Concept Cocoon Pass', tag: 'Startup Track', price: 1000, accent: 'orange', formUrl: 'forms/concept-cocoon.html' },
-  'networking-gala': { id: 'networking-gala', name: 'Networking Gala Pass', tag: 'Network Track', price: 250, accent: 'orange', formUrl: 'forms/networking-gala.html' },
-  'all-access': { id: 'all-access', name: 'All Access Pass', tag: 'Full Experience', price: 6000, accent: 'gold', formUrl: 'forms/all-access.html' },
+  'networking-gala': { id: 'networking-gala', name: 'Networking Gala Pass', tag: 'Network Track', price: 150, accent: 'orange', formUrl: 'forms/networking-gala.html' },
 };
 
 async function syncCatalogFromDb() {
@@ -57,9 +56,9 @@ function clearCart() {
 }
 
 function calcTotals(cart) {
-  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const gst = Math.round(subtotal * GST_RATE);
-  const total = subtotal + gst;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const subtotal = Math.round(total / (1 + GST_RATE));
+  const gst = total - subtotal;
   return { subtotal, gst, total };
 }
 

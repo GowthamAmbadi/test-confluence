@@ -44,30 +44,9 @@ const PASS_META = {
     ],
     note: 'Invite-reviewed access. Limited seating — early registration advised.',
   },
-  'all-access': {
-    shortName: 'All Access',
-    access: '5 days · All events included',
-    valueLine: 'The complete Confluence 2026 experience — Learning Lab, Concept Cocoon, and Networking Gala.',
-    benefits: [
-      'Full 3-Day Learning Lab — sessions, mentors, certifications & LOR',
-      'Concept Cocoon — pitch competition & VC panel exposure',
-      'Exclusive Networking Gala with industry leaders',
-      'All certifications, goodies, snacks & meals',
-      'Priority access to mentor sessions & ecosystem connections',
-    ],
-  },
 };
 
 const FIELD_STEPS = {
-  'all-access': [
-    { title: 'Basic Information', subtitle: 'Let\'s start with the essentials.', fields: ['full_name', 'email', 'phone'] },
-    { title: 'Professional Information', subtitle: 'Tell us where you\'re from and what you do.', fields: ['college_company', 'city', 'experience_level', 'linkedin', 'instagram'] },
-    { title: 'Motivation & Vision', subtitle: 'Share your vision for Confluence 2026.', fields: ['why_attend', 'building', 'dietary'] },
-    { title: 'Selection Questions', subtitle: 'Help us understand why you belong in this cohort.', fields: ['why_select', 'portfolio'] },
-    { title: 'Skills & Startup', subtitle: 'Your skills and startup journey.', fields: ['skill_domain', 'industry', 'startup_idea', 'idea_stage'] },
-    { title: 'Networking', subtitle: 'Who you want to connect with.', fields: ['mentor_domain', 'networking_goals'] },
-    { title: 'Emergency Contact', subtitle: 'Someone we can reach in case of emergency.', fields: ['ec_name', 'ec_phone'] },
-  ],
   'learning-lab': [
     { title: 'Basic Information', subtitle: 'Let\'s start with the essentials.', fields: ['full_name', 'email', 'phone'] },
     { title: 'Professional Information', subtitle: 'Tell us where you\'re from and what you do.', fields: ['college_company', 'city', 'experience_level', 'linkedin', 'instagram'] },
@@ -92,7 +71,7 @@ const FIELD_STEPS = {
   ],
 };
 
-const WIZARD_ACCENT = { 'all-access': 'gold' };
+const WIZARD_ACCENT = {};
 
 function buildWizardSteps(passType) {
   const meta = PASS_META[passType];
