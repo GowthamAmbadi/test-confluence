@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1';
+import { deliverPaymentConfirmationEmailIfNeeded } from '../_shared/sendPaymentConfirmationEmail.ts';
 
 interface RazorpayPaymentEntity {
   id: string;
@@ -113,6 +114,12 @@ Deno.serve(async (req) => {
         const mapped = mapRpcError(error.message ?? '');
         return jsonResponse({ error: mapped.error }, mapped.status);
       }
+
+      const rpcResult = (data ?? {}) as { status?: string };
+      await deliverPaymentConfirmationEmailIfNeeded(supabase, {
+        razorpayPaymentId: payment.id,
+        rpcStatus: rpcResult.status ?? '',
+      });
 
       return jsonResponse({ ok: true, result: data });
     }
