@@ -2,6 +2,12 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1';
 import { corsHeaders } from '../_shared/cors.ts';
 
 const GST_RATE = 0.18;
+// ============================================================
+// TEMPORARY: TEST PAYMENT MODE
+// When enabled, all Razorpay orders are created for ₹1.00 (100 paise).
+// This must be turned OFF before going live.
+// ============================================================
+const TEST_PAYMENT_MODE = true;
 
 interface CreateOrderRequest {
   registration_id: string;
@@ -187,15 +193,24 @@ Deno.serve(async (req) => {
 
   const subtotal = items.reduce((sum, item) => sum + Number(item.line_subtotal), 0);
   const totals = calculateTotals(subtotal);
+  const finalTotals = TEST_PAYMENT_MODE
+    ? (() => {
+      // Force a tiny payable amount while keeping schema constraints valid.
+      // We recompute total/subtotal/gst consistently for this test amount.
+      const testAmountPaise = 100;
+      const testTotal = testAmountPaise / 100;
+      return calculateTotals(testTotal);
+    })()
+    : totals;
 
-  if (totals.amountPaise <= 0) {
+  if (finalTotals.amountPaise <= 0) {
     return jsonResponse({ error: 'Order total must be greater than zero' }, 400);
   }
 
   let razorpayOrder: { id: string };
   try {
     razorpayOrder = await createRazorpayOrder(
-      totals.amountPaise,
+      finalTotals.amountPaise,
       registrationId,
       razorpayKeyId,
       razorpayKeySecret,
@@ -210,11 +225,11 @@ Deno.serve(async (req) => {
     .insert({
       registration_id: registrationId,
       razorpay_order_id: razorpayOrder.id,
-      subtotal: totals.subtotal,
-      discount: totals.discount,
-      gst: totals.gst,
-      total: totals.total,
-      amount_paise: totals.amountPaise,
+      subtotal: finalTotals.subtotal,
+      discount: finalTotals.discount,
+      gst: finalTotals.gst,
+      total: finalTotals.total,
+      amount_paise: finalTotals.amountPaise,
       currency: 'INR',
       status: 'created',
     })
@@ -235,10 +250,10 @@ Deno.serve(async (req) => {
     actor_type: 'anon',
     metadata: {
       razorpay_order_id: razorpayOrder.id,
-      subtotal: totals.subtotal,
-      gst: totals.gst,
-      total: totals.total,
-      amount_paise: totals.amountPaise,
+      subtotal: finalTotals.subtotal,
+      gst: finalTotals.gst,
+      total: finalTotals.total,
+      amount_paise: finalTotals.amountPaise,
       item_count: items.length,
     },
   });
