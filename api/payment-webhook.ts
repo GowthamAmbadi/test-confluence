@@ -59,7 +59,7 @@ function requestHeadersToFetch(req: VercelRequest): Headers {
     if (Array.isArray(value)) {
       value.forEach((v) => headers.append(key, v));
     } else {
-      headers.set(key, value);
+      headers.set(key, typeof value === 'string' ? value : String(value));
     }
   }
   return headers;
@@ -84,7 +84,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const upstream = await fetch(getUpstreamUrl(), {
       method: 'POST',
       headers: requestHeadersToFetch(req),
-      body: rawBody,
+      body: new Uint8Array(rawBody),
       redirect: 'manual',
     });
 
