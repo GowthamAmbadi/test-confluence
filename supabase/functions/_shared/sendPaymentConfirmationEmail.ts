@@ -1,7 +1,7 @@
 import { Resend } from 'npm:resend@4.0.0';
 import type { SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1';
 
-export const CONFLUENCE_2026_EVENT_DATES = 'July 6–10, 2026';
+export const CONFLUENCE_2026_EVENT_DATES = 'August 3–7, 2026';
 export const CONFLUENCE_2026_EVENT_LOCATION = 'Hyderabad, India';
 export const CONFLUENCE_2026_SUPPORT_EMAIL = 'confluence@yanc.in';
 export const PAYMENT_CONFIRMATION_EMAIL_SUBJECT = 'Confluence 2026 Registration Confirmed';
