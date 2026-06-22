@@ -2854,10 +2854,10 @@
 
   <!-- COUNTDOWN BAR -->
   <div class="countdown-bar">
-    <div class="countdown-label">Confluence begins in</div>
-    <div class="countdown-units">
+    <div class="countdown-label" id="countdown-label">Confluence begins in</div>
+    <div class="countdown-units" id="countdown-units">
       <div class="countdown-unit">
-        <span class="countdown-num" id="cd-days">21</span>
+        <span class="countdown-num" id="cd-days">--</span>
         <div class="countdown-unit-lbl">Days</div>
       </div>
       <div class="countdown-sep">:</div>
@@ -3743,26 +3743,53 @@
     });
     navbar.addEventListener('click', (e) => e.stopPropagation());
 
-    // Countdown timer
+    // Countdown timer — Confluence 2026 opens August 3, 2026 at 9:00 AM IST (Hyderabad)
+    const CONFLUENCE_START = new Date('2026-08-03T09:00:00+05:30');
+    const CONFLUENCE_END = new Date('2026-08-07T23:59:59+05:30');
+
+    function setCountdownUnits(days, hours, minutes, seconds) {
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = hours;
+      document.getElementById('cd-mins').textContent = minutes;
+      document.getElementById('cd-secs').textContent = seconds;
+    }
+
     function updateCountdown() {
-      const target = new Date('2026-07-06T09:00:00+05:30').getTime();
-      const now = new Date().getTime();
-      const diff = target - now;
-      if (diff <= 0) {
-        document.getElementById('cd-days').textContent = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent = '00';
-        document.getElementById('cd-secs').textContent = '00';
+      const label = document.getElementById('countdown-label');
+      const units = document.getElementById('countdown-units');
+      const now = Date.now();
+      const startMs = CONFLUENCE_START.getTime();
+      const endMs = CONFLUENCE_END.getTime();
+
+      if (now >= endMs) {
+        if (label) label.textContent = 'Confluence 2026 has concluded';
+        if (units) units.style.display = 'none';
         return;
       }
+
+      if (now >= startMs) {
+        const dayMs = 24 * 60 * 60 * 1000;
+        const liveDay = Math.min(5, Math.floor((now - startMs) / dayMs) + 1);
+        if (label) label.textContent = `Confluence is live · Day ${liveDay} of 5`;
+        setCountdownUnits('00', '00', '00', '00');
+        return;
+      }
+
+      if (units) units.style.display = '';
+      if (label) label.textContent = 'Confluence begins in · August 3, 2026';
+
+      const diff = startMs - now;
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
-      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+
+      setCountdownUnits(
+        String(d).padStart(2, '0'),
+        String(h).padStart(2, '0'),
+        String(m).padStart(2, '0'),
+        String(s).padStart(2, '0'),
+      );
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
