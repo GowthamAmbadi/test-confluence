@@ -257,16 +257,62 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function pollRegistrationStatus(registrationId, maxAttempts = 30) {
-  for (let i = 0; i < maxAttempts; i++) {
-    try {
-      const status = await window.db.getRegistrationStatus(registrationId);
-      if (status?.status === 'PAYMENT_COMPLETE') return status;
-      if (status?.status === 'CANCELLED' || status?.status === 'REFUNDED') return status;
-    } catch (err) {
-      console.error('Status poll error:', err);
+async function fetchRegistrationStatusSafe(registrationId) {
+  try {
+    const status = await window.db.getRegistrationStatus(registrationId);
+    if (status?.error) {
+      console.error('Status API error:', status.error);
+      return null;
     }
-    await sleep(2000);
+    return status;
+  } catch (err) {
+    console.error('Status fetch error:', err);
+    return null;
+  }
+}
+
+function renderSuccessPassRows(events) {
+  if (!events?.length) {
+    return '<div style="font-size:0.9rem;color:var(--ink-light);">Loading pass details…</div>';
+  }
+
+  return events.map((event) => `
+    <div style="display:flex;justify-content:space-between;gap:1rem;padding:0.45rem 0;font-size:0.9rem;color:var(--ink);">
+      <span>${event.name} × ${event.quantity}</span>
+      <span style="white-space:nowrap;">₹${formatINR(event.unit_price * event.quantity)}</span>
+    </div>
+  `).join('');
+}
+
+function applySuccessTicket(status, pending, registrationId) {
+  const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+  const name = status?.full_name || pending?.name || '—';
+  const email = status?.email || pending?.email || '—';
+  const orderRef = status?.registration_reference
+    || (registrationId ? `Pending · ${registrationId}` : '—');
+
+  setEl('success-order-id', orderRef || '—');
+  setEl('success-name', name);
+  setEl('success-email', email);
+  setEl('success-total', status?.total != null ? `₹${formatINR(status.total)}` : '—');
+
+  const itemsEl = document.getElementById('success-items');
+  if (itemsEl) {
+    itemsEl.innerHTML = renderSuccessPassRows(status?.events);
+  }
+}
+
+async function pollRegistrationStatus(registrationId, onUpdate, maxAttempts = 45) {
+  for (let i = 0; i < maxAttempts; i++) {
+    const status = await fetchRegistrationStatusSafe(registrationId);
+    if (status) onUpdate(status);
+
+    if (status?.status === 'PAYMENT_COMPLETE') return status;
+    if (status?.status === 'CANCELLED' || status?.status === 'REFUNDED') return status;
+
+    const delayMs = i < 10 ? 800 : i < 25 ? 1500 : 2500;
+    await sleep(delayMs);
   }
   return null;
 }
@@ -279,8 +325,6 @@ async function renderSuccessPage() {
   let pending = JSON.parse(sessionStorage.getItem(key) || 'null');
   if (!pending) pending = JSON.parse(localStorage.getItem(key) || 'null');
 
-  const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-
   setSuccessState({
     eyebrow: 'Confirming Payment',
     title: 'Verification<br><em>in progress</em>',
@@ -288,25 +332,15 @@ async function renderSuccessPage() {
     confirmed: false,
   });
 
-  const status = await pollRegistrationStatus(registrationId);
+  const initialStatus = await fetchRegistrationStatusSafe(registrationId);
+  if (initialStatus) applySuccessTicket(initialStatus, pending, registrationId);
+
+  const status = await pollRegistrationStatus(registrationId, (latestStatus) => {
+    applySuccessTicket(latestStatus, pending, registrationId);
+  });
 
   if (status?.status === 'PAYMENT_COMPLETE') {
-    setEl('success-order-id', status.registration_reference || '—');
-    if (pending) {
-      setEl('success-name', pending.name || '—');
-      setEl('success-email', pending.email || '—');
-    }
-    setEl('success-total', status.total != null ? `₹${formatINR(status.total)}` : '—');
-
-    const itemsEl = document.getElementById('success-items');
-    if (itemsEl && status.events) {
-      itemsEl.innerHTML = status.events.map(e => `
-        <div class="summary-line">
-          <span>${e.name} × ${e.quantity}</span>
-          <span>₹${formatINR(e.unit_price * e.quantity)}</span>
-        </div>
-      `).join('');
-    }
+    applySuccessTicket(status, pending, registrationId);
 
     setSuccessState({
       eyebrow: 'Registration Confirmed',
@@ -319,10 +353,8 @@ async function renderSuccessPage() {
     return;
   }
 
-  if (pending) {
-    setEl('success-order-id', registrationId.slice(0, 8) + '…');
-    setEl('success-name', pending.name || '—');
-    setEl('success-email', pending.email || '—');
+  if (pending || initialStatus) {
+    applySuccessTicket(status || initialStatus, pending, registrationId);
   }
 
   setSuccessState({
@@ -331,6 +363,20 @@ async function renderSuccessPage() {
     sub: 'Your payment is being verified. Save your registration reference and check back shortly, or use the tracking page.',
     confirmed: false,
   });
+
+  pollRegistrationStatus(registrationId, (latestStatus) => {
+    applySuccessTicket(latestStatus, pending, registrationId);
+    if (latestStatus?.status === 'PAYMENT_COMPLETE') {
+      setSuccessState({
+        eyebrow: 'Registration Confirmed',
+        title: 'You\'re<br><em>in, officially.</em>',
+        sub: 'Your payment was confirmed. Your pass has been secured for Confluence 2026.',
+        confirmed: true,
+      });
+      clearCart();
+      sessionStorage.removeItem(key);
+    }
+  }, 60).catch((err) => console.error('Background status poll error:', err));
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

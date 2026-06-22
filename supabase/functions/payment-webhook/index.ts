@@ -116,10 +116,17 @@ Deno.serve(async (req) => {
       }
 
       const rpcResult = (data ?? {}) as { status?: string };
-      await deliverPaymentConfirmationEmailIfNeeded(supabase, {
+      const emailTask = deliverPaymentConfirmationEmailIfNeeded(supabase, {
         razorpayPaymentId: payment.id,
         rpcStatus: rpcResult.status ?? '',
       });
+
+      const edgeRuntime = (globalThis as { EdgeRuntime?: { waitUntil: (promise: Promise<unknown>) => void } }).EdgeRuntime;
+      if (edgeRuntime?.waitUntil) {
+        edgeRuntime.waitUntil(emailTask);
+      } else {
+        await emailTask;
+      }
 
       return jsonResponse({ ok: true, result: data });
     }

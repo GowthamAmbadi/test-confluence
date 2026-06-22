@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { buffer } from 'micro';
+import { Readable } from 'node:stream';
 
 const DEFAULT_UPSTREAM_URL =
   'https://jktxnmwtbjyonhzygwpu.supabase.co/functions/v1/payment-webhook';
@@ -41,14 +41,16 @@ function getUpstreamUrl(): string {
   return process.env.SUPABASE_PAYMENT_WEBHOOK_URL?.trim() || DEFAULT_UPSTREAM_URL;
 }
 
-function forwardHeaders(source: Headers, skip: Set<string>): Headers {
-  const headers = new Headers();
-  source.forEach((value, key) => {
-    if (!skip.has(key.toLowerCase())) {
-      headers.set(key, value);
-    }
-  });
-  return headers;
+async function readRawBody(req: VercelRequest): Promise<Buffer> {
+  if (Buffer.isBuffer(req.body)) return req.body;
+  if (typeof req.body === 'string') return Buffer.from(req.body);
+
+  const stream = req as unknown as Readable;
+  const chunks: Buffer[] = [];
+  for await (const chunk of stream) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  return Buffer.concat(chunks);
 }
 
 function requestHeadersToFetch(req: VercelRequest): Headers {
@@ -80,11 +82,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const rawBody = await buffer(req);
+    const rawBody = await readRawBody(req);
     const upstream = await fetch(getUpstreamUrl(), {
       method: 'POST',
       headers: requestHeadersToFetch(req),
-      body: new Uint8Array(rawBody),
+      body: rawBody,
       redirect: 'manual',
     });
 

@@ -7,7 +7,7 @@ const GST_RATE = 0.18;
 // When enabled, all Razorpay orders are created for ₹1.00 (100 paise).
 // This must be turned OFF before going live.
 // ============================================================
-const TEST_PAYMENT_MODE = true;
+const TEST_PAYMENT_MODE = false;
 
 interface CreateOrderRequest {
   registration_id: string;
@@ -140,11 +140,15 @@ Deno.serve(async (req) => {
     .maybeSingle();
 
   if (existingOrder?.razorpay_order_id) {
-    return jsonResponse({
-      razorpay_order_id: existingOrder.razorpay_order_id,
-      amount: existingOrder.amount_paise,
-      currency: existingOrder.currency,
-    });
+    const testAmountPaise = 100;
+    const canReuseExistingOrder = !TEST_PAYMENT_MODE || existingOrder.amount_paise === testAmountPaise;
+    if (canReuseExistingOrder) {
+      return jsonResponse({
+        razorpay_order_id: existingOrder.razorpay_order_id,
+        amount: existingOrder.amount_paise,
+        currency: existingOrder.currency,
+      });
+    }
   }
 
   const { data: items, error: itemsError } = await supabase

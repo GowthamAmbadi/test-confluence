@@ -6,6 +6,8 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-
 interface StatusResponse {
   status: string;
   registration_reference: string | null;
+  full_name: string;
+  email: string;
   events: Array<{
     name: string;
     slug: string;
@@ -71,8 +73,8 @@ Deno.serve(async (req) => {
   const supabase = createClient(supabaseUrl, serviceRoleKey);
 
   const registrationQuery = UUID_RE.test(lookupId)
-    ? supabase.from('registrations').select('id, status, registration_id').eq('id', lookupId)
-    : supabase.from('registrations').select('id, status, registration_id').eq('registration_id', lookupId);
+    ? supabase.from('registrations').select('id, status, registration_id, full_name, email').eq('id', lookupId)
+    : supabase.from('registrations').select('id, status, registration_id, full_name, email').eq('registration_id', lookupId);
 
   const { data: registration, error: regError } = await registrationQuery.single();
 
@@ -120,6 +122,8 @@ Deno.serve(async (req) => {
   const response: StatusResponse = {
     status: registration.status,
     registration_reference: registration.registration_id,
+    full_name: registration.full_name,
+    email: registration.email,
     events,
     total: order ? Number(order.total) : null,
     payment_id: payment?.razorpay_payment_id ?? null,

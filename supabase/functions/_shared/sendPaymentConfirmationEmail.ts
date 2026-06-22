@@ -3,7 +3,7 @@ import type { SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1
 
 export const CONFLUENCE_2026_EVENT_DATES = 'July 6–10, 2026';
 export const CONFLUENCE_2026_EVENT_LOCATION = 'Hyderabad, India';
-export const CONFLUENCE_2026_SUPPORT_EMAIL = 'connect@yanc.in';
+export const CONFLUENCE_2026_SUPPORT_EMAIL = 'confluence@yanc.in';
 export const PAYMENT_CONFIRMATION_EMAIL_SUBJECT = 'Confluence 2026 Registration Confirmed';
 
 export interface PaymentConfirmationPass {
@@ -105,8 +105,8 @@ export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationCo
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background-color:#ffffff;border:1px solid #e8e4dc;border-radius:12px;overflow:hidden;">
           <tr>
             <td style="background:linear-gradient(135deg,#1a1a2e 0%,#2d2d4a 100%);padding:32px 28px;text-align:center;">
-              <p style="margin:0 0 8px;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:#d4af37;">YANC Presents</p>
-              <h1 style="margin:0;font-size:30px;line-height:1.2;color:#ffffff;font-weight:400;">Confluence 2026</h1>
+              <h1 style="margin:0;font-size:30px;line-height:1.2;color:#ffffff;font-weight:400;">YANC Confluence</h1>
+              <p style="margin:10px 0 0;font-size:14px;letter-spacing:0.12em;color:#d4af37;">2026</p>
             </td>
           </tr>
           <tr>
