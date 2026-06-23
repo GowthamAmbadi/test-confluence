@@ -4,6 +4,7 @@ import type { SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1
 export const CONFLUENCE_2026_EVENT_DATES = 'August 3–7, 2026';
 export const CONFLUENCE_2026_EVENT_LOCATION = 'Hyderabad, India';
 export const CONFLUENCE_2026_SUPPORT_EMAIL = 'confluence@yanc.in';
+export const CONFLUENCE_2026_SUPPORT_PHONE = '+91 9908881708';
 export const PAYMENT_CONFIRMATION_EMAIL_SUBJECT = 'Confluence 2026 Registration Confirmed';
 
 /** Per-event schedule — keyed by events.slug (not pass display names). */
@@ -226,7 +227,8 @@ export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationCo
             <td style="padding:24px 28px 32px;">
               <p style="margin:0;font-size:14px;line-height:1.7;color:#4a4a68;">
                 Please keep this email for your records. If you have questions about your registration, contact us at
-                <a href="mailto:${escapeHtml(context.supportEmail)}" style="color:#b8860b;text-decoration:none;">${escapeHtml(context.supportEmail)}</a>.
+                <a href="mailto:${escapeHtml(context.supportEmail)}" style="color:#b8860b;text-decoration:none;">${escapeHtml(context.supportEmail)}</a> or
+                <a href="tel:${CONFLUENCE_2026_SUPPORT_PHONE.replace(/\s+/g, '')}" style="color:#b8860b;text-decoration:none;">${escapeHtml(CONFLUENCE_2026_SUPPORT_PHONE)}</a>.
               </p>
             </td>
           </tr>
@@ -255,6 +257,7 @@ export async function sendPaymentConfirmationEmail(params: {
   const { data, error } = await resend.emails.send({
     from: params.fromEmail,
     to: [params.toEmail],
+    bcc: [CONFLUENCE_2026_SUPPORT_EMAIL],
     subject: PAYMENT_CONFIRMATION_EMAIL_SUBJECT,
     html: buildPaymentConfirmationEmailHtml(params.context),
   });
