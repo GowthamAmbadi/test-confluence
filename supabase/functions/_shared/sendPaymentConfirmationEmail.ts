@@ -6,10 +6,21 @@ export const CONFLUENCE_2026_EVENT_LOCATION = 'Hyderabad, India';
 export const CONFLUENCE_2026_SUPPORT_EMAIL = 'confluence@yanc.in';
 export const PAYMENT_CONFIRMATION_EMAIL_SUBJECT = 'Confluence 2026 Registration Confirmed';
 
+/** Per-event schedule — keyed by events.slug (not pass display names). */
+const EVENT_SCHEDULE_BY_SLUG: Record<string, { dates: string; dayLabel: string }> = {
+  'learning-lab': { dates: 'August 3–5, 2026', dayLabel: 'Monday – Wednesday' },
+  'concept-cocoon': { dates: 'August 6, 2026', dayLabel: 'Thursday' },
+  'networking-gala': { dates: 'August 7, 2026', dayLabel: 'Friday' },
+  'all-access': { dates: 'August 3–7, 2026', dayLabel: 'Full festival access' },
+};
+
 export interface PaymentConfirmationPass {
   name: string;
+  slug: string;
   quantity: number;
   unitPrice: number;
+  eventDates: string;
+  dayLabel: string;
 }
 
 export interface PaymentConfirmationContext {
@@ -18,11 +29,11 @@ export interface PaymentConfirmationContext {
   registrationReference: string;
   passes: PaymentConfirmationPass[];
   paymentStatus: string;
-  eventDates: string;
   eventLocation: string;
   supportEmail: string;
   totalAmount: number | null;
   currency: string;
+  festivalDates: string;
 }
 
 interface PaymentRecord {
@@ -44,7 +55,7 @@ interface PaymentRecord {
 interface RegistrationItemRow {
   quantity: number;
   unit_price: number;
-  events: { name: string } | { name: string }[] | null;
+  events: { name: string; slug: string } | { name: string; slug: string }[] | null;
 }
 
 function escapeHtml(value: string): string {
@@ -64,29 +75,91 @@ function formatCurrency(amount: number, currency: string): string {
   return `${code} ${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
+function getEventSchedule(slug: string): { dates: string; dayLabel: string } {
+  return EVENT_SCHEDULE_BY_SLUG[slug] ?? {
+    dates: CONFLUENCE_2026_EVENT_DATES,
+    dayLabel: 'Confluence 2026',
+  };
+}
+
+function detailField(label: string, value: string, options?: { highlight?: boolean; valueColor?: string }): string {
+  const valueStyle = [
+    'margin:6px 0 0',
+    'font-size:15px',
+    'line-height:1.5',
+    'color:#1a1a2e',
+    'word-break:break-word',
+    'overflow-wrap:anywhere',
+    options?.highlight ? 'font-weight:600' : 'font-weight:400',
+    options?.valueColor ? `color:${options.valueColor}` : '',
+  ].filter(Boolean).join(';');
+
+  return `
+    <tr>
+      <td style="padding:0 0 14px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f8f6f1;border:1px solid #ebe6dc;border-radius:10px;">
+          <tr>
+            <td style="padding:14px 16px;">
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b84;">${escapeHtml(label)}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;${valueStyle}">${escapeHtml(value)}</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>`;
+}
+
+function normalizeEvent(events: RegistrationItemRow['events']): { name: string; slug: string } {
+  if (!events) return { name: 'Event Pass', slug: '' };
+  const event = Array.isArray(events) ? events[0] : events;
+  return {
+    name: event?.name ?? 'Event Pass',
+    slug: event?.slug ?? '',
+  };
+}
+
 export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationContext): string {
-  const passRows = context.passes
+  const passCards = context.passes
     .map((pass) => {
       const lineTotal = pass.unitPrice * pass.quantity;
-      const quantityLabel = pass.quantity > 1 ? ` × ${pass.quantity}` : '';
+      const quantityLabel = pass.quantity > 1 ? ` · Qty ${pass.quantity}` : '';
       return `
         <tr>
-          <td style="padding:12px 0;border-bottom:1px solid #e8e4dc;color:#1a1a2e;font-size:15px;">
-            ${escapeHtml(pass.name)}${quantityLabel}
-          </td>
-          <td style="padding:12px 0;border-bottom:1px solid #e8e4dc;color:#1a1a2e;font-size:15px;text-align:right;white-space:nowrap;">
-            ${escapeHtml(formatCurrency(lineTotal, context.currency))}
+          <td style="padding:0 0 12px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e8e4dc;border-radius:10px;overflow:hidden;background-color:#ffffff;">
+              <tr>
+                <td style="padding:16px 18px;">
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.45;color:#1a1a2e;font-weight:600;word-break:break-word;">${escapeHtml(pass.name)}${quantityLabel}</div>
+                  <div style="margin-top:10px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.65;color:#4a4a68;">
+                    <div><strong style="color:#1a1a2e;">Your dates:</strong> ${escapeHtml(pass.eventDates)}</div>
+                    <div style="margin-top:4px;color:#6b6b84;">${escapeHtml(pass.dayLabel)}</div>
+                  </div>
+                  <div style="margin-top:12px;padding-top:12px;border-top:1px solid #ebe6dc;">
+                    <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b84;">Amount</span>
+                    <span style="margin-left:10px;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.3;color:#b8860b;font-weight:600;">${escapeHtml(formatCurrency(lineTotal, context.currency))}</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>`;
     })
     .join('');
 
-  const totalRow = context.totalAmount != null
+  const scheduleRows = context.passes
+    .map((pass) => detailField(pass.name, `${pass.eventDates} (${pass.dayLabel})`))
+    .join('');
+
+  const totalPaidBlock = context.totalAmount != null
     ? `
         <tr>
-          <td style="padding:14px 0 0;color:#1a1a2e;font-size:15px;font-weight:700;">Total Paid</td>
-          <td style="padding:14px 0 0;color:#b8860b;font-size:16px;font-weight:700;text-align:right;">
-            ${escapeHtml(formatCurrency(context.totalAmount, context.currency))}
+          <td style="padding:8px 0 0;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#1a1a2e;border-radius:10px;">
+              <tr>
+                <td style="padding:16px 18px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#d4af37;">Total Paid</td>
+                <td style="padding:16px 18px;text-align:right;font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#ffffff;font-weight:600;">${escapeHtml(formatCurrency(context.totalAmount, context.currency))}</td>
+              </tr>
+            </table>
           </td>
         </tr>`
     : '';
@@ -120,23 +193,11 @@ export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationCo
           <tr>
             <td style="padding:24px 28px 8px;">
               <h3 style="margin:0 0 14px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">Registration Details</h3>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size:15px;line-height:1.8;">
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;width:42%;">Attendee Name</td>
-                  <td style="padding:4px 0;color:#1a1a2e;font-weight:600;">${escapeHtml(context.attendeeName)}</td>
-                </tr>
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;">Email</td>
-                  <td style="padding:4px 0;color:#1a1a2e;">${escapeHtml(context.attendeeEmail)}</td>
-                </tr>
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;">Registration Reference</td>
-                  <td style="padding:4px 0;color:#1a1a2e;font-weight:600;">${escapeHtml(context.registrationReference)}</td>
-                </tr>
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;">Payment Status</td>
-                  <td style="padding:4px 0;color:#1f7a4d;font-weight:600;">${escapeHtml(context.paymentStatus)}</td>
-                </tr>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                ${detailField('Attendee Name', context.attendeeName, { highlight: true })}
+                ${detailField('Email', context.attendeeEmail)}
+                ${detailField('Registration Reference', context.registrationReference, { highlight: true })}
+                ${detailField('Payment Status', context.paymentStatus, { highlight: true, valueColor: '#1f7a4d' })}
               </table>
             </td>
           </tr>
@@ -144,24 +205,21 @@ export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationCo
             <td style="padding:24px 28px 8px;">
               <h3 style="margin:0 0 14px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">Pass Information</h3>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                ${passRows}
-                ${totalRow}
+                ${passCards}
+                ${totalPaidBlock}
               </table>
             </td>
           </tr>
           <tr>
             <td style="padding:24px 28px 8px;">
-              <h3 style="margin:0 0 14px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">Event Information</h3>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size:15px;line-height:1.8;">
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;width:42%;">Event Dates</td>
-                  <td style="padding:4px 0;color:#1a1a2e;">${escapeHtml(context.eventDates)}</td>
-                </tr>
-                <tr>
-                  <td style="padding:4px 0;color:#6b6b84;">Event Location</td>
-                  <td style="padding:4px 0;color:#1a1a2e;">${escapeHtml(context.eventLocation)}</td>
-                </tr>
+              <h3 style="margin:0 0 14px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">Your Event Schedule</h3>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                ${scheduleRows}
+                ${detailField('Location', context.eventLocation)}
               </table>
+              <p style="margin:14px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6b84;">
+                Confluence 2026 runs ${escapeHtml(context.festivalDates)}. Your confirmation above reflects the dates for your registered pass${context.passes.length > 1 ? 'es' : ''}.
+              </p>
             </td>
           </tr>
           <tr>
@@ -175,7 +233,7 @@ export function buildPaymentConfirmationEmailHtml(context: PaymentConfirmationCo
           <tr>
             <td style="background-color:#f8f6f1;padding:20px 28px;text-align:center;border-top:1px solid #e8e4dc;">
               <p style="margin:0 0 6px;font-size:12px;color:#6b6b84;">Confluence 2026 · YANC Young Minds · Networking · Life Skills</p>
-              <p style="margin:0;font-size:12px;color:#6b6b84;">${escapeHtml(context.eventDates)} · ${escapeHtml(context.eventLocation)}</p>
+              <p style="margin:0;font-size:12px;color:#6b6b84;">${escapeHtml(context.festivalDates)} · ${escapeHtml(context.eventLocation)}</p>
             </td>
           </tr>
         </table>
@@ -275,12 +333,6 @@ async function logEmailAudit(
   }
 }
 
-function normalizeEventName(events: RegistrationItemRow['events']): string {
-  if (!events) return 'Event Pass';
-  if (Array.isArray(events)) return events[0]?.name ?? 'Event Pass';
-  return events.name;
-}
-
 async function loadPaymentConfirmationContext(
   supabase: SupabaseClient,
   razorpayPaymentId: string,
@@ -334,7 +386,7 @@ async function loadPaymentConfirmationContext(
     .select(`
       quantity,
       unit_price,
-      events ( name )
+      events ( name, slug )
     `)
     .eq('registration_id', payment.registration_id);
 
@@ -343,11 +395,18 @@ async function loadPaymentConfirmationContext(
     return null;
   }
 
-  const passes = (items as RegistrationItemRow[]).map((item) => ({
-    name: normalizeEventName(item.events),
-    quantity: item.quantity,
-    unitPrice: Number(item.unit_price),
-  }));
+  const passes = (items as RegistrationItemRow[]).map((item) => {
+    const event = normalizeEvent(item.events);
+    const schedule = getEventSchedule(event.slug);
+    return {
+      name: event.name,
+      slug: event.slug,
+      quantity: item.quantity,
+      unitPrice: Number(item.unit_price),
+      eventDates: schedule.dates,
+      dayLabel: schedule.dayLabel,
+    };
+  });
 
   return {
     payment: payment as PaymentRecord,
@@ -357,7 +416,7 @@ async function loadPaymentConfirmationContext(
       registrationReference: registration.registration_id,
       passes,
       paymentStatus: 'Confirmed',
-      eventDates: CONFLUENCE_2026_EVENT_DATES,
+      festivalDates: CONFLUENCE_2026_EVENT_DATES,
       eventLocation: CONFLUENCE_2026_EVENT_LOCATION,
       supportEmail: CONFLUENCE_2026_SUPPORT_EMAIL,
       totalAmount: Number(payment.amount),
