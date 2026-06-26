@@ -1,0 +1,14 @@
+-- ============================================================
+-- Bootstrap script: first Super Admin profile
+-- Run AFTER creating the user in Supabase Auth dashboard.
+-- Replace placeholders before executing.
+-- ============================================================
+
+-- INSERT INTO admin_profiles (user_id, full_name, email, role, is_active)
+-- VALUES (
+--   '00000000-0000-0000-0000-000000000000',  -- auth.users.id
+--   'Operations Lead',
+--   'ops@yanc.in',
+--   'SUPER_ADMIN',
+--   TRUE
+-- );

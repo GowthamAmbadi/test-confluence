@@ -516,3 +516,150 @@ export async function deliverPaymentConfirmationEmailIfNeeded(
     console.error('Unexpected payment confirmation email error:', err);
   }
 }
+
+async function loadLatestPaymentConfirmationContextByRegistrationId(
+  supabase: SupabaseClient,
+  registrationId: string,
+): Promise<{
+  payment: PaymentRecord;
+  context: PaymentConfirmationContext;
+} | null> {
+  const { data: payment, error: paymentError } = await supabase
+    .from('payments')
+    .select(`
+      id,
+      amount,
+      currency,
+      status,
+      registration_id,
+      order_id,
+      razorpay_payment_id,
+      registrations (
+        full_name,
+        email,
+        registration_id,
+        status
+      )
+    `)
+    .eq('registration_id', registrationId)
+    .eq('status', 'captured')
+    .order('paid_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (paymentError || !payment) {
+    return null;
+  }
+
+  return loadPaymentConfirmationContext(supabase, payment.razorpay_payment_id);
+}
+
+async function logAdminEmailResendAudit(
+  supabase: SupabaseClient,
+  params: {
+    registrationId: string;
+    orderId: string;
+    paymentId: string;
+    razorpayPaymentId: string;
+    recipientEmail: string;
+    adminProfileId: string;
+    messageId?: string;
+    error?: string;
+    success: boolean;
+  },
+): Promise<void> {
+  const { error } = await supabase.from('audit_logs').insert({
+    event_type: params.success ? 'ADMIN_EMAIL_RESENT' : 'EMAIL_FAILED',
+    entity_type: 'email',
+    entity_id: null,
+    registration_id: params.registrationId,
+    order_id: params.orderId,
+    payment_id: params.paymentId,
+    actor_type: 'admin',
+    actor_id: params.adminProfileId,
+    metadata: {
+      razorpay_payment_id: params.razorpayPaymentId,
+      recipient_email: params.recipientEmail,
+      resend_by_admin: true,
+      ...(params.messageId ? { resend_message_id: params.messageId } : {}),
+      ...(params.error ? { error: params.error } : {}),
+    },
+  });
+
+  if (error) {
+    console.error('Failed to write admin email resend audit log:', error);
+  }
+}
+
+/**
+ * Staff-initiated resend of payment confirmation email (Module 4).
+ */
+export async function resendPaymentConfirmationEmailForRegistration(
+  supabase: SupabaseClient,
+  registrationId: string,
+  adminProfileId: string,
+): Promise<{ success: boolean; error?: string }> {
+  const resendApiKey = Deno.env.get('RESEND_API_KEY');
+  const fromEmail = Deno.env.get('FROM_EMAIL');
+
+  const loaded = await loadLatestPaymentConfirmationContextByRegistrationId(supabase, registrationId);
+  if (!loaded) {
+    return { success: false, error: 'No captured payment found for this registration' };
+  }
+
+  const { payment, context } = loaded;
+
+  if (!resendApiKey || !fromEmail) {
+    const configError = !resendApiKey && !fromEmail
+      ? 'RESEND_API_KEY and FROM_EMAIL are not configured'
+      : !resendApiKey
+      ? 'RESEND_API_KEY is not configured'
+      : 'FROM_EMAIL is not configured';
+
+    await logAdminEmailResendAudit(supabase, {
+      registrationId: payment.registration_id,
+      orderId: payment.order_id,
+      paymentId: payment.id,
+      razorpayPaymentId: payment.razorpay_payment_id,
+      recipientEmail: context.attendeeEmail,
+      adminProfileId,
+      error: configError,
+      success: false,
+    });
+    return { success: false, error: configError };
+  }
+
+  const result = await sendPaymentConfirmationEmail({
+    resendApiKey,
+    fromEmail,
+    toEmail: context.attendeeEmail,
+    context,
+  });
+
+  if (!result.success) {
+    await logAdminEmailResendAudit(supabase, {
+      registrationId: payment.registration_id,
+      orderId: payment.order_id,
+      paymentId: payment.id,
+      razorpayPaymentId: payment.razorpay_payment_id,
+      recipientEmail: context.attendeeEmail,
+      adminProfileId,
+      error: result.error,
+      success: false,
+    });
+    return { success: false, error: result.error };
+  }
+
+  await logAdminEmailResendAudit(supabase, {
+    registrationId: payment.registration_id,
+    orderId: payment.order_id,
+    paymentId: payment.id,
+    razorpayPaymentId: payment.razorpay_payment_id,
+    recipientEmail: context.attendeeEmail,
+    adminProfileId,
+    messageId: result.messageId,
+    success: true,
+  });
+
+  return { success: true };
+}

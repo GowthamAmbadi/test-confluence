@@ -14,3 +14,33 @@ verify_jwt = true
 
 [functions.public-config]
 verify_jwt = false
+
+[functions.admin-me]
+verify_jwt = true
+
+[functions.admin-record-login]
+verify_jwt = true
+
+[functions.admin-team]
+verify_jwt = true
+
+[functions.admin-dashboard]
+verify_jwt = true
+
+[functions.admin-registrations]
+verify_jwt = true
+
+[functions.admin-registration-profile]
+verify_jwt = true
+
+[functions.admin-checkin-search]
+verify_jwt = true
+
+[functions.admin-checkin]
+verify_jwt = true
+
+[functions.admin-reports]
+verify_jwt = true
+
+[functions.admin-export]
+verify_jwt = true
