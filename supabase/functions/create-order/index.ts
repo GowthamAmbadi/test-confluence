@@ -1,5 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1';
 import { corsHeaders } from '../_shared/cors.ts';
+import { validatePromoCode } from '../_shared/promoCodes.ts';
 
 const GST_RATE = 0.18;
 // ============================================================
@@ -11,6 +12,18 @@ const TEST_PAYMENT_MODE = false;
 
 interface CreateOrderRequest {
   registration_id: string;
+  promo_code?: string;
+  event_id?: string;
+}
+
+function resolveRegistrationEventId(
+  items: Array<{ event_id: string }>,
+  requestedEventId?: string,
+): string | null {
+  if (isNonEmptyString(requestedEventId)) return requestedEventId.trim();
+  const unique = [...new Set(items.map((item) => String(item.event_id)))];
+  if (unique.length === 1) return unique[0];
+  return unique[0] ?? null;
 }
 
 interface OrderTotals {
@@ -19,6 +32,13 @@ interface OrderTotals {
   gst: number;
   total: number;
   amountPaise: number;
+  originalAmount: number;
+}
+
+interface PromoApplyResult {
+  promoCodeId: string | null;
+  couponCode: string | null;
+  discount: number;
 }
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -32,17 +52,20 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim() !== '';
 }
 
-function calculateTotals(total: number, discount = 0): OrderTotals {
-  const discountedTotal = Math.max(0, total - discount);
-  const subtotal = Math.round(discountedTotal / (1 + GST_RATE));
-  const gst = discountedTotal - subtotal;
-  const amountPaise = Math.round(discountedTotal * 100);
-  return { 
-    subtotal: Math.round(total / (1 + GST_RATE)),
-    discount, 
-    gst, 
-    total: discountedTotal, 
-    amountPaise 
+function calculateTotals(grossTotal: number, discount = 0): OrderTotals {
+  const originalAmount = grossTotal;
+  const discountedTotal = Math.max(0, originalAmount - discount);
+  const gstExclusiveDiscounted = Math.round(discountedTotal / (1 + GST_RATE));
+  const gst = discountedTotal - gstExclusiveDiscounted;
+  const gstExclusiveOriginal = Math.round(originalAmount / (1 + GST_RATE));
+
+  return {
+    subtotal: gstExclusiveOriginal,
+    discount,
+    gst,
+    total: discountedTotal,
+    amountPaise: Math.round(discountedTotal * 100),
+    originalAmount,
   };
 }
 
@@ -76,6 +99,42 @@ async function createRazorpayOrder(
   return payload;
 }
 
+async function resolvePromoDiscount(
+  supabase: ReturnType<typeof createClient>,
+  promoCode: string | undefined,
+  grossTotal: number,
+  eventId: string | null,
+): Promise<{ result: PromoApplyResult; error?: string }> {
+  if (!isNonEmptyString(promoCode)) {
+    return { result: { promoCodeId: null, couponCode: null, discount: 0 } };
+  }
+
+  if (!eventId) {
+    return {
+      result: { promoCodeId: null, couponCode: null, discount: 0 },
+      error: 'event_id is required when applying a promo code',
+    };
+  }
+
+  const validation = await validatePromoCode(supabase, {
+    code: promoCode,
+    event_id: eventId,
+    subtotal: grossTotal,
+  });
+
+  if (!validation.valid) {
+    return { result: { promoCodeId: null, couponCode: null, discount: 0 }, error: validation.message };
+  }
+
+  return {
+    result: {
+      promoCodeId: validation.promo_code_id ?? null,
+      couponCode: validation.code,
+      discount: Number(validation.discount_amount ?? 0),
+    },
+  };
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
@@ -106,6 +165,9 @@ Deno.serve(async (req) => {
   }
 
   const registrationId = (body as CreateOrderRequest)?.registration_id;
+  const promoCodeInput = (body as CreateOrderRequest)?.promo_code;
+  const requestEventId = (body as CreateOrderRequest)?.event_id;
+
   if (!isNonEmptyString(registrationId)) {
     return jsonResponse({ error: 'registration_id is required' }, 400);
   }
@@ -130,24 +192,28 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: `Registration status not payable: ${registration.status}` }, 422);
   }
 
-  const { data: existingOrder } = await supabase
-    .from('orders')
-    .select('id, razorpay_order_id, amount_paise, currency, status')
-    .eq('registration_id', registrationId)
-    .eq('status', 'created')
-    .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+  const hasPromo = isNonEmptyString(promoCodeInput);
 
-  if (existingOrder?.razorpay_order_id) {
-    const testAmountPaise = 100;
-    const canReuseExistingOrder = !TEST_PAYMENT_MODE || existingOrder.amount_paise === testAmountPaise;
-    if (canReuseExistingOrder) {
-      return jsonResponse({
-        razorpay_order_id: existingOrder.razorpay_order_id,
-        amount: existingOrder.amount_paise,
-        currency: existingOrder.currency,
-      });
+  if (!hasPromo) {
+    const { data: existingOrder } = await supabase
+      .from('orders')
+      .select('id, razorpay_order_id, amount_paise, currency, status, coupon_code')
+      .eq('registration_id', registrationId)
+      .eq('status', 'created')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (existingOrder?.razorpay_order_id && !existingOrder.coupon_code) {
+      const testAmountPaise = 100;
+      const canReuseExistingOrder = !TEST_PAYMENT_MODE || existingOrder.amount_paise === testAmountPaise;
+      if (canReuseExistingOrder) {
+        return jsonResponse({
+          razorpay_order_id: existingOrder.razorpay_order_id,
+          amount: existingOrder.amount_paise,
+          currency: existingOrder.currency,
+        });
+      }
     }
   }
 
@@ -195,12 +261,23 @@ Deno.serve(async (req) => {
     }
   }
 
-  const subtotal = items.reduce((sum, item) => sum + Number(item.line_subtotal), 0);
-  const totals = calculateTotals(subtotal);
+  const grossTotal = items.reduce((sum, item) => sum + Number(item.line_subtotal), 0);
+  const checkoutEventId = resolveRegistrationEventId(items, requestEventId);
+
+  const { result: promo, error: promoError } = await resolvePromoDiscount(
+    supabase,
+    promoCodeInput,
+    grossTotal,
+    checkoutEventId,
+  );
+
+  if (promoError) {
+    return jsonResponse({ error: promoError }, 400);
+  }
+
+  const totals = calculateTotals(grossTotal, promo.discount);
   const finalTotals = TEST_PAYMENT_MODE
     ? (() => {
-      // Force a tiny payable amount while keeping schema constraints valid.
-      // We recompute total/subtotal/gst consistently for this test amount.
       const testAmountPaise = 100;
       const testTotal = testAmountPaise / 100;
       return calculateTotals(testTotal);
@@ -231,6 +308,8 @@ Deno.serve(async (req) => {
       razorpay_order_id: razorpayOrder.id,
       subtotal: finalTotals.subtotal,
       discount: finalTotals.discount,
+      coupon_code: promo.couponCode,
+      promo_code_id: promo.promoCodeId,
       gst: finalTotals.gst,
       total: finalTotals.total,
       amount_paise: finalTotals.amountPaise,
@@ -257,6 +336,9 @@ Deno.serve(async (req) => {
       subtotal: finalTotals.subtotal,
       gst: finalTotals.gst,
       total: finalTotals.total,
+      original_amount: finalTotals.originalAmount,
+      discount_amount: finalTotals.discount,
+      promo_code: promo.couponCode,
       amount_paise: finalTotals.amountPaise,
       item_count: items.length,
     },
@@ -270,5 +352,9 @@ Deno.serve(async (req) => {
     razorpay_order_id: order.razorpay_order_id,
     amount: order.amount_paise,
     currency: order.currency,
+    original_amount: finalTotals.originalAmount,
+    discount_amount: finalTotals.discount,
+    final_amount: finalTotals.total,
+    promo_code: promo.couponCode,
   });
 });

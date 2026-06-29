@@ -54,6 +54,11 @@ export function AdminLayout() {
               Team
             </NavLink>
           )}
+          {canAccessRoute(profile.role, 'promoCodes') && (
+            <NavLink to="/promo-codes" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              Promo Codes
+            </NavLink>
+          )}
         </nav>
 
         <div className="sidebar-footer">

@@ -13,6 +13,7 @@ import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { SupportDeskPage } from './pages/SupportDeskPage';
 import { TeamPage } from './pages/TeamPage';
 import { OperationsPage } from './pages/OperationsPage';
+import { PromoCodesPage } from './pages/PromoCodesPage';
 import { UnauthorizedPage } from './pages/UnauthorizedPage';
 
 export default function App() {
@@ -73,6 +74,14 @@ export default function App() {
                 element={(
                   <RequireRole allowedRoles={['SUPER_ADMIN', 'SUPPORT_DESK']}>
                     <OperationsPage />
+                  </RequireRole>
+                )}
+              />
+              <Route
+                path="promo-codes"
+                element={(
+                  <RequireRole allowedRoles={['SUPER_ADMIN']}>
+                    <PromoCodesPage />
                   </RequireRole>
                 )}
               />

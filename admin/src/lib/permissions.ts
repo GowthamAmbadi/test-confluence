@@ -16,6 +16,7 @@ export const ROUTE_PERMISSIONS = {
   registrationProfile: ['SUPER_ADMIN', 'CHECKIN_STAFF', 'SUPPORT_DESK'] as AdminRole[],
   team: ['SUPER_ADMIN'] as AdminRole[],
   operations: ['SUPER_ADMIN', 'SUPPORT_DESK'] as AdminRole[],
+  promoCodes: ['SUPER_ADMIN'] as AdminRole[],
 } as const;
 
 export function canAccessRoute(role: AdminRole, route: keyof typeof ROUTE_PERMISSIONS): boolean {
@@ -44,6 +45,7 @@ export const PERMISSION_MATRIX: Record<string, Record<AdminRole, boolean>> = {
   internal_notes: { SUPER_ADMIN: true, CHECKIN_STAFF: false, SUPPORT_DESK: true },
   operations: { SUPER_ADMIN: true, CHECKIN_STAFF: false, SUPPORT_DESK: true },
   operations_export: { SUPER_ADMIN: true, CHECKIN_STAFF: false, SUPPORT_DESK: false },
+  promo_codes: { SUPER_ADMIN: true, CHECKIN_STAFF: false, SUPPORT_DESK: false },
 };
 
 export function hasPermission(role: AdminRole, permission: keyof typeof PERMISSION_MATRIX): boolean {

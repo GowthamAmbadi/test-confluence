@@ -3,6 +3,7 @@
    ============================================================ */
 
 const CART_KEY = 'confluenceCart';
+const PROMO_KEY = 'confluenceAppliedPromo';
 const GST_RATE = 0.18;
 
 const PASS_CATALOGUE = {
@@ -55,11 +56,22 @@ function clearCart() {
   updateCartBadge && updateCartBadge();
 }
 
-function calcTotals(cart) {
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+function getAppliedPromo() {
+  try { return JSON.parse(sessionStorage.getItem(PROMO_KEY) || 'null'); }
+  catch { return null; }
+}
+
+function setAppliedPromo(promo) {
+  if (!promo) sessionStorage.removeItem(PROMO_KEY);
+  else sessionStorage.setItem(PROMO_KEY, JSON.stringify(promo));
+}
+
+function calcTotals(cart, promoDiscount = 0) {
+  const gross = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const total = Math.max(0, gross - promoDiscount);
   const subtotal = Math.round(total / (1 + GST_RATE));
   const gst = total - subtotal;
-  return { subtotal, gst, total };
+  return { subtotal, gst, total, gross, promoDiscount };
 }
 
 function formatINR(n) {
@@ -113,11 +125,21 @@ function renderCart() {
 }
 
 function renderSummary(cart) {
-  const { subtotal, gst, total } = calcTotals(cart);
+  const promo = getAppliedPromo();
+  const discount = promo?.valid ? Number(promo.discount_amount || 0) : 0;
+  const { subtotal, gst, total, gross, promoDiscount } = calcTotals(cart, discount);
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   set('summary-subtotal', `₹${formatINR(subtotal)}`);
   set('summary-gst', `₹${formatINR(gst)}`);
   set('summary-total', formatINR(total));
+  const discountRow = document.getElementById('summary-discount-row');
+  if (discountRow) {
+    discountRow.style.display = promoDiscount > 0 ? 'flex' : 'none';
+    const discountEl = document.getElementById('summary-discount');
+    if (discountEl) discountEl.textContent = `-₹${formatINR(promoDiscount)}`;
+  }
+  const grossEl = document.getElementById('summary-gross');
+  if (grossEl) grossEl.textContent = `₹${formatINR(gross)}`;
 }
 
 window.cartQty = function (id, delta) {
@@ -139,7 +161,9 @@ function renderCheckoutSummary() {
   const cart = getCart();
   if (cart.length === 0) { window.location.href = 'cart.html'; return; }
 
-  const { subtotal, gst, total } = calcTotals(cart);
+  const promo = getAppliedPromo();
+  const discount = promo?.valid ? Number(promo.discount_amount || 0) : 0;
+  const { subtotal, gst, total, gross, promoDiscount } = calcTotals(cart, discount);
 
   el.innerHTML = `
     <div class="summary-title">Order Summary</div>
@@ -149,14 +173,80 @@ function renderCheckoutSummary() {
         <span>₹${formatINR(i.price * i.qty)}</span>
       </div>
     `).join('')}
+    <div class="promo-box">
+      <label class="form-label" for="promo-code-input">Promo code</label>
+      <div class="promo-input-row">
+        <input class="form-input" id="promo-code-input" type="text" placeholder="Enter code" value="${promo?.code || ''}">
+        <button type="button" class="btn btn-secondary" id="promo-apply-btn">Apply</button>
+      </div>
+      <p class="promo-message ${promo?.valid ? 'promo-ok' : promo?.message ? 'promo-error' : ''}" id="promo-message">
+        ${promo?.valid ? `Applied: ${promo.code} (−₹${formatINR(promoDiscount)})` : (promo?.message || '')}
+      </p>
+    </div>
+    ${promoDiscount > 0 ? `<div class="summary-line discount"><span>Discount</span><span>−₹${formatINR(promoDiscount)}</span></div>` : ''}
     <div class="summary-line"><span>Subtotal</span><span>₹${formatINR(subtotal)}</span></div>
     <div class="summary-line"><span>GST (18%)</span><span>₹${formatINR(gst)}</span></div>
     <div class="summary-line total">
       <span>Total</span>
       <span><sub>₹</sub>${formatINR(total)}</span>
     </div>
-    <p class="summary-gst-note">Inclusive of 18% GST</p>
+    <p class="summary-gst-note">Inclusive of 18% GST · Before discount: ₹${formatINR(gross)}</p>
   `;
+
+  const applyBtn = document.getElementById('promo-apply-btn');
+  const promoInput = document.getElementById('promo-code-input');
+  if (applyBtn && promoInput) {
+    applyBtn.addEventListener('click', () => applyPromoCode(promoInput.value));
+    promoInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        applyPromoCode(promoInput.value);
+      }
+    });
+  }
+}
+
+function resolveCheckoutEventId(cart) {
+  const ids = [...new Set(cart.map((i) => i.event_id).filter(Boolean))];
+  if (ids.length === 0) return null;
+  return ids[0];
+}
+
+async function applyPromoCode(rawCode) {
+  const code = rawCode.trim();
+  const cart = getCart();
+  if (!code) {
+    setAppliedPromo(null);
+    renderCheckoutSummary();
+    return;
+  }
+
+  const eventId = resolveCheckoutEventId(cart);
+  if (!eventId) {
+    toast.error('Event information is missing from your cart.', 'Promo');
+    return;
+  }
+
+  const gross = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+  try {
+    const { data, error } = await window.db.validatePromo(code, gross, eventId);
+    if (error) {
+      setAppliedPromo({ valid: false, code, message: error.message || 'Invalid promo code' });
+      toast.error(error.message || 'Invalid promo code', 'Promo');
+    } else if (!data?.valid) {
+      setAppliedPromo({ valid: false, code: data.code || code, message: data.message || 'Invalid promo code' });
+      toast.error(data.message || 'Invalid promo code', 'Promo');
+    } else {
+      setAppliedPromo({ ...data, event_id: eventId });
+      toast.success(data.message || 'Promo applied', 'Promo');
+    }
+  } catch (err) {
+    setAppliedPromo({ valid: false, code, message: 'Could not validate promo code' });
+    toast.error('Could not validate promo code', 'Promo');
+  }
+
+  renderCheckoutSummary();
 }
 
 async function handleCheckoutSubmit(e) {
@@ -184,6 +274,8 @@ async function handleCheckoutSubmit(e) {
   }
 
   const formData = window.formHelpers.collectFormData(form);
+  const promo = getAppliedPromo();
+  const eventId = resolveCheckoutEventId(cart);
 
   btn.disabled = true;
   btn.classList.add('btn-loading');
@@ -195,6 +287,8 @@ async function handleCheckoutSubmit(e) {
       phone: formData.phone,
       college: formData.college,
       selected_events: window.checkout.selectedEventsFromCart(cart),
+      promo_code: promo?.valid ? promo.code : undefined,
+      event_id: eventId || undefined,
     });
   } catch (err) {
     console.error('Checkout error:', err);
@@ -349,6 +443,7 @@ async function renderSuccessPage() {
       confirmed: true,
     });
     clearCart();
+    sessionStorage.removeItem(PROMO_KEY);
     sessionStorage.removeItem(key);
     return;
   }
@@ -374,6 +469,7 @@ async function renderSuccessPage() {
         confirmed: true,
       });
       clearCart();
+      sessionStorage.removeItem(PROMO_KEY);
       sessionStorage.removeItem(key);
     }
   }, 60).catch((err) => console.error('Background status poll error:', err));
@@ -393,4 +489,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderSuccessPage();
 });
 
-window.cartHelpers = { getCart, removeFromCart, calcTotals, formatINR, clearCart, PASS_CATALOGUE, syncCatalogFromDb };
+window.cartHelpers = { getCart, removeFromCart, calcTotals, formatINR, clearCart, PASS_CATALOGUE, syncCatalogFromDb, getAppliedPromo, setAppliedPromo };

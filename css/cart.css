@@ -23,4 +23,23 @@
 .summary-line.total { font-size: 1.1rem; color: var(--ink); font-weight: 500; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
 .summary-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
 .summary-gst-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 0.5rem; }
+.promo-box { margin: 1rem 0; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.promo-input-row { display: flex; gap: 0.5rem; margin-top: 0.35rem; }
+.promo-input-row .form-input { flex: 1; }
+.promo-message { font-size: 0.8rem; margin: 0.5rem 0 0; min-height: 1.2em; }
+.promo-message.promo-ok { color: #1f7a4d; }
+.promo-message.promo-error { color: var(--orange); }
+.summary-line.discount { color: #1f7a4d; }
+.page-actions { margin-bottom: 1rem; }
+.table-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.promo-all-events {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(201, 168, 76, 0.12);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+}
 @media (max-width: 768px) { .checkout-layout { grid-template-columns: 1fr; } }

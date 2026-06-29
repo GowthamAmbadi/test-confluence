@@ -128,6 +128,130 @@ a { color: var(--gold); }
   min-height: 70vh;
 }
 
+.page-actions {
+  margin-bottom: 1rem;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.promo-modal {
+  width: min(100%, 560px);
+  max-height: min(92vh, 760px);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.promo-modal-header {
+  padding: 1.25rem 1.5rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.promo-modal-header h3 {
+  margin: 0 0 0.25rem;
+}
+
+.promo-modal-header .muted {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.promo-modal-form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.promo-modal-body {
+  padding: 1rem 1.5rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.promo-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 1rem;
+}
+
+.promo-form-grid label {
+  min-width: 0;
+}
+
+.promo-form-grid input,
+.promo-form-grid select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.promo-field-full {
+  grid-column: 1 / -1;
+}
+
+.promo-field-hint {
+  align-self: end;
+  font-size: 0.82rem;
+  padding-bottom: 0.55rem;
+}
+
+.promo-field-active {
+  align-self: end;
+  margin: 0;
+}
+
+.promo-modal-error {
+  margin: 0 1.5rem;
+}
+
+.promo-modal-footer {
+  padding: 1rem 1.5rem 1.25rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+  flex-shrink: 0;
+  background: var(--panel);
+}
+
+@media (max-width: 600px) {
+  .promo-modal {
+    width: 100%;
+    max-height: 95vh;
+    border-radius: 12px 12px 0 0;
+    align-self: end;
+  }
+
+  .modal-backdrop:has(.promo-modal) {
+    align-items: end;
+    justify-items: stretch;
+    padding: 0;
+  }
+
+  .promo-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-field-hint {
+    padding-bottom: 0;
+  }
+}
+
+.promo-all-events {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(184, 134, 11, 0.12);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
 .loading-card,
 .auth-card {
   background: var(--panel);

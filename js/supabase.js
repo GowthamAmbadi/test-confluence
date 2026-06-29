@@ -188,8 +188,21 @@ async function createRegistration(payload) {
   return invokeFunction('create-registration', payload);
 }
 
-async function createOrder(registrationId) {
-  return invokeFunction('create-order', { registration_id: registrationId });
+async function createOrder(registrationId, promoCode, eventId) {
+  const body = { registration_id: registrationId };
+  if (promoCode) body.promo_code = promoCode;
+  if (eventId) body.event_id = eventId;
+  return invokeFunction('create-order', body);
+}
+
+async function validatePromo(code, subtotal, eventId) {
+  if (!eventId) {
+    return { data: null, error: { message: 'Event is required to validate promo code' } };
+  }
+  const body = { code, subtotal, event_id: eventId };
+  const result = await invokeFunction('promo-validate', body);
+  if (result.error) return result;
+  return { data: result.data, error: null };
 }
 
 async function getRegistrationStatus(registrationId) {
@@ -253,6 +266,7 @@ window.db = {
   getEventBySlug,
   createRegistration,
   createOrder,
+  validatePromo,
   getRegistrationStatus,
   loadPublicConfig,
   getRazorpayKeyId,

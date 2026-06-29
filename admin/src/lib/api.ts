@@ -18,6 +18,7 @@ import type {
   SystemHealthReport,
 } from './operations';
 import { filtersToQueryParams } from './operations';
+import type { PromoCode, PromoCodeFormData, PromoEventOption } from './promoCodes';
 import type { RegistrationDetail, RegistrationListResponse, RegistrationQuery, RecentSearch } from './registrations';
 import { supabase } from './supabase';
 
@@ -290,4 +291,24 @@ export async function fetchExportJob(jobId: string): Promise<ExportJob> {
 export async function listExportJobs(): Promise<ExportJob[]> {
   const data = await adminFetch<{ jobs: ExportJob[] }>('admin-export', { method: 'GET' });
   return data.jobs ?? [];
+}
+
+export async function listPromoCodes(): Promise<{ promo_codes: PromoCode[]; events: PromoEventOption[] }> {
+  return adminFetch<{ promo_codes: PromoCode[]; events: PromoEventOption[] }>('admin-promo-codes', { method: 'GET' });
+}
+
+export async function createPromoCode(payload: PromoCodeFormData): Promise<PromoCode> {
+  const data = await adminFetch<{ promo_code: PromoCode }>('admin-promo-codes', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+  return data.promo_code;
+}
+
+export async function updatePromoCode(id: string, payload: Partial<PromoCodeFormData>): Promise<PromoCode> {
+  const data = await adminFetch<{ promo_code: PromoCode }>(`admin-promo-codes?id=${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  });
+  return data.promo_code;
 }

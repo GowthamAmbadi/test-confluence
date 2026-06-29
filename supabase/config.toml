@@ -44,3 +44,9 @@ verify_jwt = true
 
 [functions.admin-export]
 verify_jwt = true
+
+[functions.promo-validate]
+verify_jwt = false
+
+[functions.admin-promo-codes]
+verify_jwt = true

@@ -28,6 +28,8 @@ function storePendingRegistration(data) {
  * @param {string} params.phone
  * @param {string} params.college
  * @param {Array} params.selected_events - { event_id, quantity?, event_answers? }
+ * @param {string} [params.promo_code]
+ * @param {string} [params.event_id]
  */
 async function startCheckout(params) {
   let razorpayKeyId;
@@ -55,7 +57,11 @@ async function startCheckout(params) {
 
   const registrationId = regData.registration_id;
 
-  const { data: orderData, error: orderError } = await window.db.createOrder(registrationId);
+  const { data: orderData, error: orderError } = await window.db.createOrder(
+    registrationId,
+    params.promo_code || undefined,
+    params.event_id || undefined,
+  );
   if (orderError) throw new Error(orderError.message || 'Order creation failed');
 
   const prefill = {
